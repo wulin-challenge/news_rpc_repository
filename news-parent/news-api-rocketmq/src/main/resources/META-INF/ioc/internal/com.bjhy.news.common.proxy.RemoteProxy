@@ -1,0 +1,1 @@
+rocketmq.remote.proxy=com.bjhy.news.api.rocketmq.proxy.RocketmqRemoteProxy

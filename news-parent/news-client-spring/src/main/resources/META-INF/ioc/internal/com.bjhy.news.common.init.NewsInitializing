@@ -1,0 +1,1 @@
+spring.news.initializing=com.bjhy.news.client.spring.init.SpringNewsInitializing

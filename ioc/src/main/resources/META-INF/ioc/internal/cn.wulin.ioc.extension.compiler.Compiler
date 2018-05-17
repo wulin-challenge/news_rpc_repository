@@ -1,0 +1,3 @@
+adaptive=cn.wulin.ioc.extension.compiler.support.AdaptiveCompiler
+jdk=cn.wulin.ioc.extension.compiler.support.JdkCompiler
+javassist=cn.wulin.ioc.extension.compiler.support.JavassistCompiler

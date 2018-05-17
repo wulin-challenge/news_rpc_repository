@@ -1,0 +1,2 @@
+adaptive=cn.wulin.ioc.extension.factory.AdaptiveExtensionFactory
+spi=cn.wulin.ioc.extension.factory.SpiExtensionFactory

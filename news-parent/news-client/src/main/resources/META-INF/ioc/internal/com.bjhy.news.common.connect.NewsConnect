@@ -1,0 +1,1 @@
+default.client.connect=com.bjhy.news.client.connect.DefaultClientConnect

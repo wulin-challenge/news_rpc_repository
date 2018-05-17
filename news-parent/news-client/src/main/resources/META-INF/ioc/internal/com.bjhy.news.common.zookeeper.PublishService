@@ -1,0 +1,1 @@
+default.publish.service=com.bjhy.news.client.publish.DefaultPublishService

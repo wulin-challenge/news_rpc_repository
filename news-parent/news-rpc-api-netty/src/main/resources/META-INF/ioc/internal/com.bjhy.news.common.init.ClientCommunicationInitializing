@@ -1,0 +1,1 @@
+netty=com.bjhy.news.rpc.api.netty.init.NettyClientCommunicationInitializing

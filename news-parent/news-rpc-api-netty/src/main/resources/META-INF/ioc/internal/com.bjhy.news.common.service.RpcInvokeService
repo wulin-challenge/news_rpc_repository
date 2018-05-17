@@ -1,0 +1,2 @@
+adaptive.rpc.invoke.service=com.bjhy.news.rpc.api.netty.AdaptiveRpcInvokeService
+netty.rpc.invoke.service=com.bjhy.news.rpc.api.netty.NettyRpcInvokeService

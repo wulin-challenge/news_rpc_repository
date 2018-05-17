@@ -1,0 +1,1 @@
+netty.remote.proxy=com.bjhy.news.rpc.api.netty.proxy.NettyRemoteProxy
