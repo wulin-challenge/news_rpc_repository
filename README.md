@@ -59,6 +59,24 @@ public interface FirstService {
 }
 ```
 #### 提供者提供服务
+##### 提供者的yml配置
+```
+news: 
+  zookeeper-address: 192.168.0.2:2181
+  rocketmq-address: 192.168.0.80:9876
+  rocketmq-publish-environment: dev
+  rocketmq-publish-version: 1.1
+  client-port: 5588
+  client-topic: 5109
+  client-tag: xxappId
+```
+
+##### 提供者的具体代码实现
+说明: 提供者的实现主要是打上  
+@Service  
+@NewsListenerService(FirstService.class)  
+者两个注解  
+
 ```
 package com.bjhy.news.demo.provider.core;
 
@@ -101,6 +119,17 @@ public class FirstServiceProvider implements FirstService{
 ```
 
 #### 消费者消费服务
+##### 消费者yml配置
+```
+news: 
+  zookeeper-address: 192.168.0.2:2181
+  rocketmq-address: 192.168.0.80:9876
+  rocketmq-publish-environment: test
+  rocketmq-publish-version: 1.1
+  client-port: 5589
+  client-topic: 5110
+  client-tag: xxappId2
+```
 ##### 同步方式调用
 ```
 	@Test
