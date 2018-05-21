@@ -158,7 +158,7 @@ news:
 		for (int i = 0; i < 100000; i++) {
 			
 			try {
-				AsyncSendResult asyncInvoke = NewsUtil.asyncSend(new TopicTag("5109", "xxappId"), FirstService.class).AsyncInvoke("hello1"," hello async ");
+				AsyncSendResult asyncInvoke = NewsUtil.asyncSend(new TopicTag("5109", "xxappId"), FirstService.class).asyncInvoke("hello1"," hello async ");
 				System.out.println(i+"---"+asyncInvoke.getSendStatus());
 			} catch (Exception e) {
 				e.printStackTrace();
