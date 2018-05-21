@@ -1,0 +1,216 @@
+2018-05-17 11:43:34,318 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: cn.wulin:ioc:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\ioc\pom.xml.
+2018-05-17 11:43:34,620 [Worker-9] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ioc/src/main/java
+2018-05-17 11:43:34,620 [Worker-9] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ioc/src/main/resources
+2018-05-17 11:43:34,621 [Worker-9] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ioc/src/test/java
+2018-05-17 11:43:34,621 [Worker-9] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ioc/src/test/resources
+2018-05-17 11:43:34,677 [Worker-9] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 1 sec
+2018-05-17 11:43:36,108 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:43:36,113 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2018-05-17 11:43:36,130 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:43:36,130 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:01,226 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: cn.wulin:ioc-test:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\ioc-test\pom.xml.
+2018-05-17 11:44:01,330 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ioc-test/src/main/java
+2018-05-17 11:44:01,330 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ioc-test/src/main/resources
+2018-05-17 11:44:01,330 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ioc-test/src/test/java
+2018-05-17 11:44:01,331 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ioc-test/src/test/resources
+2018-05-17 11:44:01,361 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 0 sec
+2018-05-17 11:44:01,827 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:01,827 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2018-05-17 11:44:01,833 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:01,834 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:17,892 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.bjhy:news-parent:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\pom.xml.
+2018-05-17 11:44:17,930 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-common:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-common\pom.xml.
+2018-05-17 11:44:18,260 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-api:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-api\pom.xml.
+2018-05-17 11:44:18,291 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-rpc-api:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-rpc-api\pom.xml.
+2018-05-17 11:44:18,315 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-api-rocketmq:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-api-rocketmq\pom.xml.
+2018-05-17 11:44:18,391 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-rpc-api-rocketmq:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-rpc-api-rocketmq\pom.xml.
+2018-05-17 11:44:18,415 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-rpc-api-netty:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-rpc-api-netty\pom.xml.
+2018-05-17 11:44:18,483 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-client:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client\pom.xml.
+2018-05-17 11:44:18,552 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-example:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-example\pom.xml.
+2018-05-17 11:44:18,901 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-client-spring:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring\pom.xml.
+2018-05-17 11:44:19,662 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-rpc-api/src/main/java
+2018-05-17 11:44:19,663 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-rpc-api/src/main/resources
+2018-05-17 11:44:19,663 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-rpc-api/src/test/java
+2018-05-17 11:44:19,663 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-rpc-api/src/test/resources
+2018-05-17 11:44:19,689 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-common/src/main/java
+2018-05-17 11:44:19,689 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-common/src/main/resources
+2018-05-17 11:44:19,689 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-common/src/test/java
+2018-05-17 11:44:19,689 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-common/src/test/resources
+2018-05-17 11:44:19,762 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-api-rocketmq/src/main/java
+2018-05-17 11:44:19,762 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-api-rocketmq/src/main/resources
+2018-05-17 11:44:19,762 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-api-rocketmq/src/test/java
+2018-05-17 11:44:19,762 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-api-rocketmq/src/test/resources
+2018-05-17 11:44:19,818 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-api/src/main/java
+2018-05-17 11:44:19,818 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-api/src/main/resources
+2018-05-17 11:44:19,819 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-api/src/test/java
+2018-05-17 11:44:19,819 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-api/src/test/resources
+2018-05-17 11:44:19,842 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-rpc-api-rocketmq/src/main/java
+2018-05-17 11:44:19,842 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-rpc-api-rocketmq/src/main/resources
+2018-05-17 11:44:19,842 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-rpc-api-rocketmq/src/test/java
+2018-05-17 11:44:19,842 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-rpc-api-rocketmq/src/test/resources
+2018-05-17 11:44:19,863 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-client/src/main/java
+2018-05-17 11:44:19,864 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-client/src/main/resources
+2018-05-17 11:44:19,864 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-client/src/test/java
+2018-05-17 11:44:19,864 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-client/src/test/resources
+2018-05-17 11:44:19,920 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-rpc-api-netty/src/main/java
+2018-05-17 11:44:19,920 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-rpc-api-netty/src/main/resources
+2018-05-17 11:44:19,921 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-rpc-api-netty/src/test/java
+2018-05-17 11:44:19,921 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-rpc-api-netty/src/test/resources
+2018-05-17 11:44:19,974 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-client-spring/src/main/java
+2018-05-17 11:44:19,974 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-client-spring/src/main/resources
+2018-05-17 11:44:19,974 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-client-spring/src/test/java
+2018-05-17 11:44:19,975 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-client-spring/src/test/resources
+2018-05-17 11:44:20,032 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-example/src/main/java
+2018-05-17 11:44:20,033 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-example/src/main/resources
+2018-05-17 11:44:20,033 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-example/src/test/java
+2018-05-17 11:44:20,033 [Worker-11] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-example/src/test/resources
+2018-05-17 11:44:20,134 [Worker-11] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 10 project(s) in 2 sec
+2018-05-17 11:44:20,982 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:20,982 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:20,983 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:20,983 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:21,019 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:21,019 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:21,020 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:21,020 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:21,448 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:21,449 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2018-05-17 11:44:21,454 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:21,454 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:21,812 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:21,812 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-05-17 11:44:21,817 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:21,818 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:22,209 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:22,210 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-05-17 11:44:22,214 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:22,215 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:22,601 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:22,601 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2018-05-17 11:44:22,607 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:22,607 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:23,442 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:23,442 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2018-05-17 11:44:23,449 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:23,449 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:24,229 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:24,229 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-05-17 11:44:24,232 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:24,232 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:24,472 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:24,472 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:44:24,473 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:44:24,473 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:45:16,602 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.bjhy:news-demo:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\pom.xml.
+2018-05-17 11:45:16,628 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-provider:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-provider\pom.xml.
+2018-05-17 11:45:17,080 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-api:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-api\pom.xml.
+2018-05-17 11:45:17,101 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-consumer:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-consumer\pom.xml.
+2018-05-17 11:45:17,493 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-demo-api/src/main/java
+2018-05-17 11:45:17,493 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-demo-api/src/main/resources
+2018-05-17 11:45:17,494 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-demo-api/src/test/java
+2018-05-17 11:45:17,494 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-demo-api/src/test/resources
+2018-05-17 11:45:17,518 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-demo-provider/src/main/java
+2018-05-17 11:45:17,518 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-demo-provider/src/main/resources
+2018-05-17 11:45:17,518 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-demo-provider/src/test/java
+2018-05-17 11:45:17,519 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-demo-provider/src/test/resources
+2018-05-17 11:45:17,641 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-demo-consumer/src/main/java
+2018-05-17 11:45:17,641 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-demo-consumer/src/main/resources
+2018-05-17 11:45:17,642 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /news-demo-consumer/src/test/java
+2018-05-17 11:45:17,642 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /news-demo-consumer/src/test/resources
+2018-05-17 11:45:17,734 [Worker-4] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 4 project(s) in 1 sec
+2018-05-17 11:45:18,159 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:45:18,159 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:45:18,160 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:45:18,160 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:45:18,712 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:45:18,712 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-05-17 11:45:18,715 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:45:18,715 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-17 11:45:19,250 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:45:19,251 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-05-17 11:45:19,253 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-17 11:45:19,254 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-18 16:13:40,156 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh/2.8/wagon-ssh-2.8.pom
+2018-05-18 16:13:40,182 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh/2.8/wagon-ssh-2.8.pom
+2018-05-18 16:13:40,837 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-providers/2.8/wagon-providers-2.8.pom
+2018-05-18 16:13:40,850 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-providers/2.8/wagon-providers-2.8.pom
+2018-05-18 16:13:40,946 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon/2.8/wagon-2.8.pom
+2018-05-18 16:13:40,992 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon/2.8/wagon-2.8.pom
+2018-05-18 16:13:41,023 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch/0.1.50/jsch-0.1.50.pom
+2018-05-18 16:13:41,035 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch/0.1.50/jsch-0.1.50.pom
+2018-05-18 16:13:41,054 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.connector-factory/0.0.6/jsch.agentproxy.connector-factory-0.0.6.pom
+2018-05-18 16:13:41,066 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.connector-factory/0.0.6/jsch.agentproxy.connector-factory-0.0.6.pom
+2018-05-18 16:13:41,081 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy/0.0.6/jsch.agentproxy-0.0.6.pom
+2018-05-18 16:13:41,093 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy/0.0.6/jsch.agentproxy-0.0.6.pom
+2018-05-18 16:13:41,108 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.core/0.0.6/jsch.agentproxy.core-0.0.6.pom
+2018-05-18 16:13:41,120 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.core/0.0.6/jsch.agentproxy.core-0.0.6.pom
+2018-05-18 16:13:41,138 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-jna/0.0.6/jsch.agentproxy.usocket-jna-0.0.6.pom
+2018-05-18 16:13:41,153 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-jna/0.0.6/jsch.agentproxy.usocket-jna-0.0.6.pom
+2018-05-18 16:13:41,177 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/jna/3.4.0/jna-3.4.0.pom
+2018-05-18 16:13:41,188 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/jna/3.4.0/jna-3.4.0.pom
+2018-05-18 16:13:41,202 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/platform/3.4.0/platform-3.4.0.pom
+2018-05-18 16:13:41,214 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/platform/3.4.0/platform-3.4.0.pom
+2018-05-18 16:13:41,228 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-nc/0.0.6/jsch.agentproxy.usocket-nc-0.0.6.pom
+2018-05-18 16:13:41,240 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-nc/0.0.6/jsch.agentproxy.usocket-nc-0.0.6.pom
+2018-05-18 16:13:41,254 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.sshagent/0.0.6/jsch.agentproxy.sshagent-0.0.6.pom
+2018-05-18 16:13:41,274 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.sshagent/0.0.6/jsch.agentproxy.sshagent-0.0.6.pom
+2018-05-18 16:13:41,292 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.pageant/0.0.6/jsch.agentproxy.pageant-0.0.6.pom
+2018-05-18 16:13:41,304 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.pageant/0.0.6/jsch.agentproxy.pageant-0.0.6.pom
+2018-05-18 16:13:41,318 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.jsch/0.0.6/jsch.agentproxy.jsch-0.0.6.pom
+2018-05-18 16:13:41,330 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.jsch/0.0.6/jsch.agentproxy.jsch-0.0.6.pom
+2018-05-18 16:13:41,344 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch/0.1.49/jsch-0.1.49.pom
+2018-05-18 16:13:41,354 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch/0.1.49/jsch-0.1.49.pom
+2018-05-18 16:13:41,990 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh-common/2.8/wagon-ssh-common-2.8.pom
+2018-05-18 16:13:42,003 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh-common/2.8/wagon-ssh-common-2.8.pom
+2018-05-18 16:13:42,059 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-provider-api/2.8/wagon-provider-api-2.8.pom
+2018-05-18 16:13:42,089 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-provider-api/2.8/wagon-provider-api-2.8.pom
+2018-05-18 16:13:43,240 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh/2.8/wagon-ssh-2.8.jar
+2018-05-18 16:13:43,255 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh/2.8/wagon-ssh-2.8.jar
+2018-05-18 16:13:43,266 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch/0.1.50/jsch-0.1.50.jar
+2018-05-18 16:13:43,336 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch/0.1.50/jsch-0.1.50.jar
+2018-05-18 16:13:43,347 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.connector-factory/0.0.6/jsch.agentproxy.connector-factory-0.0.6.jar
+2018-05-18 16:13:43,359 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.connector-factory/0.0.6/jsch.agentproxy.connector-factory-0.0.6.jar
+2018-05-18 16:13:43,370 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.core/0.0.6/jsch.agentproxy.core-0.0.6.jar
+2018-05-18 16:13:43,381 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.core/0.0.6/jsch.agentproxy.core-0.0.6.jar
+2018-05-18 16:13:43,392 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-jna/0.0.6/jsch.agentproxy.usocket-jna-0.0.6.jar
+2018-05-18 16:13:43,404 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-jna/0.0.6/jsch.agentproxy.usocket-jna-0.0.6.jar
+2018-05-18 16:13:43,414 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/jna/3.4.0/jna-3.4.0.jar
+2018-05-18 16:13:43,573 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/jna/3.4.0/jna-3.4.0.jar
+2018-05-18 16:13:43,583 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/platform/3.4.0/platform-3.4.0.jar
+2018-05-18 16:13:43,718 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/net/java/dev/jna/platform/3.4.0/platform-3.4.0.jar
+2018-05-18 16:13:43,728 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-nc/0.0.6/jsch.agentproxy.usocket-nc-0.0.6.jar
+2018-05-18 16:13:43,743 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.usocket-nc/0.0.6/jsch.agentproxy.usocket-nc-0.0.6.jar
+2018-05-18 16:13:43,754 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.sshagent/0.0.6/jsch.agentproxy.sshagent-0.0.6.jar
+2018-05-18 16:13:43,767 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.sshagent/0.0.6/jsch.agentproxy.sshagent-0.0.6.jar
+2018-05-18 16:13:43,777 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.pageant/0.0.6/jsch.agentproxy.pageant-0.0.6.jar
+2018-05-18 16:13:43,788 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.pageant/0.0.6/jsch.agentproxy.pageant-0.0.6.jar
+2018-05-18 16:13:43,798 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.jsch/0.0.6/jsch.agentproxy.jsch-0.0.6.jar
+2018-05-18 16:13:43,809 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/com/jcraft/jsch.agentproxy.jsch/0.0.6/jsch.agentproxy.jsch-0.0.6.jar
+2018-05-18 16:13:45,424 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh-common/2.8/wagon-ssh-common-2.8.jar
+2018-05-18 16:13:45,438 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-ssh-common/2.8/wagon-ssh-common-2.8.jar
+2018-05-18 16:13:45,518 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-provider-api/2.8/wagon-provider-api-2.8.jar
+2018-05-18 16:13:45,589 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/maven/wagon/wagon-provider-api/2.8/wagon-provider-api-2.8.jar
+2018-05-18 16:13:46,319 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/maven-bundle-plugin/2.5.3/maven-bundle-plugin-2.5.3.pom
+2018-05-18 16:13:46,350 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/maven-bundle-plugin/2.5.3/maven-bundle-plugin-2.5.3.pom
+2018-05-18 16:13:46,371 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/biz/aQute/bnd/bndlib/2.3.0/bndlib-2.3.0.pom
+2018-05-18 16:13:46,383 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/biz/aQute/bnd/bndlib/2.3.0/bndlib-2.3.0.pom
+2018-05-18 16:13:46,396 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/biz/aQute/bnd/parent/2.3.0/parent-2.3.0.pom
+2018-05-18 16:13:46,407 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/biz/aQute/bnd/parent/2.3.0/parent-2.3.0.pom
+2018-05-18 16:13:46,423 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.core/4.3.1/org.osgi.core-4.3.1.pom
+2018-05-18 16:13:46,437 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.core/4.3.1/org.osgi.core-4.3.1.pom
+2018-05-18 16:13:46,488 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/org.apache.felix.utils/1.6.0/org.apache.felix.utils-1.6.0.pom
+2018-05-18 16:13:46,501 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/org.apache.felix.utils/1.6.0/org.apache.felix.utils-1.6.0.pom
+2018-05-18 16:13:46,516 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.pom
+2018-05-18 16:13:46,528 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.pom
+2018-05-18 16:13:46,997 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/maven-bundle-plugin/2.5.3/maven-bundle-plugin-2.5.3.jar
+2018-05-18 16:13:47,086 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/maven-bundle-plugin/2.5.3/maven-bundle-plugin-2.5.3.jar
+2018-05-18 16:13:47,097 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/biz/aQute/bnd/bndlib/2.3.0/bndlib-2.3.0.jar
+2018-05-18 16:13:47,353 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/biz/aQute/bnd/bndlib/2.3.0/bndlib-2.3.0.jar
+2018-05-18 16:13:47,404 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.core/4.3.1/org.osgi.core-4.3.1.jar
+2018-05-18 16:13:47,462 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.core/4.3.1/org.osgi.core-4.3.1.jar
+2018-05-18 16:13:47,473 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/org.apache.felix.utils/1.6.0/org.apache.felix.utils-1.6.0.jar
+2018-05-18 16:13:47,491 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/apache/felix/org.apache.felix.utils/1.6.0/org.apache.felix.utils-1.6.0.jar
+2018-05-18 16:13:47,502 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.jar
+2018-05-18 16:13:47,597 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.jar
+2018-05-18 16:13:47,608 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://192.168.0.2:81/nexus/content/groups/public/org/codehaus/plexus/plexus-utils/3.0.10/plexus-utils-3.0.10.jar
+2018-05-18 16:13:47,648 [Worker-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://192.168.0.2:81/nexus/content/groups/public/org/codehaus/plexus/plexus-utils/3.0.10/plexus-utils-3.0.10.jar
