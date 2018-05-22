@@ -1,0 +1,22 @@
+package com.bjhy.news.demo.dubbo.provide.init;
+
+import org.apel.poseidon.api.CasService;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
+
+import com.alibaba.dubbo.config.annotation.Reference;
+
+@Component
+//@Order(value=20000000)
+public class TestInit implements InitializingBean {
+	
+	@Reference
+	private CasService casService;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+//		casService.findAllAppClients()
+		System.out.println("初始化顺序");
+	}
+
+}

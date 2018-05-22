@@ -1,0 +1,54 @@
+package com.bjhy.news.demo.dubbo.provide.init;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apel.poseidon.api.CasService;
+import org.apel.poseidon.api.domain.AppClientInfo;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
+
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.bjhy.news.common.annotation.NewsListenerService;
+import com.bjhy.news.common.annotation.NewsListenerService2;
+import com.bjhy.news.demo.api.FirstService;
+import com.bjhy.news.demo.domain.User;
+
+@Component
+//@Order(value=20000000)
+@NewsListenerService2(FirstService.class)
+public class TestInit implements InitializingBean ,FirstService{
+	
+	@Reference
+	private CasService casService;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		List<AppClientInfo> findAllAppClients = casService.findAllAppClients();
+		if(findAllAppClients != null){
+			for (AppClientInfo appClientInfo : findAllAppClients) {
+				System.out.println(appClientInfo.getAppName());
+			}
+		}
+		System.out.println("初始化顺序");
+	}
+
+	@Override
+	public void hello0(String str) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String hello1(String str) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUser(String username, Integer age, Date csrq, User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -8,5 +8,6 @@
   	<module>news-demo-provider</module>
   	<module>news-demo-api</module>
   	<module>news-demo-consumer</module>
+  	<module>news-demo-dubbo-provider</module>
   </modules>
 </project>

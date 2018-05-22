@@ -1,0 +1,16 @@
+package com.bjhy.news.demo.dubbo.provide.init;
+
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+@Component
+@Order(value=2000000001)
+public class TestInit implements InitializingBean {
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("初始化顺序");
+	}
+
+}

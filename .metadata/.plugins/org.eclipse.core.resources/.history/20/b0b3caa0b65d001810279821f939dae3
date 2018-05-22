@@ -1,0 +1,14 @@
+package com.bjhy.news.client.spring;
+
+import org.springframework.stereotype.Component;
+import com.bjhy.news.common.annotation.NewsListenerService;
+
+@Component
+@NewsListenerService(BeanPostProcessor.class)
+public class SpringInitConfig {
+	
+	public void init(){
+		System.out.println("______________________---init---_____________________");
+	}
+
+}

@@ -1,5 +1,6 @@
 package com.bjhy.news.demo.consumer.test.sync;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.apel.gaia.app.boot.AppStarter;
@@ -63,5 +64,13 @@ public class TestAsync {
 		System.out.println((end-start));
 		System.out.println((end-start)/1000);
 	}
+	
+	@Test
+	public void test_invoke_sync_dubbo_service() throws IOException, Exception{
+		
+		String hello1 = NewsUtil.syncSend(new TopicTag("5199", "xxappIdx"), FirstService.class).hello1("xxxxx");
+		System.out.println(hello1);
+	}
+	
 
 }

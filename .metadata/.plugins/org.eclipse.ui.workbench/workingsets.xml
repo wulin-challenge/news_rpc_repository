@@ -17,6 +17,7 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/news-demo" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/news-demo-provider" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/news-demo-api" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/news-demo-dubbo-provider" type="4"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1526631009771_2" label="Window Working Set" name="Aggregate for window 1526631009771"/>
 </workingSetManager>
