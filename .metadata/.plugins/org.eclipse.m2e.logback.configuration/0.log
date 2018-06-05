@@ -1547,3 +1547,91 @@
 2018-05-22 20:49:35,536 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2018-05-22 20:49:35,536 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-05-22 20:49:35,537 [Worker-254] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:11,283 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:11,289 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:11,291 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:11,291 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:11,838 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.bjhy:news-parent:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\pom.xml.
+2018-05-23 09:20:12,195 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-rpc-api-rocketmq:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-rpc-api-rocketmq\pom.xml.
+2018-05-23 09:20:12,222 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-client-spring:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring\pom.xml.
+2018-05-23 09:20:12,602 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-api:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-api\pom.xml.
+2018-05-23 09:20:12,633 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-api-rocketmq:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-api-rocketmq\pom.xml.
+2018-05-23 09:20:12,715 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-example:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-example\pom.xml.
+2018-05-23 09:20:13,060 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-common:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-common\pom.xml.
+2018-05-23 09:20:13,131 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-rpc-api:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-rpc-api\pom.xml.
+2018-05-23 09:20:13,162 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-rpc-api-netty:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-rpc-api-netty\pom.xml.
+2018-05-23 09:20:13,228 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-client:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client\pom.xml.
+2018-05-23 09:20:14,494 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:14,495 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:14,496 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:14,496 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:14,789 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:14,790 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2018-05-23 09:20:14,795 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:14,796 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:15,095 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,095 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-05-23 09:20:15,097 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,097 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:15,371 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,372 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-05-23 09:20:15,373 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,373 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:15,611 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,612 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2018-05-23 09:20:15,613 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,613 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:15,913 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,913 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2018-05-23 09:20:15,914 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:15,916 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:16,408 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:16,409 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-05-23 09:20:16,412 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:16,413 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:16,479 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:16,480 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:16,481 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:16,481 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:17,569 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:17,571 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-23 09:20:17,572 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-23 09:20:17,572 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:43,895 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:43,903 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-06-04 16:46:43,911 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:43,912 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:45,169 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:45,171 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-06-04 16:46:45,175 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:45,176 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:45,790 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-dubbo-provider:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-dubbo-provider\pom.xml.
+2018-06-04 16:46:46,575 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:46,576 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-06-04 16:46:46,580 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:46,581 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:47,192 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:47,192 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-06-04 16:46:47,195 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:47,196 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:48,303 [Worker-16] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.bjhy:news-demo:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\pom.xml.
+2018-06-04 16:46:48,612 [Worker-16] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-api:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-api\pom.xml.
+2018-06-04 16:46:48,637 [Worker-16] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-provider:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-provider\pom.xml.
+2018-06-04 16:46:49,144 [Worker-16] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-consumer:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-consumer\pom.xml.
+2018-06-04 16:46:49,275 [Worker-16] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bjhy:news-demo-dubbo-provider:1.0.1-SNAPSHOT @ D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-demo\news-demo-dubbo-provider\pom.xml.
+2018-06-04 16:46:49,756 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:49,758 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:49,759 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:49,760 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:50,280 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:50,283 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:50,284 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:50,284 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:50,748 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:50,748 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:50,750 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:50,750 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:51,236 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:51,236 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-06-04 16:46:51,237 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 16:46:51,237 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
