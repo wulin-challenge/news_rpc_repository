@@ -3,7 +3,7 @@
 
 news: 
   zookeeper-address: 192.168.0.2:2181
-  rocketmq-address: 192.168.0.80:9876
+  rocketmq-address: 192.168.0.107:9876;192.168.0.108:9876
   rocketmq-publish-environment: test
   rocketmq-publish-version: 1.1
   client-port: 5589

@@ -28,18 +28,8 @@ public class DefaultClientConnect implements NewsConnect{
 	}
 
 	@Override
-	public String rocketmqIp() {
-		String[] split = YamlUtil.getValue("news.rocketmq-address", "127.0.0.1", String.class).split(":");
-		return split[0];
-	}
-
-	@Override
-	public Integer rocketmqPort() {
-		String[] split = YamlUtil.getValue("news.rocketmq-address", "2181", String.class).split(":");
-		if(split.length==2){
-			return Integer.valueOf(split[1]);
-		}
-		return Integer.valueOf(split[0]);
+	public String rocketmqAddress() {
+		return YamlUtil.getValue("news.rocketmq-address", "localhost:9876", String.class);
 	}
 
 	@Override

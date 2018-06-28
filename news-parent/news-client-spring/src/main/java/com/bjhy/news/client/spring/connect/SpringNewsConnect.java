@@ -30,17 +30,10 @@ public class SpringNewsConnect implements NewsConnect{
 		String[] split = getSpringLoadNewsConnect().getZookeeperAddress().split(":");
 		return Integer.valueOf(split[1]);
 	}
-
+	
 	@Override
-	public String rocketmqIp() {
-		String[] split = getSpringLoadNewsConnect().getRocketmqAddress().split(":");
-		return split[0];
-	}
-
-	@Override
-	public Integer rocketmqPort() {
-		String[] split = getSpringLoadNewsConnect().getRocketmqAddress().split(":");
-		return Integer.valueOf(split[1]);
+	public String rocketmqAddress() {
+		return getSpringLoadNewsConnect().getRocketmqAddress();
 	}
 
 	@Override

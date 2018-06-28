@@ -39,13 +39,8 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	}
 
 	@Override
-	public String rocketmqIp() {
-		return getNewsConnect().rocketmqIp();
-	}
-
-	@Override
-	public Integer rocketmqPort() {
-		return getNewsConnect().rocketmqPort();
+	public String rocketmqAddress() {
+		return getNewsConnect().rocketmqAddress();
 	}
 
 	@Override

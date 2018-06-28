@@ -22,16 +22,10 @@ public interface NewsConnect {
 	Integer zookeeperPort();
 	
 	/**
-	 * rocketmqIp
+	 * rocketmq地址,多个地址之间采用 ;隔开
 	 * @return
 	 */
-	String rocketmqIp();
-	
-	/**
-	 * rocketmq端口
-	 * @return
-	 */
-	Integer rocketmqPort();
+	String rocketmqAddress();
 	
 	/**
 	 * 客户端Ip
