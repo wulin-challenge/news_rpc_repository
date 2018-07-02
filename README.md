@@ -14,6 +14,9 @@ news:
   client-port: 5588
   client-topic: 5109
   client-tag: xxappId
+  rocketmq-news-type: general
+  rocketmq-is-unique-group: false
+  rocketmq-order-queue: 0
 ```
 ### 配置说明
 ```
@@ -24,6 +27,9 @@ rocketmq-publish-version: rocketmq的发布版本
 client-port : 当前消息rpc的端口
 client-topic : 主题(监狱编号)
 client-tag : 标签(应用的appId)
+rocketmq-news-type: rocketmq的消息类型,general:普通消息,order:顺序消息,transactional:事务消息(默认 general)
+rocketmq-is-unique-group: rocketmq的生产组和消费组是否唯一(1. 强调:生产组与消费组之间的名称一定不能一样. 2. 说明:默认情况下,若应用程序配置的  				  topic和appid以及版本号以及rocketmq的发布环境一样的情况下,两个相同的应用程序启动后会各自分担一部分broker的队列)
+rocketmq-order-queue: rocketmq顺序消息队列
 
 说明:
 rocketmq-publish-environment: product|dev|test(rocketmq的发布环境,默认为生产环境)
@@ -69,6 +75,9 @@ news:
   client-port: 5588
   client-topic: 5109
   client-tag: xxappId
+  rocketmq-news-type: general
+  rocketmq-is-unique-group: false
+  rocketmq-order-queue: 0
 ```
 
 ##### 提供者的具体代码实现
@@ -129,6 +138,9 @@ news:
   client-port: 5589
   client-topic: 5110
   client-tag: xxappId2
+  rocketmq-news-type: general
+  rocketmq-is-unique-group: false
+  rocketmq-order-queue: 0
 ```
 ##### 同步方式调用
 ```
