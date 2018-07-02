@@ -50,9 +50,14 @@ public class NewsConstants {
 	public static final String REGISTER_PROTOCOL_KEY = "register";
 	
 	/**
-	 * 消息rpc中的rocketmq的默认组
+	 * 消息rpc中的rocketmq的默认消费组前缀
 	 */
-	public static final String NEWS_DEFAULT_ROCKETMQ_GROUP = "news_default_rocketmq_group";
+	public static final String NEWS_ROCKETMQ_GROUP_CONSUMER = "news_default_rocketmq_group_consumer";
+	/**
+	 * 消息rpc中的rocketmq的默认生产组前缀
+	 */
+	public static final String NEWS_ROCKETMQ_GROUP_PRODUCER = "news_default_rocketmq_group_producer";
+	
 	
 
 }

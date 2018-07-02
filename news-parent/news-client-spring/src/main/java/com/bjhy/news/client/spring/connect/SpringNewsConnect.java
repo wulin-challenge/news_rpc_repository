@@ -3,6 +3,7 @@ package com.bjhy.news.client.spring.connect;
 import com.bjhy.cache.toolkit.extension.ExtensionLoader;
 import com.bjhy.cache.toolkit.util.NativeHostUtil;
 import com.bjhy.news.common.connect.NewsConnect;
+import com.bjhy.news.common.domain.RocketmqNewsType;
 
 /**
  * 消息rpc的连接接口 的spring实现
@@ -64,5 +65,21 @@ public class SpringNewsConnect implements NewsConnect{
 	@Override
 	public String rocketmqPublishVersion() {
 		return getSpringLoadNewsConnect().getRocketmqPublishVersion();
+	}
+
+	@Override
+	public RocketmqNewsType rocketmqNewsType() {
+		String code = getSpringLoadNewsConnect().getRocketmqNewsType();
+		return RocketmqNewsType.getRocketmqNewsTypeByCode(code);
+	}
+
+	@Override
+	public boolean rocketmqIsUniqueGroup() {
+		return getSpringLoadNewsConnect().getRocketmqIsUniqueGroup();
+	}
+
+	@Override
+	public Integer rocketmqOrderQueue() {
+		return getSpringLoadNewsConnect().getRocketmqOrderQueue();
 	}
 }

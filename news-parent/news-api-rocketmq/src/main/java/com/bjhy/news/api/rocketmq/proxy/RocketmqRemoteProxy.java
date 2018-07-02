@@ -23,6 +23,7 @@ import com.bjhy.news.common.domain.AsyncSendStatus;
 import com.bjhy.news.common.domain.DiscoveryServiceDetailInfo;
 import com.bjhy.news.common.domain.DiscoveryServiceInfo;
 import com.bjhy.news.common.domain.NewsResult;
+import com.bjhy.news.common.domain.RocketmqNewsType;
 import com.bjhy.news.common.domain.RocketmqRequest;
 import com.bjhy.news.common.proxy.RemoteAsyncProxy;
 import com.bjhy.news.common.proxy.RemoteProxy;
@@ -78,34 +79,25 @@ public class RocketmqRemoteProxy implements RemoteProxy{
 	 	String version = StringUtils.isBlank(newsConnect.rocketmqPublishVersion())?"":newsConnect.rocketmqPublishVersion();
     	String topic = newsConnect.rocketmqPublishEnvironment()+"_"+discoveryServiceInfo.getClientTopic()+"_"+version;
     	topic = topic.replaceAll("\\.", "__");
+    	
+    	String tag = discoveryServiceInfo.getClientTag();
     	byte[] data = SerializationUtil.serialize(request);
-		Message msg = new Message(topic, discoveryServiceInfo.getClientTag(),data);
-		
-		CountDownLatch count = new CountDownLatch(1);
-		AsyncSendResult asyncSendResult = new AsyncSendResult();
-		try {
-			RocketmqConfig.getInstance().getDefaultMQProducer().send(msg, new SendCallback(){
-				@Override
-				public void onSuccess(SendResult sendResult) {
-					asyncSendResult.setSendStatus(AsyncSendStatus.SUCCESS);
-					asyncSendResult.setSendResult(sendResult);
-					count.countDown();
-				}
-
-				@Override
-				public void onException(Throwable e) {
-					asyncSendResult.setSendStatus(AsyncSendStatus.FAILURE);
-					count.countDown();
-				}
-			}, detailInfo.getTimeout());
-			count.await();
-		} catch (MQClientException e) {
-			e.printStackTrace();
-		} catch (RemotingException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return asyncSendResult;
+    	int timeout = detailInfo.getTimeout();
+    	
+        //普通消息
+        if(newsConnect.rocketmqNewsType() == RocketmqNewsType.GENERAL){
+        	//return RocketmqConfig.getInstance().genenalSyncSend(topic, tag, data, timeout);
+        	return RocketmqConfig.getInstance().genenalAsyncSend(topic, tag, data, timeout);
+        	
+        //顺序消息
+        }else if(newsConnect.rocketmqNewsType() == RocketmqNewsType.ORDER){
+        	return RocketmqConfig.getInstance().orderSyncSend(topic, tag, data, timeout);
+        	
+        //事物消息
+        }else if(newsConnect.rocketmqNewsType() == RocketmqNewsType.TRANSACTIONAL){
+        	//TODO 暂时没有实现
+        	throw new RuntimeException("事物消息暂未实现!!");
+        }
+        return null;
 	}
 }

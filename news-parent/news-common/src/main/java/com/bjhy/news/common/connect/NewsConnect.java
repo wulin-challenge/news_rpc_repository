@@ -1,5 +1,7 @@
 package com.bjhy.news.common.connect;
 
+import com.bjhy.news.common.domain.RocketmqNewsType;
+
 import cn.wulin.ioc.extension.SPI;
 
 /**
@@ -63,4 +65,23 @@ public interface NewsConnect {
 	 */
 	String rocketmqPublishVersion();
 	
+	/**
+	 * rocketmq的消息类型,general:普通消息,order:顺序消息,transactional:事务消息
+	 * @return
+	 */
+	RocketmqNewsType rocketmqNewsType();
+	
+	/**
+	 * rocketmq的生产组和消费组是否唯一
+	 * 强调:生产组与消费组之间的名称一定不能一样
+	 * 说明:默认情况下,若应用程序配置的topic和appid以及版本号以及rocketmq的发布环境一样的情况下,两个相同的应用程序启动后会各自分担一部分broker的队列
+	 * @return
+	 */
+	boolean rocketmqIsUniqueGroup();
+	
+	/**
+	 * rocketmq顺序消息队列
+	 * @return
+	 */
+	Integer rocketmqOrderQueue();
 }

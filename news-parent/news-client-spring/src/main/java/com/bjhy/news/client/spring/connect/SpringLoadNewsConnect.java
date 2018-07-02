@@ -3,6 +3,7 @@ package com.bjhy.news.client.spring.connect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.bjhy.news.common.domain.RocketmqNewsType;
 import com.bjhy.news.common.util.NewsConstants;
 
 /**
@@ -32,6 +33,15 @@ public class SpringLoadNewsConnect {
 	
 	@Value("${news.rocketmq-publish-version:null}")
 	private String rocketmqPublishVersion;
+	
+	@Value("${news.rocketmq-news-type:general}")
+	private String rocketmqNewsType;
+	
+	@Value("${news.rocketmq-is-unique-group:false}")
+	private boolean rocketmqIsUniqueGroup;
+	
+	@Value("${news.rocketmq-order-queue:0}")
+	private Integer rocketmqOrderQueue;
 	
 	public String getZookeeperAddress() {
 		return zookeeperAddress;
@@ -74,5 +84,23 @@ public class SpringLoadNewsConnect {
 	}
 	public void setRocketmqPublishVersion(String rocketmqPublishVersion) {
 		this.rocketmqPublishVersion = rocketmqPublishVersion;
+	}
+	public String getRocketmqNewsType() {
+		return rocketmqNewsType;
+	}
+	public void setRocketmqNewsType(String rocketmqNewsType) {
+		this.rocketmqNewsType = rocketmqNewsType;
+	}
+	public boolean getRocketmqIsUniqueGroup() {
+		return rocketmqIsUniqueGroup;
+	}
+	public void setRocketmqIsUniqueGroup(boolean rocketmqIsUniqueGroup) {
+		this.rocketmqIsUniqueGroup = rocketmqIsUniqueGroup;
+	}
+	public Integer getRocketmqOrderQueue() {
+		return rocketmqOrderQueue;
+	}
+	public void setRocketmqOrderQueue(Integer rocketmqOrderQueue) {
+		this.rocketmqOrderQueue = rocketmqOrderQueue;
 	}
 }

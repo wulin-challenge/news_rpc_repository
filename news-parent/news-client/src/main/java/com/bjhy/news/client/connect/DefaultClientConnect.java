@@ -1,8 +1,8 @@
 package com.bjhy.news.client.connect;
-
 import com.bjhy.cache.toolkit.util.NativeHostUtil;
 import com.bjhy.cache.toolkit.util.YamlUtil;
 import com.bjhy.news.common.connect.NewsConnect;
+import com.bjhy.news.common.domain.RocketmqNewsType;
 import com.bjhy.news.common.util.NewsConstants;
 
 /**
@@ -61,5 +61,20 @@ public class DefaultClientConnect implements NewsConnect{
 	public String rocketmqPublishVersion() {
 		return YamlUtil.getValue("news.rocketmq-publish-version",null,String.class);
 	}
+
+	@Override
+	public RocketmqNewsType rocketmqNewsType() {
+		String code = YamlUtil.getValue("news.rocketmq-publish-version","general",String.class);
+		return RocketmqNewsType.getRocketmqNewsTypeByCode(code);
+	}
 	
+	@Override
+	public boolean rocketmqIsUniqueGroup() {
+		return YamlUtil.getValue("news.rocketmq-is-unique-group",false,boolean.class);
+	}
+
+	@Override
+	public Integer rocketmqOrderQueue() {
+		return YamlUtil.getValue("news.rocketmq-order-queue",0,Integer.class);
+	}
 }

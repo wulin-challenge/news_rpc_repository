@@ -1,5 +1,7 @@
 package com.bjhy.news.common.connect;
 
+import com.bjhy.news.common.domain.RocketmqNewsType;
+
 import cn.wulin.ioc.extension.Adaptive;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 
@@ -72,4 +74,20 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	public String rocketmqPublishVersion() {
 		return getNewsConnect().rocketmqPublishVersion();
 	}
+
+	@Override
+	public RocketmqNewsType rocketmqNewsType() {
+		return getNewsConnect().rocketmqNewsType();
+	}
+
+	@Override
+	public boolean rocketmqIsUniqueGroup() {
+		return getNewsConnect().rocketmqIsUniqueGroup();
+	}
+
+	@Override
+	public Integer rocketmqOrderQueue() {
+		return getNewsConnect().rocketmqOrderQueue();
+	}
+	
 }
