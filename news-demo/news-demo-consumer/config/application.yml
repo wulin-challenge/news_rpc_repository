@@ -8,7 +8,7 @@ news:
   rocketmq-publish-version: 1.1
   client-port: 5589
   client-topic: 5110
-  client-tag: xxappId2
+  client-tag: xxappId
   
 server:
   context-path: /demo-consumer
