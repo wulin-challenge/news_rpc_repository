@@ -11,7 +11,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 
 public class SyncConsumer {
     public static void main(String[] args) {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("PushConsumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("news_default_rocketmq_group");
         consumer.setNamesrvAddr("192.168.0.80:9876");
         try {
             //订阅PushTopic下Tag为push的消息

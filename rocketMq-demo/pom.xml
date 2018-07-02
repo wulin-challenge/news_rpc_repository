@@ -4,7 +4,7 @@
 	<groupId>cn.wulin</groupId>
 	<artifactId>rocketMq-demo</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
-	
+
 	<properties>
 		<rocketmq_ver>4.2.0</rocketmq_ver>
 	</properties>
@@ -14,6 +14,11 @@
 			<groupId>org.apache.rocketmq</groupId>
 			<artifactId>rocketmq-client</artifactId>
 			<version>${rocketmq_ver}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>news-demo-consumer</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

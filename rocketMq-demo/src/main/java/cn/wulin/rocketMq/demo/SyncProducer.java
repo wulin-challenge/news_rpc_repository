@@ -10,17 +10,13 @@ import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageExt;
 
 public class SyncProducer {
-
     public static void main(String[] args) throws MQClientException, InterruptedException {
-        DefaultMQProducer producer = new DefaultMQProducer("Producer");
-        producer.setNamesrvAddr("192.168.0.80:9876");
-//        QueryResult queryMessage = producer.queryMessage("", "", 100000, 11L, 11L);
-//        List<MessageExt> messageList = queryMessage.getMessageList();
+        DefaultMQProducer producer = new DefaultMQProducer("news_default_rocketmq_group");
+        producer.setNamesrvAddr("192.168.0.107:9876;192.168.0.108:9876");
         try {
             producer.start();
 
-            Message msg = new Message("PushTopic", "push", "1", "哈哈哈!".getBytes());
-//            new Message
+            Message msg = new Message("test_5109_1__1", "appId", "1", "哈哈哈!".getBytes());
             producer.send(msg, new SendCallback(){
 				@Override
 				public void onSuccess(SendResult sendResult) {
