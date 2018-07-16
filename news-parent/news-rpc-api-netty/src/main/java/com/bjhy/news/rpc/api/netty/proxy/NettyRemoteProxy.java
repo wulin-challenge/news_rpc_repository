@@ -35,6 +35,8 @@ public class NettyRemoteProxy implements RemoteProxy {
 					@Override
 					public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 						DiscoveryServiceDetailInfo detailInfo = discoveryServiceInfo.getDiscoveryServiceDetailInfoList().get(0);
+						
+						Class<?> returnType = method.getReturnType();
 						// 创建 RPC 请求对象并设置请求属性
 						RpcRequest request = new RpcRequest();
 						request.setRequestId(UUID.randomUUID().toString());
@@ -55,7 +57,7 @@ public class NettyRemoteProxy implements RemoteProxy {
 						if(object != null){
 							RpcResponse rpcResponse = (com.bjhy.news.rpc.api.netty.domain.RpcResponse) object;
 							Object result = rpcResponse.getResult();
-							if(result != null){
+							if(result != null || returnType == void.class){
 								return result;
 							}else {
 								throw rpcResponse.getException();
