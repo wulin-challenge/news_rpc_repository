@@ -68,8 +68,11 @@ public class TestAsync {
 	@Test
 	public void test_invoke_sync_dubbo_service() throws IOException, Exception{
 		
-		String hello1 = NewsUtil.syncSend(new TopicTag("5199", "xxappIdx"), FirstService.class).hello1("xxxxx");
-		System.out.println(hello1);
+//		String hello1 = NewsUtil.syncSend(new TopicTag("5109", "xxappId"), FirstService.class).hello1("xxxxx");
+		
+		AsyncSendResult asyncInvoke = NewsUtil.asyncSend(new TopicTag("5109", "xxappId"), FirstService.class).asyncInvoke("hello1", "xxxxx");
+		System.out.println(asyncInvoke.getSendStatus());
+		System.out.println();
 	}
 	
 

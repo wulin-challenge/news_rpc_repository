@@ -33,6 +33,11 @@ public class FirstServiceDubboProvider implements FirstService{
 		List<AppClientInfo> findAllAppClients = casService.findAllAppClients();
 		return s;
 	}
+	
+	@Override
+	public String hello2(String str1, String str2, String str3) throws Exception {
+		return "dubbo hello 2 : "+str1+","+str2+","+str3;
+	}
 
 	@Override
 	public User getUser(String username, Integer age, Date csrq, User user) {

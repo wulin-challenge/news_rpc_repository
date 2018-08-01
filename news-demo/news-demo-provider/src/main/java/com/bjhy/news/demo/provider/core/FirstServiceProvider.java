@@ -19,10 +19,18 @@ public class FirstServiceProvider implements FirstService{
 
 	@Override
 	public String hello1(String str) throws Exception{
+//		System.out.println("测试异常情况下是否重试"+str);
 //		int i = 1/0;
 		String s = "first hello1 "+str;
 		System.out.println(s);
 		return s;
+	}
+	
+	@Override
+	public String hello2(String str1, String str2, String str3) throws Exception {
+		String str = "hello 2 : "+str1+","+str2+","+str3;
+		System.out.println("write: "+str);
+		return "return : "+str;
 	}
 
 	@Override

@@ -10,5 +10,7 @@ public interface FirstService {
 	
 	String hello1(String str) throws Exception;
 	
+    String hello2(String str1,String str2,String str3) throws Exception;
+	
 	User getUser(String username,Integer age ,Date csrq,User user);
 }
