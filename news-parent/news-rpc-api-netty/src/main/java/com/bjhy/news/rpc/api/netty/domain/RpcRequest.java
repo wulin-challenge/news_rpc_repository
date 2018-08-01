@@ -1,14 +1,17 @@
 package com.bjhy.news.rpc.api.netty.domain;
 
+import java.io.Serializable;
+
 /**
  * 封装 RPC 请求
  *
  * @author huangyong
  * @since 1.0.0
  */
-public class RpcRequest {
-
-    private String requestId;
+public class RpcRequest implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	private String requestId;
     private String interfaceName;
     private String serviceVersion;
     private String methodName;
