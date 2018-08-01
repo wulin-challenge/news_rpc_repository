@@ -29,4 +29,9 @@ public class UseProtocolKeyExtImpl2 implements UseProtocolKeyExt {
     public String yell(URL url, String s) {
         return "Ext3Impl2-yell";
     }
+    
+    @Override
+	public String onlyProtocol(URL url, String s) {
+		return "onlyProtocol";
+	}
 }

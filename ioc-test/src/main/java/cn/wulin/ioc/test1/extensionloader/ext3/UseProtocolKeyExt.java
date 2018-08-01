@@ -31,4 +31,8 @@ public interface UseProtocolKeyExt {
     // protocol key在第一个
     @Adaptive({"protocol", "key2"})
     String yell(URL url, String s);
+    
+    // 只有一个protocol
+    @Adaptive({"protocol"})
+    String onlyProtocol(URL url, String s);
 }
