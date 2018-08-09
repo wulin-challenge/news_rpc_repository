@@ -1,0 +1,3 @@
+sql=cn.wulin.ioc.test1.defaultImpl.impl.SqlText
+txt=cn.wulin.ioc.test1.defaultImpl.impl.TxtText
+text_abstract=cn.wulin.ioc.test1.defaultImpl.base.TextAbstractFileSuffix
