@@ -1,9 +1,5 @@
 package com.bjhy.news.demo.consumer.test.sync;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bjhy.news.common.domain.TopicTag;
 import com.bjhy.news.common.util.NewsUtil;
 import com.bjhy.news.demo.api.FirstService;
-import com.bjhy.news.demo.domain.User;
 
 @SpringBootTest(classes=AppStarter.class)
 @RunWith(SpringRunner.class)
