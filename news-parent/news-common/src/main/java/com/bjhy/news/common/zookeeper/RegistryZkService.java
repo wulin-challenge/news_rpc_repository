@@ -48,7 +48,7 @@ public class RegistryZkService {
 	 * 注册zk服务
 	 * @param publishServiceInfo
 	 */
-	private void registerZkService(List<PublishServiceInfo> publishServiceInfoList){
+	public void registerZkService(List<PublishServiceInfo> publishServiceInfoList){
 		ZookeeperConfig zookeeperConfig = ZookeeperConfig.getInstance();
 		for (PublishServiceInfo psInfo : publishServiceInfoList) {
 			String registerPath = getRegisterPath(psInfo);

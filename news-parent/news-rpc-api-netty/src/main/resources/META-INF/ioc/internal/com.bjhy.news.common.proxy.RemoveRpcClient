@@ -1,0 +1,1 @@
+netty_rpc_client=com.bjhy.news.rpc.api.netty.proxy.NettyRpcClient

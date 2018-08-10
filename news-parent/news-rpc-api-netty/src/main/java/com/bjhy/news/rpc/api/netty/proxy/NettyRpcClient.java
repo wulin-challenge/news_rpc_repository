@@ -6,11 +6,14 @@ import java.util.concurrent.CountDownLatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bjhy.news.common.proxy.RemoveRpcClient;
 import com.bjhy.news.rpc.api.netty.codec.RpcDecoder;
 import com.bjhy.news.rpc.api.netty.codec.RpcEncoder;
 import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
 import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 
+import cn.wulin.ioc.URL;
+import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -26,15 +29,11 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
  * RPC 客户端（用于发送 RPC 请求）
  * @author wubo
  */
-public class NettyRpcClient{
+public class NettyRpcClient implements RemoveRpcClient{
 	
-	private static NettyRpcClient nettyRpcClient;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(NettyRpcClient.class);
     
     private static ConcurrentHashMap<String, NettyRpcClientHandler> cacheConnect = new ConcurrentHashMap<>();
-    
-    private NettyRpcClient(){}
     
     public NettyRpcClientHandler connectServer(RpcRequest request) {
     	String address = request.getHost() + "_" + request.getPort();
@@ -81,9 +80,19 @@ public class NettyRpcClient{
 	}
     
 	public static NettyRpcClient getInstance(){
+		RemoveRpcClient removeRpcClient = InterfaceExtensionLoader.getExtensionLoader(RemoveRpcClient.class).getExtension("netty_rpc_client");
+		NettyRpcClient nettyRpcClient = (NettyRpcClient) removeRpcClient;
 		if(nettyRpcClient == null){
 			nettyRpcClient = new NettyRpcClient();
 		}
 		return nettyRpcClient;
+	}
+
+	@Override
+	public void cleanRpcClient(URL url) {
+		if(url != null){
+			String address = url.getHost() + "_" + url.getPort();
+			cacheConnect.remove(address);
+		}
 	}
 }

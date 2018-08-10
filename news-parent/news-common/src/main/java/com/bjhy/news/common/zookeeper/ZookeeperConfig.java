@@ -6,13 +6,19 @@ import java.util.List;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.cache.TreeCache;
+import org.apache.curator.framework.recipes.cache.TreeCacheListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bjhy.cache.toolkit.util.LoggerUtils;
 import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.util.NewsConstants;
+import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorEvent;
+import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorEventAdapter;
+import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorListener;
 
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 
@@ -40,6 +46,7 @@ public class ZookeeperConfig {
 		try {
 			connectZookeeperCurator();
 			createNode(NewsConstants.ZK_ROOT_NODE, CreateMode.PERSISTENT);//创建根节点
+			setNodeListener(NewsConstants.ZK_ROOT_NODE);
 		} catch (IOException e){
 			logger.error("zookeeper连接失败!请检测zookeeper地址",e);
 		}
@@ -89,6 +96,24 @@ public class ZookeeperConfig {
 			}
 		} catch (Exception e) {
 			logger.error(path+" 设置节点数据失败!", e);
+		}
+	}
+	
+	/**
+	 * 设置节点监听
+	 * @param path
+	 */
+	@SuppressWarnings("resource")
+	public void setNodeListener(String path){
+		TreeCache treeCache = new TreeCache(curatorFramework, path);
+		
+		ZookeeperCuratorEvent zookeeperCuratorEvent = new ZookeeperCuratorEventAdapter();
+		TreeCacheListener treeCacheListener = new ZookeeperCuratorListener(zookeeperCuratorEvent);
+		treeCache.getListenable().addListener(treeCacheListener);
+		try {
+			treeCache.start();
+		} catch (Exception e) {
+			LoggerUtils.error(path+" 节点监听启动失败!", e);
 		}
 	}
 	
