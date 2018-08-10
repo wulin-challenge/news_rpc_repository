@@ -1,17 +1,18 @@
 package com.bjhy.news.client.spring;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import com.bjhy.cache.toolkit.extension.ExtensionLoader;
 import com.bjhy.news.client.spring.connect.SpringLoadNewsConnect;
+import com.bjhy.news.client.spring.init.InitializingNewsRpcSpring;
 import com.bjhy.news.common.connect.AdaptiveNewsConnect;
 import com.bjhy.news.common.connect.ConnectConfig;
 import com.bjhy.news.common.init.AdaptiveNewsInitializing;
@@ -47,6 +48,23 @@ public class ApplicationContextHelper implements ApplicationContextAware ,Initia
 		Map<String,String> params = new HashMap<String,String>();
 		URL url = new URL("initializing", "0.0.0.0", 0, params);
 		ConnectConfig.getInstance().connectEntry(url);
+		
+		//调用InitializingNewsRpcSpring,代替 spring InitializingBean,用于程序启动处理一些应用业务
+		callInitializingNewsRpcSpring();
+	}
+	
+	/**
+	 * 调用InitializingNewsRpcSpring
+	 * @throws Exception 
+	 */
+	private void callInitializingNewsRpcSpring() throws Exception{
+		Map<String, InitializingNewsRpcSpring> beansOfType = applicationContext.getBeansOfType(InitializingNewsRpcSpring.class);
+		if(beansOfType != null){
+			Collection<InitializingNewsRpcSpring> InitializingNewsRpcSpringCollection = beansOfType.values();
+			for (InitializingNewsRpcSpring initializingNewsRpcSpring : InitializingNewsRpcSpringCollection) {
+				initializingNewsRpcSpring.init(applicationContext);
+			}
+		}
 	}
 	
 }
