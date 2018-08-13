@@ -24,8 +24,7 @@ public class TimedOverdueCache {
 	/**
 	 * 过期时间默认5 分钟
 	 */
-//	private static Long expireTime = 1000*5*60L;
-	private static Long expireTime = 1000*20L;
+	private static Long expireTime = 1000*5*60L;
 	
 	private static ConcurrentHashMap<String, SingleExpireCacheEntity> expireCache = new ConcurrentHashMap<String, SingleExpireCacheEntity>();
 	
