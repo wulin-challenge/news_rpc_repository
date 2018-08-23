@@ -11,9 +11,11 @@ import org.apache.zookeeper.CreateMode;
 import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.domain.PublishServiceInfo;
 import com.bjhy.news.common.util.NewsConstants;
+import com.bjhy.news.common.util.NewsRpcUtil;
 
 import cn.wulin.ioc.URL;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
+import cn.wulin.ioc.util.UrlUtils;
 
 /**
  * 注册zk服务
@@ -45,7 +47,18 @@ public class RegistryZkService {
 	}
 	
 	/**
-	 * 注册zk服务
+	 * 重新发布服务
+	 */
+	public void republishService(){
+		//失败重连
+		List<PublishServiceInfo> publishServiceInfoList = RegistryZkService.getInstance().getCachePublishServiceInfo();
+		if(publishServiceInfoList != null && publishServiceInfoList.size()>0){
+			RegistryZkService.getInstance().registerZkService(publishServiceInfoList);
+		}
+	}
+	
+	/**
+	 * 注册zk服务,实现幂等性注册,即向注册中心注册一次与注册多次是一样的
 	 * @param publishServiceInfo
 	 */
 	public void registerZkService(List<PublishServiceInfo> publishServiceInfoList){
@@ -53,8 +66,43 @@ public class RegistryZkService {
 		for (PublishServiceInfo psInfo : publishServiceInfoList) {
 			String registerPath = getRegisterPath(psInfo);
 			zookeeperConfig.createNode(registerPath, CreateMode.PERSISTENT);
-			createLeafNode(registerPath, psInfo);;
+			//检测当前服务是否已经注册,true:表示已经注册,false:表示没有注册
+			boolean checkIsRegister = checkIsRegister(registerPath);
+			if(!checkIsRegister){
+				createLeafNode(registerPath, psInfo);
+			}
 		}
+	}
+	
+	/**
+	 * 检测当前服务是否已经注册,true:表示已经注册,false:表示没有注册
+	 * @param registerPath 服务的注册路径
+	 * @return
+	 */
+	private boolean checkIsRegister(String registerPath){
+		ZookeeperConfig zookeeperConfig = ZookeeperConfig.getInstance();
+		List<String> childrenFullPathList = zookeeperConfig.getChildrenFullPathList(registerPath);
+		if(childrenFullPathList != null && childrenFullPathList.size()>0){
+			for (String childrenFullPath : childrenFullPathList) {
+				byte[] nodeData = zookeeperConfig.getNodeData(childrenFullPath);
+				String urlString = new String(nodeData,Charset.defaultCharset());
+				URL url = UrlUtils.parseURL(urlString, null);
+				
+				//当前主机ip
+				String registerIp = url.getHost().trim();
+				String localIp = newsConnect.clientIp().trim();
+				//端口号
+				int registerPort = url.getPort();
+				int localPort = newsConnect.clientPort();
+				//pid
+				int registerPid = url.getParameter(NewsConstants.PID, -1);
+				int localPid = NewsRpcUtil.getPid();
+				if((registerPid == localPid) &&(registerIp.equals(localIp)) && (registerPort == localPort)){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -77,18 +125,26 @@ public class RegistryZkService {
 	 */
 	private void createLeafNode(String registerPath,PublishServiceInfo psInfo){
 		ZookeeperConfig zookeeperConfig = ZookeeperConfig.getInstance();
-		
+		//创建临时序列节点
 		registerPath = registerPath+"/"+NewsConstants.ZK_EPHEMERAL_NODE_PREFIX;
+		registerPath = zookeeperConfig.createNode(registerPath, CreateMode.EPHEMERAL_SEQUENTIAL);
 		
 		Map<String,String> params = new HashMap<>();
 		String syncVersion = StringUtils.isBlank(psInfo.getSyncVersion())?"":psInfo.getSyncVersion();
 		params.put(NewsConstants.SYNC_VERSION_KEY, syncVersion);
 		params.put(NewsConstants.SYNC_TIMEOUT_KEY, psInfo.getSyncTimeout().toString());
 		
+		//组装url节点的完整信息
+		String[] pathArray = registerPath.substring(1).split("/");
 		URL url = new URL(NewsConstants.REGISTER_PROTOCOL_KEY, newsConnect.clientIp(), newsConnect.clientPort(),params);
+		url = url.addParameter(NewsConstants.PID, NewsRpcUtil.getPid());
+		url = url.addParameter(NewsConstants.ZK_ROOT_NODE, pathArray[0]);
+		url = url.addParameter(NewsConstants.CLIENT_TOPIC_KEY, pathArray[1]);
+		url = url.addParameter(NewsConstants.CLIENT_TAG_KEY, pathArray[2]);
+		url = url.addParameter(NewsConstants.SERVICE_INTERFACE_KEY, pathArray[3]);
+		url = url.addParameter(NewsConstants.ZK_EPHEMERAL_NODE_KEY, pathArray[4]);
 		String fullString = url.toFullString();
 		
-		registerPath = zookeeperConfig.createNode(registerPath, CreateMode.EPHEMERAL_SEQUENTIAL);
 		zookeeperConfig.setNodeData(registerPath, fullString.getBytes(Charset.defaultCharset()));
 	}
 	

@@ -24,6 +24,16 @@ public class DiscoveryServiceDetailInfo {
 	 * 服务端口
 	 */
 	private Integer servicePort;
+	
+	/**
+	 * 服务所属的pid进程,用于处理同一台服务器上启动多个相同服务的情况
+	 */
+	private Integer pid;
+	
+	/**
+	 * 调用失败次数,用于处理当同一个服务调用失败次数 大于等于 maxFailNumber时,直接从缓存列表中剔除
+	 */
+	private Integer failNumber=0;
 
 	public String getVersion() {
 		return version;
@@ -55,5 +65,21 @@ public class DiscoveryServiceDetailInfo {
 
 	public void setServicePort(Integer servicePort) {
 		this.servicePort = servicePort;
+	}
+
+	public Integer getPid() {
+		return pid;
+	}
+
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
+
+	public Integer getFailNumber() {
+		return failNumber;
+	}
+
+	public void setFailNumber(Integer failNumber) {
+		this.failNumber = failNumber;
 	}
 }

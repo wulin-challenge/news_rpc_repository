@@ -1,12 +1,17 @@
 package com.bjhy.news.rpc.api.netty.proxy;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bjhy.news.common.proxy.RemoveRpcClient;
+import com.bjhy.news.common.exception.NewsRpcException;
+import com.bjhy.news.common.notify.AbstractNotifyListener;
+import com.bjhy.news.common.notify.NotifyListener;
+import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.rpc.api.netty.codec.RpcDecoder;
 import com.bjhy.news.rpc.api.netty.codec.RpcEncoder;
 import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
@@ -29,7 +34,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
  * RPC 客户端（用于发送 RPC 请求）
  * @author wubo
  */
-public class NettyRpcClient implements RemoveRpcClient{
+public class NettyRpcClient extends AbstractNotifyListener{
 	
     private static final Logger LOGGER = LoggerFactory.getLogger(NettyRpcClient.class);
     
@@ -80,8 +85,8 @@ public class NettyRpcClient implements RemoveRpcClient{
 	}
     
 	public static NettyRpcClient getInstance(){
-		RemoveRpcClient removeRpcClient = InterfaceExtensionLoader.getExtensionLoader(RemoveRpcClient.class).getExtension("netty_rpc_client");
-		NettyRpcClient nettyRpcClient = (NettyRpcClient) removeRpcClient;
+		NotifyListener notifyListener = InterfaceExtensionLoader.getExtensionLoader(NotifyListener.class).getExtension("netty_rpc_client");
+		NettyRpcClient nettyRpcClient = (NettyRpcClient) notifyListener;
 		if(nettyRpcClient == null){
 			nettyRpcClient = new NettyRpcClient();
 		}
@@ -89,7 +94,14 @@ public class NettyRpcClient implements RemoveRpcClient{
 	}
 
 	@Override
-	public void cleanRpcClient(URL url) {
+	protected Set<String> getCategory() {
+		Set<String> category = new HashSet<>();
+		category.add(NewsConstants.ZOOKEEPER_NODE_REMOVED_EVENT);
+		return category;
+	}
+
+	@Override
+	protected void doNotify(URL url) throws NewsRpcException {
 		if(url != null){
 			String address = url.getHost() + "_" + url.getPort();
 			cacheConnect.remove(address);

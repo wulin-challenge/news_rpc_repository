@@ -3,6 +3,7 @@ package com.bjhy.news.client.spring.connect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.bjhy.cache.toolkit.util.YamlUtil;
 import com.bjhy.news.common.domain.RocketmqNewsType;
 import com.bjhy.news.common.util.NewsConstants;
 
@@ -19,6 +20,9 @@ public class SpringLoadNewsConnect {
 	@Value("${news.rocketmq-address:127.0.0.1:9876}")
 	private String rocketmqAddress;
 	
+	@Value("${news.client-ip:}")
+	private String clientIp;
+	
 	@Value("${news.client-port:5588}")
 	private Integer clientPort;
 	
@@ -27,6 +31,15 @@ public class SpringLoadNewsConnect {
 	
 	@Value("${news.client-tag}")
 	private String clientTag;
+	
+	@Value("${news.client-retries:2}")
+	private Integer clientRetries;
+	
+	@Value("${news.client-cluster:failover}")
+	private String clientCluster;
+	
+	@Value("${news.client-loadbalance:random}")
+	private String clientLoadbalance;
 	
 	@Value("${news.rocketmq-publish-environment:"+NewsConstants.ROCKETMQ_PUBLISH_ENVIRONMENT_PRODUCT+"}")
 	private String rocketmqPublishEnvironment;
@@ -102,5 +115,29 @@ public class SpringLoadNewsConnect {
 	}
 	public void setRocketmqOrderQueue(Integer rocketmqOrderQueue) {
 		this.rocketmqOrderQueue = rocketmqOrderQueue;
+	}
+	public Integer getClientRetries() {
+		return clientRetries;
+	}
+	public void setClientRetries(Integer clientRetries) {
+		this.clientRetries = clientRetries;
+	}
+	public String getClientCluster() {
+		return clientCluster;
+	}
+	public void setClientCluster(String clientCluster) {
+		this.clientCluster = clientCluster;
+	}
+	public String getClientLoadbalance() {
+		return clientLoadbalance;
+	}
+	public void setClientLoadbalance(String clientLoadbalance) {
+		this.clientLoadbalance = clientLoadbalance;
+	}
+	public String getClientIp() {
+		return clientIp;
+	}
+	public void setClientIp(String clientIp) {
+		this.clientIp = clientIp;
 	}
 }

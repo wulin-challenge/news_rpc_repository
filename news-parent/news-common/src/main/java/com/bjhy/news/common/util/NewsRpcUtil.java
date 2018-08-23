@@ -1,0 +1,172 @@
+package com.bjhy.news.common.util;
+
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.bjhy.news.common.connect.NewsConnect;
+import com.bjhy.news.common.domain.DiscoveryServiceDetailInfo;
+import com.bjhy.news.common.domain.DiscoveryServiceInfo;
+import com.bjhy.news.common.domain.TopicTag;
+import com.bjhy.news.common.exception.NewsRpcException;
+
+import cn.wulin.ioc.URL;
+import cn.wulin.ioc.extension.InterfaceExtensionLoader;
+
+/**
+ * 通用news-rpc工具类,该工具类是提供给框架内部使用的
+ * @author wubo
+ *
+ */
+public class NewsRpcUtil {
+	
+	private static int PID = -1;
+	/**
+	 * 得到连接配置信息
+	 */
+	private static NewsConnect newsConnect = InterfaceExtensionLoader.getExtensionLoader(NewsConnect.class).getAdaptiveExtension();
+	
+	/**
+	 * 得到订阅缓存key
+	 * @param url
+	 * @return
+	 */
+	public static String getSubscribeCacheKey(String clientTopic,String clientTag,Class<?> interfaceService,String syncVersion){
+		clientTopic = StringUtils.isBlank(clientTopic)?"":clientTopic.trim();
+		clientTag = StringUtils.isBlank(clientTag)?"":clientTag.trim();
+		String interfaceServiceKey = interfaceService == null?"":interfaceService.getName();
+		syncVersion = StringUtils.isBlank(syncVersion)?"":syncVersion.trim();
+		
+		StringBuilder key = new StringBuilder(clientTopic);
+		key.append("_"+clientTag);
+		key.append("_"+interfaceServiceKey);
+		key.append("_"+syncVersion);
+		return key.toString();
+	}
+	
+	/**
+	 * 得到订阅缓存key
+	 * @param discoveryServiceInfo
+	 * @return
+	 */
+	public static String getSubscribeCacheKey(DiscoveryServiceInfo discoveryServiceInfo){
+		if(discoveryServiceInfo == null || discoveryServiceInfo.getDiscoveryServiceDetailInfoList().size()!=1){
+			throw new NewsRpcException("getDetailInfoServiceKey 的"+DiscoveryServiceInfo.class+"不能空 或者"+DiscoveryServiceDetailInfo.class+"的个数只能唯一");
+		}
+		DiscoveryServiceDetailInfo detailInfo = discoveryServiceInfo.getDiscoveryServiceDetailInfoList().get(0);
+		return getSubscribeCacheKey(discoveryServiceInfo.getClientTopic(), discoveryServiceInfo.getClientTag(), discoveryServiceInfo.getServiceClass(), detailInfo.getVersion());
+	}
+	
+	/**
+	 * 得到详细服务的key
+	 * @param discoveryServiceInfo
+	 * @return
+	 */
+	public static String getDetailInfoServiceKey(DiscoveryServiceInfo discoveryServiceInfo,DiscoveryServiceDetailInfo detailInfo){
+		if(discoveryServiceInfo == null || detailInfo == null){
+			throw new NewsRpcException("getDetailInfoServiceKey 的"+DiscoveryServiceInfo.class+"不能空 或者"+DiscoveryServiceDetailInfo.class+"不能为空!");
+		}
+		
+		discoveryServiceInfo.getDiscoveryServiceDetailInfoList().clear();
+		discoveryServiceInfo.getDiscoveryServiceDetailInfoList().add(detailInfo);
+		return getDetailInfoServiceKey(discoveryServiceInfo);
+	}
+	
+	/**
+	 * 得到详细服务的key
+	 * @param discoveryServiceInfo
+	 * @return
+	 */
+	public static String getDetailInfoServiceKey(DiscoveryServiceInfo discoveryServiceInfo){
+		if(discoveryServiceInfo == null || discoveryServiceInfo.getDiscoveryServiceDetailInfoList().size()!=1){
+			throw new NewsRpcException("getDetailInfoServiceKey 的"+DiscoveryServiceInfo.class+"不能空 或者"+DiscoveryServiceDetailInfo.class+"的个数只能唯一");
+		}
+		DiscoveryServiceDetailInfo detailInfo = discoveryServiceInfo.getDiscoveryServiceDetailInfoList().get(0);
+		
+		String clientToptic = discoveryServiceInfo.getClientTopic();
+		String clientTag = discoveryServiceInfo.getClientTag();
+		String interfaceServiceKey = discoveryServiceInfo.getServiceClass().getName();
+		String version = detailInfo.getVersion();
+		String serviceIp = detailInfo.getServiceIp();
+		Integer servicePort = detailInfo.getServicePort();
+		Integer pid2 = detailInfo.getPid();
+		StringBuilder key = new StringBuilder(clientToptic);	
+		key.append("_"+clientTag);
+		key.append("_"+interfaceServiceKey);
+		key.append("_"+version);
+		key.append("_"+serviceIp);
+		key.append("_"+servicePort);
+		key.append("_"+pid2);
+		return key.toString();
+	}
+
+	/**
+	 * 得到订阅缓存key
+	 * @param url
+	 * @return
+	 */
+	public static String getSubscribeCacheKey22222(URL url){
+		String clientTopic = url.getParameter(NewsConstants.CLIENT_TOPIC_KEY,"");
+		String clientTag = url.getParameter(NewsConstants.CLIENT_TAG_KEY,"");
+		String serviceInterface = url.getParameter(NewsConstants.SERVICE_INTERFACE_KEY,"");
+		String syncVersion = url.getParameter(NewsConstants.SYNC_VERSION_KEY,"");
+		int pid = url.getParameter(NewsConstants.PID,-1);
+		syncVersion = (StringUtils.isBlank(syncVersion)?"":syncVersion);
+		String address = url.getAddress();
+		
+		StringBuilder key = new StringBuilder(clientTopic);
+		key.append("_"+clientTag);
+		key.append("_"+serviceInterface);
+		key.append("_"+syncVersion);
+		key.append("_"+address);
+		key.append("_"+pid);
+		return key.toString();
+	}
+	
+	/**
+	 * 得到同步发送消息的url
+	 * @param topicTags 客户端标识和 客户端应用标识 (主题和标记/标签)
+	 * @param interfaceClass 接口class
+	 * @param syncVersion 同步rpc的服务版本
+	 * @throws IOException 
+	 */
+	public static URL getSyncSendUrl(TopicTag topicTag,Class<?> interfaceClass,String syncVersion){
+		int retries = topicTag.getRetries() == null?newsConnect.retries():topicTag.getRetries();
+		String cluster = topicTag.getCluster() == null?newsConnect.cluster():topicTag.getCluster();
+		String loadbalance = topicTag.getLoadbalance() == null?newsConnect.loadbalance():topicTag.getLoadbalance();
+		
+		Map<String,String> params = new HashMap<String,String>();
+		params.put(NewsConstants.CLIENT_TOPIC_KEY, topicTag.getTopic());
+		params.put(NewsConstants.CLIENT_TAG_KEY, topicTag.getTag());
+		params.put(NewsConstants.RETRIES_KEY, new Integer(retries).toString());
+		params.put(NewsConstants.CLUSTER_KEY, cluster);
+		params.put(NewsConstants.LOADBALANCE_KEY, loadbalance);
+		params.put(NewsConstants.SERVICE_INTERFACE_KEY, interfaceClass.getName());
+		params.put(NewsConstants.SYNC_TIMEOUT_KEY, Integer.toString(topicTag.getTimeout()==null?0:topicTag.getTimeout()));
+		params.put(NewsConstants.SYNC_VERSION_KEY, syncVersion==null?(topicTag.getSyncVersion()==null?"":topicTag.getSyncVersion()):syncVersion);
+		
+		URL url = new URL("syncSend","0.0.0.0",0,params);
+		return url;
+	}
+	
+	/**
+	 * 得到进程的pid
+	 * @return
+	 */
+	public static int getPid() {
+        if (PID < 0) {
+            try {
+                RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
+                String name = runtime.getName(); // format: "pid@hostname"
+                PID = Integer.parseInt(name.substring(0, name.indexOf('@')));
+            } catch (Throwable e) {
+                PID = 0;
+            }
+        }
+        return PID;
+    }
+}

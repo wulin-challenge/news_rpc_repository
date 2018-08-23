@@ -54,6 +54,25 @@ public interface NewsConnect {
 	String clientTag();
 	
 	/**
+	 * 重试次数,当不想要重试,请使用赋值为0
+	 * 当cluster使用 failover策略才生效
+	 * @return
+	 */
+	Integer retries();
+	
+	/**
+	 * 集群策略
+	 * @return
+	 */
+	String cluster();
+	
+	/**
+	 * 负载均衡策略
+	 * @return
+	 */
+	String loadbalance();
+	
+	/**
 	 * rocketmq的发布环境
 	 * 注意:该参数仅在发送异步消息是有效
 	 */
@@ -84,4 +103,5 @@ public interface NewsConnect {
 	 * @return
 	 */
 	Integer rocketmqOrderQueue();
+	
 }

@@ -1,4 +1,6 @@
 package com.bjhy.news.client.connect;
+import org.apache.commons.lang3.StringUtils;
+
 import com.bjhy.cache.toolkit.util.NativeHostUtil;
 import com.bjhy.cache.toolkit.util.YamlUtil;
 import com.bjhy.news.common.connect.NewsConnect;
@@ -34,7 +36,11 @@ public class DefaultClientConnect implements NewsConnect{
 
 	@Override
 	public String clientIp() {
-		return NativeHostUtil.getHostAddress();
+		String clientIp = YamlUtil.getValue("news.client-ip", String.class);
+		if(StringUtils.isBlank(clientIp)){
+			clientIp = NativeHostUtil.getHostAddress();
+		}
+		return clientIp;
 	}
 	
 	@Override
@@ -50,6 +56,21 @@ public class DefaultClientConnect implements NewsConnect{
 	@Override
 	public String clientTag() {
 		return YamlUtil.getValue("news.client-tag",String.class);
+	}
+	
+	@Override
+	public Integer retries() {
+		return YamlUtil.getValue("news.client-retries",2,Integer.class);
+	}
+
+	@Override
+	public String cluster() {
+		return YamlUtil.getValue("news.client-cluster","failover",String.class);
+	}
+
+	@Override
+	public String loadbalance() {
+		return YamlUtil.getValue("news.client-loadbalance","random",String.class);
 	}
 
 	@Override

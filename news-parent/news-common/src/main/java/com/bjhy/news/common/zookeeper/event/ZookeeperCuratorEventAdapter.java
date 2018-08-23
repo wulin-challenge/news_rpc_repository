@@ -1,13 +1,13 @@
 package com.bjhy.news.common.zookeeper.event;
 
 import java.nio.charset.Charset;
-import java.util.List;
+import java.util.Set;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.TreeCacheEvent;
 
-import com.bjhy.news.common.domain.PublishServiceInfo;
-import com.bjhy.news.common.proxy.RemoveRpcClient;
+import com.bjhy.news.common.notify.NotifyListener;
+import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.common.zookeeper.RegistryZkService;
 
 import cn.wulin.ioc.URL;
@@ -17,33 +17,63 @@ import cn.wulin.ioc.util.UrlUtils;
 public class ZookeeperCuratorEventAdapter implements ZookeeperCuratorEvent{
 	@Override
 	public void nodeAddedEvent(CuratorFramework curatorFramework,TreeCacheEvent treeCacheEvent) {
+		URL url = parseURL(treeCacheEvent);
+		if(url != null && NewsConstants.REGISTER_PROTOCOL_KEY.equals(url.getProtocol())){
+			executeNotifyListener(url, NewsConstants.ZOOKEEPER_NODE_ADDED_EVENT);
+		}
 	}
 
 	@Override
 	public void nodeUpdatedEvent(CuratorFramework curatorFramework,TreeCacheEvent treeCacheEvent) {
+		URL url = parseURL(treeCacheEvent);
+		if(url != null && NewsConstants.REGISTER_PROTOCOL_KEY.equals(url.getProtocol())){
+			executeNotifyListener(url, NewsConstants.ZOOKEEPER_NODE_UPDATED_EVENT);
+		}
 	}
 
 	@Override
 	public void nodeRemovedEvent(CuratorFramework curatorFramework,TreeCacheEvent treeCacheEvent) {
-		//清除过期的netty客户端
-		String urlStr = new String(treeCacheEvent.getData().getData(),Charset.defaultCharset());
-		cleanExpireNettyClient(UrlUtils.parseURL(urlStr, null));
+		URL url = parseURL(treeCacheEvent);
+		if(url != null && NewsConstants.REGISTER_PROTOCOL_KEY.equals(url.getProtocol())){
+			executeNotifyListener(url, NewsConstants.ZOOKEEPER_NODE_REMOVED_EVENT);
+		}
+		
+		//重新发布服务
+		RegistryZkService.getInstance().republishService();
 	}
-	
+
 	@Override
 	public void connectionReconnectedEvent(CuratorFramework curatorFramework,TreeCacheEvent treeCacheEvent) {
-		//失败重连
-		List<PublishServiceInfo> publishServiceInfoList = RegistryZkService.getInstance().getCachePublishServiceInfo();
-		if(publishServiceInfoList != null && publishServiceInfoList.size()>0){
-			RegistryZkService.getInstance().registerZkService(publishServiceInfoList);
+		URL url = parseURL(treeCacheEvent);
+		if(url != null && NewsConstants.REGISTER_PROTOCOL_KEY.equals(url.getProtocol())){
+			executeNotifyListener(url, NewsConstants.ZOOKEEPER_RECONNECTED_EVENT);
 		}
+		//重新发布服务
+		RegistryZkService.getInstance().republishService();
 	}
 	
 	/**
-	 * 清除过期的netty客户端
+	 * 解析出url
+	 * @param treeCacheEvent
+	 * @return
 	 */
-	private void cleanExpireNettyClient(URL url){
-		RemoveRpcClient removeRpcClient = InterfaceExtensionLoader.getExtensionLoader(RemoveRpcClient.class).getAdaptiveExtension();
-		removeRpcClient.cleanRpcClient(url);
+	private URL parseURL(TreeCacheEvent treeCacheEvent) {
+		String urlStr = new String(treeCacheEvent.getData().getData(),Charset.defaultCharset());
+		URL cancelRegistryURL = UrlUtils.parseURL(urlStr, null);
+		return cancelRegistryURL;
+	}
+	
+	/**
+	 * 执行通知监听
+	 * @param url
+	 * @param category 执行类别
+	 */
+	private void executeNotifyListener(URL url,String category){
+		url = url.addParameter(NewsConstants.CATEGORY_KEY, category);
+		Set<String> notifyListenerKeys = InterfaceExtensionLoader.getExtensionLoader(NotifyListener.class).getSupportedExtensions();
+		for (String notifyListenerKey : notifyListenerKeys) {
+			NotifyListener notifyListener = InterfaceExtensionLoader.getExtensionLoader(NotifyListener.class).getExtension(notifyListenerKey);
+			notifyListener.notify(url);
+		}
 	}
 }

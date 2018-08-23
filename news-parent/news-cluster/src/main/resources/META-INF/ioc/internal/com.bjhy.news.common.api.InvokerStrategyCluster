@@ -1,0 +1,3 @@
+failfast=com.bjhy.news.cluster.support.FailfastInvokerStrategy
+failover=com.bjhy.news.cluster.support.FailoverInvokerStrategy
+forking=com.bjhy.news.cluster.support.ForkingInvokerStrategy

@@ -64,6 +64,21 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	public String clientTag() {
 		return getNewsConnect().clientTag();
 	}
+	
+	@Override
+	public Integer retries() {
+		return getNewsConnect().retries();
+	}
+
+	@Override
+	public String cluster() {
+		return getNewsConnect().cluster();
+	}
+
+	@Override
+	public String loadbalance() {
+		return getNewsConnect().loadbalance();
+	}
 
 	@Override
 	public String rocketmqPublishEnvironment() {

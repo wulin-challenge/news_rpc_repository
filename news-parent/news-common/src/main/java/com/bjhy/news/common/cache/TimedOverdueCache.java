@@ -24,7 +24,11 @@ public class TimedOverdueCache {
 	/**
 	 * 过期时间默认5 分钟
 	 */
-	private static Long expireTime = 1000*5*60L;
+//	private static Long expireTime = 1000*5*60L;
+	/**
+	 * 表示永久不过期
+	 */
+	private static Long expireTime =Long.MAX_VALUE;
 	
 	private static ConcurrentHashMap<String, SingleExpireCacheEntity> expireCache = new ConcurrentHashMap<String, SingleExpireCacheEntity>();
 	
@@ -67,6 +71,26 @@ public class TimedOverdueCache {
 				return null;
 			}
 			return singleExpireCacheEntity.getCacheObject();
+		}
+	}
+	
+	/**
+	 * 获取值
+	 * @param key
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T get(String key,Class<T> clazz){
+		return (T) get(key);
+	}
+	
+	/**
+	 * 清除指定key的缓存
+	 * @param key
+	 */
+	public static void remove(String key){
+		synchronized (TimedOverdueCache.class) {
+			expireCache.remove(key);
 		}
 	}
 	

@@ -28,5 +28,10 @@
 			<artifactId>news-api-rocketmq</artifactId>
 			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>news-cluster</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

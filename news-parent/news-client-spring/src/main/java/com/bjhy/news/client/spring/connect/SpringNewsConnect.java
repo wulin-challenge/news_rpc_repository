@@ -1,5 +1,7 @@
 package com.bjhy.news.client.spring.connect;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.bjhy.cache.toolkit.extension.ExtensionLoader;
 import com.bjhy.cache.toolkit.util.NativeHostUtil;
 import com.bjhy.news.common.connect.NewsConnect;
@@ -39,7 +41,11 @@ public class SpringNewsConnect implements NewsConnect{
 
 	@Override
 	public String clientIp() {
-		return NativeHostUtil.getHostAddress();
+		String clientIp = getSpringLoadNewsConnect().getClientIp();
+		if(StringUtils.isBlank(clientIp) ){
+			clientIp = NativeHostUtil.getHostAddress();
+		}
+		return clientIp;
 	}
 
 	@Override
@@ -55,6 +61,21 @@ public class SpringNewsConnect implements NewsConnect{
 	@Override
 	public String clientTag() {
 		return getSpringLoadNewsConnect().getClientTag();
+	}
+	
+	@Override
+	public Integer retries() {
+		return getSpringLoadNewsConnect().getClientRetries();
+	}
+
+	@Override
+	public String cluster() {
+		return getSpringLoadNewsConnect().getClientCluster();
+	}
+
+	@Override
+	public String loadbalance() {
+		return getSpringLoadNewsConnect().getClientLoadbalance();
 	}
 
 	@Override

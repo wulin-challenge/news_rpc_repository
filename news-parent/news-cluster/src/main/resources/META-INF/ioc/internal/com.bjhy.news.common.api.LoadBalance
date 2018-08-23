@@ -1,0 +1,2 @@
+leastactive=com.bjhy.news.cluster.loadbalance.support.LeastActiveLoadBalance
+random=com.bjhy.news.cluster.loadbalance.support.RandomLoadBalance

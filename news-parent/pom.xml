@@ -227,5 +227,6 @@
   	<module>news-client</module>
   	<module>news-example</module>
   	<module>news-client-spring</module>
+  	<module>news-cluster</module>
   </modules>
 </project>
