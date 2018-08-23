@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.bjhy.news.common.domain.DiscoveryServiceDetailInfo;
 import com.bjhy.news.common.domain.DiscoveryServiceInfo;
 import com.bjhy.news.common.exception.NewsRpcException;
+import com.bjhy.news.common.zookeeper.DiscoveryZkService;
 
 import cn.wulin.ioc.URL;
 
@@ -34,26 +35,8 @@ public class RandomLoadBalance extends AbstractLoadBalance{
 		if(size>1){
 			DiscoveryServiceDetailInfo discoveryServiceDetailInfo = discoveryServiceDetailInfoList.get(ThreadLocalRandom.current().nextInt(size));
 			//拷贝一份新服务列表
-			return copyNewDiscoveryServiceInfo(list, discoveryServiceDetailInfo);
+			return DiscoveryZkService.getInstance().copyNewDiscoveryServiceInfo(list, discoveryServiceDetailInfo);
 		}
 		return null;
 	}
-
-	/**
-	 * 拷贝一份新服务列表
-	 * @param list
-	 * @param discoveryServiceDetailInfo
-	 * @return
-	 */
-	private DiscoveryServiceInfo copyNewDiscoveryServiceInfo(DiscoveryServiceInfo list,DiscoveryServiceDetailInfo discoveryServiceDetailInfo) {
-		//拷贝一份新的服务
-		DiscoveryServiceInfo onlyOneDiscoveryServiceInfo = new DiscoveryServiceInfo();
-		onlyOneDiscoveryServiceInfo.setClientTopic(list.getClientTopic());
-		onlyOneDiscoveryServiceInfo.setClientTag(list.getClientTag());
-		onlyOneDiscoveryServiceInfo.setServiceClass(list.getServiceClass());
-		onlyOneDiscoveryServiceInfo.getDiscoveryServiceDetailInfoList().add(discoveryServiceDetailInfo);
-		
-		return onlyOneDiscoveryServiceInfo;
-	}
-
 }

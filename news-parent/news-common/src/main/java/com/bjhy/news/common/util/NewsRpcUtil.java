@@ -105,29 +105,6 @@ public class NewsRpcUtil {
 	}
 
 	/**
-	 * 得到订阅缓存key
-	 * @param url
-	 * @return
-	 */
-	public static String getSubscribeCacheKey22222(URL url){
-		String clientTopic = url.getParameter(NewsConstants.CLIENT_TOPIC_KEY,"");
-		String clientTag = url.getParameter(NewsConstants.CLIENT_TAG_KEY,"");
-		String serviceInterface = url.getParameter(NewsConstants.SERVICE_INTERFACE_KEY,"");
-		String syncVersion = url.getParameter(NewsConstants.SYNC_VERSION_KEY,"");
-		int pid = url.getParameter(NewsConstants.PID,-1);
-		syncVersion = (StringUtils.isBlank(syncVersion)?"":syncVersion);
-		String address = url.getAddress();
-		
-		StringBuilder key = new StringBuilder(clientTopic);
-		key.append("_"+clientTag);
-		key.append("_"+serviceInterface);
-		key.append("_"+syncVersion);
-		key.append("_"+address);
-		key.append("_"+pid);
-		return key.toString();
-	}
-	
-	/**
 	 * 得到同步发送消息的url
 	 * @param topicTags 客户端标识和 客户端应用标识 (主题和标记/标签)
 	 * @param interfaceClass 接口class

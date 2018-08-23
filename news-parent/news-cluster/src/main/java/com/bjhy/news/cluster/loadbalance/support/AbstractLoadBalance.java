@@ -17,8 +17,6 @@ public abstract class AbstractLoadBalance implements LoadBalance{
 
 	@Override
 	public DiscoveryServiceInfo select(URL url,DiscoveryServiceInfo selected) throws NewsRpcException {
-		
-		
 		return doSelect(url,selected);
 	}
 	

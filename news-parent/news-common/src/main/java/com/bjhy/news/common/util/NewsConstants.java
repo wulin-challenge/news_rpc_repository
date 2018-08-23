@@ -123,5 +123,5 @@ public class NewsConstants {
 	/**
 	 * 默认同步超时时间5秒
 	 */
-	public static final Integer DEFUALT_SYNC_TIMEOUT = 5000;
+	public static final int DEFUALT_SYNC_TIMEOUT = 5000;
 }

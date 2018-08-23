@@ -7,6 +7,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.bjhy.news.common.util.NewsConstants;
+
 /**
  * 消息监听服务
  * 若调用方采用 sync(同步)调用,则被该注解标注的类的方法的远程调用方法
@@ -33,5 +35,5 @@ public @interface NewsListenerService {
      * 服务处理超时时间(只适用于同步调用情况,异步调用该超时时间无效)
      * @return
      */
-    int syncTimeout() default 60000;
+    int syncTimeout() default NewsConstants.DEFUALT_SYNC_TIMEOUT;
 }

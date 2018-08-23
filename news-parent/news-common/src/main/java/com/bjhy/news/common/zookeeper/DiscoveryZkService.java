@@ -135,6 +135,23 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 		}
 		return null;
 	}
+	
+	/**
+	 * 拷贝一份新服务列表
+	 * @param list 原服务信息
+	 * @param discoveryServiceDetailInfo 原服务消息信息
+	 * @return
+	 */
+	public DiscoveryServiceInfo copyNewDiscoveryServiceInfo(DiscoveryServiceInfo list,DiscoveryServiceDetailInfo discoveryServiceDetailInfo) {
+		//拷贝一份新的服务
+		DiscoveryServiceInfo onlyOneDiscoveryServiceInfo = new DiscoveryServiceInfo();
+		onlyOneDiscoveryServiceInfo.setClientTopic(list.getClientTopic());
+		onlyOneDiscoveryServiceInfo.setClientTag(list.getClientTag());
+		onlyOneDiscoveryServiceInfo.setServiceClass(list.getServiceClass());
+		onlyOneDiscoveryServiceInfo.getDiscoveryServiceDetailInfoList().add(discoveryServiceDetailInfo);
+		
+		return onlyOneDiscoveryServiceInfo;
+	}
 
 	@Override
 	protected void doNotify(URL url) throws NewsRpcException {

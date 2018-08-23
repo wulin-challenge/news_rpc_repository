@@ -92,7 +92,7 @@ public abstract class AbstractInvokerStrategyCluster implements InvokerStrategyC
 		NettyRpcClientHandler connectServer = NettyRpcClient.getInstance().connectServer(request);
 		RPCFuture sendRequest = connectServer.sendRequest(request);
 		Integer timeout = url.getParameter(NewsConstants.SYNC_TIMEOUT_KEY,0);
-		timeout = timeout == 0?((request.getTimeout() ==null || request.getTimeout()<=0)?60000:request.getTimeout()):timeout;
+		timeout = timeout <= 0?((request.getTimeout() ==null || request.getTimeout()<=0)?NewsConstants.DEFUALT_SYNC_TIMEOUT:request.getTimeout()):timeout;
 		Object object;
 		try {
 			object = sendRequest.get(timeout, TimeUnit.MILLISECONDS);
