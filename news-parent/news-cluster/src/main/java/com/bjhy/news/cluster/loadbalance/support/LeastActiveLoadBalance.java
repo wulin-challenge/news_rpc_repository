@@ -8,7 +8,7 @@ import cn.wulin.ioc.URL;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 
 /**
- * 最小活动数策略
+ * c
  * 相同活跃数的随机，活跃数指调用前后计数差。
  * 使慢的提供者收到更少请求，因为越慢的提供者的调用前后计数差会越大。
  * @author wubo

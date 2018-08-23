@@ -30,9 +30,9 @@ public class NewsUtil {
 	 * @throws IOException 
 	 */
 	public static <T> T syncSend(TopicTag topicTag,Class<T> interfaceClass) throws IOException{
-//		return syncSend(topicTag, interfaceClass,null);
-		return syncSend2(topicTag, interfaceClass,null);
+		return syncSend(topicTag, interfaceClass,null);
 	}
+	
 	
 	/**
 	 * 同步发送消息
@@ -42,54 +42,11 @@ public class NewsUtil {
 	 * @throws IOException 
 	 */
 	public static <T> T syncSend(TopicTag topicTag,Class<T> interfaceClass,String syncVersion) throws IOException{
-		DiscoveryServiceInfo discoveryServiceInfo = null;
-		String key = topicTag.getTopic()+"_"+topicTag.getTag()+"_"+interfaceClass.getName()+"_"+(StringUtils.isBlank(syncVersion)?"":syncVersion);
-		
-		Object object = TimedOverdueCache.get(key);
-		if(object == null){
-//			DiscoveryZkService.getInstance().getDiscoveryServiceInfo(topicTag.getTopic(), topicTag.getTag(), interfaceClass,syncVersion);
-			discoveryServiceInfo = DiscoveryZkService.getInstance().getDiscoveryServiceInfoOnlyOne(topicTag.getTopic(), topicTag.getTag(), interfaceClass,syncVersion);
-			if(discoveryServiceInfo == null){
-				throw new IOException("调用的远程目标服务没有正常启动,同步调用失败!");
-			}
-			TimedOverdueCache.put(key, discoveryServiceInfo);
-			object = TimedOverdueCache.get(key);
-		}
-		discoveryServiceInfo = (DiscoveryServiceInfo) object;
-		
-		RemoteProxy adaptiveExtension = InterfaceExtensionLoader.getExtensionLoader(RemoteProxy.class).getAdaptiveExtension();
-		URL emptyUrl = UrlUtils.getEmptyUrl("", "");
-		emptyUrl = emptyUrl.addParameter("invokeType", "netty.remote.proxy");
-		return adaptiveExtension.remoteInvoke(emptyUrl, discoveryServiceInfo,interfaceClass);
-	}
-	
-	/**
-	 * 同步发送消息
-	 * @param topicTags 客户端标识和 客户端应用标识 (主题和标记/标签)
-	 * @param interfaceClass 接口class
-	 * @param syncVersion 同步rpc的服务版本
-	 * @throws IOException 
-	 */
-	public static <T> T syncSend2(TopicTag topicTag,Class<T> interfaceClass,String syncVersion) throws IOException{
 		URL url = NewsRpcUtil.getSyncSendUrl(topicTag, interfaceClass, syncVersion);
 		RemoteProxy adaptiveExtension = InterfaceExtensionLoader.getExtensionLoader(RemoteProxy.class).getAdaptiveExtension();
 		url = url.addParameter("invokeType", "netty.remote.proxy");
 		return adaptiveExtension.remoteInvoke(url, null,interfaceClass);
 	}
-	
-//	/**
-//	 * 同步发送消息
-//	 * @param topicTags 客户端标识和 客户端应用标识 (主题和标记/标签)
-//	 * @param interfaceClass 接口class
-//	 * @param syncVersion 同步rpc的服务版本
-//	 * @throws IOException 
-//	 */
-//	public static <T> T syncSend3(TopicTag topicTag,Class<T> interfaceClass,String syncVersion) throws IOException{
-//		URL syncSendUrl = NewsRpcUtil.getSyncSendUrl(topicTag, interfaceClass, syncVersion);
-//		InvokerStrategyCluster adaptiveExtension = InterfaceExtensionLoader.getExtensionLoader(InvokerStrategyCluster.class).getAdaptiveExtension();
-//		return adaptiveExtension.invoke(syncSendUrl, interfaceClass);
-//	}
-	
 	
 	/**
 	 * 异步发送消息
