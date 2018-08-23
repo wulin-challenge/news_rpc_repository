@@ -191,5 +191,11 @@ news:
 若消费方 调用的接口既要修该提供服务方的数据,又要及时返还值,那请自己处理分布式事务问题
 ```
 
+### 使用spring InitializingBean 注意事项
+```
+在应用项目中若使用了spring的InitializingBean ,且在afterPropertiesSet方法中条用了 news rpc的接口,那么请将InitializingBean接口换为InitializingNewsRpcSpring 接口
+```
+
+
 
 
