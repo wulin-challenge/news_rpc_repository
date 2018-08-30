@@ -11,6 +11,7 @@ news:
   rocketmq-address: 192.168.0.80:9876
   rocketmq-publish-environment: dev
   rocketmq-publish-version: 1.1
+  client-ip: 192.168.0.125
   client-port: 5588
   client-topic: 5109
   client-tag: xxappId
@@ -27,6 +28,7 @@ zookeeper-address:服务提供者与服务消费者共用的zookeeper地址
 rocketmq-address : 服务提供者与服务消费者共用的rocketmq地址
 rocketmq-publish-environment: rocketmq的发布环境
 rocketmq-publish-version: rocketmq的发布版本
+client-ip: 指定提供者的IP地址,这主要是解决多网卡环境下,指定其中一个ip地址
 client-port : 当前消息rpc的端口
 client-topic : 主题(监狱编号)
 client-tag : 标签(应用的appId)
