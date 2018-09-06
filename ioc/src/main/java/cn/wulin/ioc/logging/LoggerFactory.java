@@ -11,7 +11,6 @@ import cn.wulin.ioc.logging.jdk.JdkLoggerAdapter;
 import cn.wulin.ioc.logging.log4j.Log4jLoggerAdapter;
 import cn.wulin.ioc.logging.slf4j.Slf4jLoggerAdapter;
 import cn.wulin.ioc.logging.support.FailsafeLogger;
-import cn.wulin.ioc.util.ConfigUtils;
 
 /**
  * 日志输出器工厂
@@ -25,7 +24,7 @@ public class LoggerFactory {
 
 	// 查找常用的日志框架
 	static {
-		String logger = ConfigUtils.getProperty("brace.logger");
+		String logger = System.getProperty("brace.logger");
 		if ("slf4j".equals(logger)) {
 			setLoggerAdapter(new Slf4jLoggerAdapter());
 		} else if ("jcl".equals(logger)) {

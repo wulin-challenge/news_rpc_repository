@@ -37,7 +37,7 @@ import cn.wulin.ioc.logging.LoggerFactory;
  * @author ding.lid
  * @author william.liangf
  */
-public class ConfigUtils {
+public class  ConfigUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigUtils.class);
     private static Pattern VARIABLE_PATTERN = Pattern.compile(
