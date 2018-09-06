@@ -15,7 +15,6 @@
  */
 package cn.wulin.ioc.util;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,11 +25,11 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import cn.wulin.ioc.Constants;
 import cn.wulin.ioc.io.UnsafeStringWriter;
+import cn.wulin.ioc.logging.Logger;
+import cn.wulin.ioc.logging.LoggerFactory;
 
 /**
  * StringUtils

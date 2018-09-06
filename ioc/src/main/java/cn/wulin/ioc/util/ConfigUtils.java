@@ -15,6 +15,7 @@
  */
 package cn.wulin.ioc.util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.management.ManagementFactory;
@@ -27,11 +28,10 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import cn.wulin.ioc.Constants;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
+import cn.wulin.ioc.logging.Logger;
+import cn.wulin.ioc.logging.LoggerFactory;
 
 /**
  * @author ding.lid
@@ -44,6 +44,8 @@ public class ConfigUtils {
             "\\$\\s*\\{?\\s*([\\._0-9a-zA-Z]+)\\s*\\}?");
     private static volatile Properties PROPERTIES;
     private static int PID = -1;
+    //存放在 程序的 user.dir的brace.properties文件
+    private static File CONFIG_BRACE_PROPERTIES = new File(System.getProperty("user.dir"),"config"+File.separator+Constants.DEFAULT_BRACE_PROPERTIES);
 
     private ConfigUtils() {
     }
@@ -144,17 +146,24 @@ public class ConfigUtils {
     }
 
     public static Properties getProperties() {
+    	//是否为config目录下的文件
+    	Boolean isConfigDir = false;
         if (PROPERTIES == null) {
             synchronized (ConfigUtils.class) {
                 if (PROPERTIES == null) {
-                    String path = System.getProperty(Constants.DUBBO_PROPERTIES_KEY);
+                    String path = System.getProperty(Constants.BRACE_PROPERTIES_KEY);
                     if (path == null || path.length() == 0) {
-                        path = System.getenv(Constants.DUBBO_PROPERTIES_KEY);
+                        path = System.getenv(Constants.BRACE_PROPERTIES_KEY);
                         if (path == null || path.length() == 0) {
-                            path = Constants.DEFAULT_DUBBO_PROPERTIES;
+                        	 path = CONFIG_BRACE_PROPERTIES.exists()?CONFIG_BRACE_PROPERTIES.getAbsolutePath():null;
+                        	 if (path == null || path.length() == 0) {
+                                 path = Constants.DEFAULT_BRACE_PROPERTIES;
+                             }else{
+                            	 isConfigDir = true;
+                             }
                         }
                     }
-                    PROPERTIES = ConfigUtils.loadProperties(path, false, true);
+                    PROPERTIES = ConfigUtils.loadProperties(path, false, true,isConfigDir);
                 }
             }
         }
@@ -188,11 +197,11 @@ public class ConfigUtils {
     }
 
     public static Properties loadProperties(String fileName) {
-        return loadProperties(fileName, false, false);
+        return loadProperties(fileName, false, false,false);
     }
 
     public static Properties loadProperties(String fileName, boolean allowMultiFile) {
-        return loadProperties(fileName, allowMultiFile, false);
+        return loadProperties(fileName, allowMultiFile, false,false);
     }
 
     /**
@@ -201,15 +210,16 @@ public class ConfigUtils {
      * @param fileName       properties file name. for example: <code>dubbo.properties</code>, <code>METE-INF/conf/foo.properties</code>
      * @param allowMultiFile if <code>false</code>, throw {@link IllegalStateException} when found multi file on the class path.
      * @param optional       is optional. if <code>false</code>, log warn when properties config file not found!s
+     * @param optional       isConfigDir 是否是 user.dir下的config目录下的brace.properties文件
      * @return loaded {@link Properties} content. <ul>
      * <li>return empty Properties if no file found.
      * <li>merge multi properties file if found multi file
      * </ul>
      * @throws IllegalStateException not allow multi-file, but multi-file exsit on class path.
      */
-    public static Properties loadProperties(String fileName, boolean allowMultiFile, boolean optional) {
+    public static Properties loadProperties(String fileName, boolean allowMultiFile, boolean optional,Boolean isConfigDir) {
         Properties properties = new Properties();
-        if (fileName.startsWith("/")) {
+        if (fileName.startsWith("/") || isConfigDir) {
             try {
                 FileInputStream input = new FileInputStream(fileName);
                 try {
