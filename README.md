@@ -11,9 +11,13 @@ news:
   rocketmq-address: 192.168.0.80:9876
   rocketmq-publish-environment: dev
   rocketmq-publish-version: 1.1
+  client-ip: 192.168.0.125
   client-port: 5588
   client-topic: 5109
   client-tag: xxappId
+  client-retries:2
+  client-cluster:failover
+  client-loadbalance:random
   rocketmq-news-type: general
   rocketmq-is-unique-group: false
   rocketmq-order-queue: 0
@@ -24,9 +28,13 @@ zookeeper-address:服务提供者与服务消费者共用的zookeeper地址
 rocketmq-address : 服务提供者与服务消费者共用的rocketmq地址
 rocketmq-publish-environment: rocketmq的发布环境
 rocketmq-publish-version: rocketmq的发布版本
+client-ip: 指定提供者的IP地址,这主要是解决多网卡环境下,指定其中一个ip地址
 client-port : 当前消息rpc的端口
 client-topic : 主题(监狱编号)
 client-tag : 标签(应用的appId)
+client-retries:重试次数,当不想要重试,请使用赋值为0,默认值为2次(当cluster使用 failover策略才生效)
+client-cluster:集群策略,支持failover(失败转移),failfast(快速失败),forking(并行调用，只要一个成功即返回),等几种模式,默认failover
+client-loadbalance:负载均衡,支持random(随机负载均衡),leastActive(最小活动数策略),注意目前暂时只支持random策略
 rocketmq-news-type: rocketmq的消息类型,general:普通消息,order:顺序消息,transactional:事务消息(默认 general)
 rocketmq-is-unique-group: rocketmq的生产组和消费组是否唯一(1. 强调:生产组与消费组之间的名称一定不能一样. 2. 说明:默认情况下,若应用程序配置的 topic和appid以及版本号以及rocketmq的发布环境一样的情况下,两个相同的应用程序启动后会各自分担一部分broker的队列)
 rocketmq-order-queue: rocketmq顺序消息队列
