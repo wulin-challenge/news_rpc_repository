@@ -253,7 +253,7 @@ public class Constants {
 
     public static final String PROMPT_KEY = "prompt";
 
-    public static final String DEFAULT_PROMPT = "dubbo>";
+    public static final String DEFAULT_PROMPT = "brace>";
 
     public static final String CODEC_KEY = "codec";
 
