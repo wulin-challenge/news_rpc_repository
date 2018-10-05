@@ -1,0 +1,32 @@
+package com.bjhy.news.demo.consumer;
+public class CodeBlockDemo 
+{
+    {
+        System.out.println("初始化代码");
+    }
+
+    CodeBlockDemo()
+    {
+        System.out.println("构造器");
+    }   
+
+    static
+    {
+        System.out.println("静态代码块");
+    }
+    
+    //运行后输出结果?
+    public static void main(String[] args) {   
+    	System.out.println();
+        {
+            int a = 10;
+            //10
+            System.out.println("局部代码块");
+        }
+
+        new CodeBlockDemo();
+        new CodeBlockDemo();
+        new CodeBlockDemo();
+    }
+}
+

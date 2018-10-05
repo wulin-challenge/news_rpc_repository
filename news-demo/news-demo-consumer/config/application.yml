@@ -8,7 +8,7 @@ news:
   rocketmq-address: 192.168.0.82:9876;192.168.0.158:9876
   rocketmq-publish-environment: test
   rocketmq-publish-version: 1.1
-  client-cluster: forking
+#  client-cluster: forking
   client-ip: 192.168.0.125
   client-port: 5589
   client-topic: 5110
