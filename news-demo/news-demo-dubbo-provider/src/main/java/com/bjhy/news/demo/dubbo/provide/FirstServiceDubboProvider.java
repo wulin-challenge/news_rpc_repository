@@ -34,8 +34,17 @@ public class FirstServiceDubboProvider implements FirstService{
 		return s;
 	}
 	
+	/**
+	 * 测试异常情况下 rpc的错误处理
+	 */
+	int j = 0;
 	@Override
 	public String hello2(String str1, String str2, String str3) throws Exception {
+		Thread.sleep(1000);
+		j++;
+		if((j%5)!=0){
+			int i = 1/0;
+		}
 		return "dubbo hello 2 : "+str1+","+str2+","+str3;
 	}
 

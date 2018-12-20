@@ -37,6 +37,27 @@ public class TestSync2 {
 		System.out.println((end-start)/1000);
 	}
 	
-	
+	/**
+	 * 测试异常情况下 rpc的错误处理
+	 */
+	@Test
+	public void test_invoke_dubbo_provider_service(){
+		
+		long start = System.currentTimeMillis();
+		for (int i = 0; i < 100000; i++) {
+			String hello1 = null;
+			try {
+				hello1 = NewsUtil.syncSend(new TopicTag("5199", "xxappIdx",5000), FirstService.class).hello2("aa", null, "cc");
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println(i+"---"+hello1);
+		}
+		long end = System.currentTimeMillis();
+		System.out.println((end-start));
+		System.out.println((end-start)/1000);
+	}
+
 
 }

@@ -79,4 +79,15 @@ public final class NewsRpcException extends RuntimeException {
     public boolean isSerialization() {
         return code == SERIALIZATION_EXCEPTION;
     }
+
+	@Override
+	public void printStackTrace() {
+		try {
+			super.printStackTrace();
+		} catch (Exception e) {
+			//打印出错则不处理
+		}
+	}
+    
+    
 }
