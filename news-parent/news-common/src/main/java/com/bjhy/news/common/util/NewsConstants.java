@@ -124,4 +124,14 @@ public class NewsConstants {
 	 * 默认同步超时时间5秒
 	 */
 	public static final int DEFUALT_SYNC_TIMEOUT = 5000;
+	
+	/**
+	 * 默认主题
+	 */
+	public static final String DEFAULT_TOPIC = "news_topic";
+	
+	/**
+	 * 默认tag标签
+	 */
+	public static final String DEFAULT_TAG = "news_tag";
 }

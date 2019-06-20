@@ -1,18 +1,18 @@
 #rocketmq-publish-environment: product|dev|test(rocketmq的发布环境,默认为生产环境)
 #rocketmq-publish-version: 1.1(rocketmq的发布版本,生产环境下建议不用添加版本,默认为空)
 
-news: 
+#news: 
 #  zookeeper-address: wulin:2181
-  zookeeper-address: wulinThinkPad:2181
+#  zookeeper-address: wulinThinkPad:2181
   #rocketmq-address: 192.168.0.107:9876;192.168.0.108:9876
-  rocketmq-address: 192.168.0.82:9876;192.168.0.158:9876
-  rocketmq-publish-environment: test
-  rocketmq-publish-version: 1.1
+#  rocketmq-address: 192.168.0.82:9876;192.168.0.158:9876
+#  rocketmq-publish-environment: test
+#  rocketmq-publish-version: 1.1
 #  client-cluster: forking
   # client-ip: 192.168.0.125
-  client-port: 5589
-  client-topic: 5110
-  client-tag: xxappId
+#  client-port: 5589
+#  client-topic: 5110
+#  client-tag: xxappId
   
 server:
   context-path: /demo-consumer

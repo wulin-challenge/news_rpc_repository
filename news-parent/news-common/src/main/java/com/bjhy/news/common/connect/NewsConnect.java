@@ -103,5 +103,4 @@ public interface NewsConnect {
 	 * @return
 	 */
 	Integer rocketmqOrderQueue();
-	
 }

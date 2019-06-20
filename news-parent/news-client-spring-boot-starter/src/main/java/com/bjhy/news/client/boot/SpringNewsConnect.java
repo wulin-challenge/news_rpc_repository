@@ -60,12 +60,12 @@ public class SpringNewsConnect implements NewsConnect{
 
 	@Override
 	public String clientTopic() {
-		return environment.getProperty("news.client-topic", String.class);
+		return environment.getProperty("news.client-topic", String.class,NewsConstants.DEFAULT_TOPIC);
 	}
 
 	@Override
 	public String clientTag() {
-		return environment.getProperty("news.client-tag", String.class);
+		return environment.getProperty("news.client-tag", String.class,NewsConstants.DEFAULT_TAG);
 	}
 	
 	@Override

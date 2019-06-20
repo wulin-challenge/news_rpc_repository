@@ -11,6 +11,7 @@ import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
 import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 import com.bjhy.news.rpc.api.netty.handler.RpcServerHandler;
 
+import cn.wulin.brace.utils.LoggerUtils;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -31,6 +32,11 @@ public class NettyRpcInvokeService implements RpcInvokeService{
 
 	@Override
 	public void executeRpc(List<PublishServiceInfo> publishServiceInfoList) {
+		
+		if(publishServiceInfoList.isEmpty()) {
+			LoggerUtils.warn("当前应用没有发布相关news远程服务,将只作为消费端使用!");
+			return;
+		}
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -51,10 +57,12 @@ public class NettyRpcInvokeService implements RpcInvokeService{
             bootstrap.childOption(ChannelOption.SO_KEEPALIVE, true);
             // 启动 RPC 服务器
             ChannelFuture future = bootstrap.bind(newsConnect.clientIp(), newsConnect.clientPort()).sync();
+            LoggerUtils.info("news远程服务启动成功! 端口: "+newsConnect.clientPort());
             // 关闭 RPC 服务器
             future.channel().closeFuture().sync();
+            
         } catch (InterruptedException e) {
-			e.printStackTrace();
+			LoggerUtils.error("news远程服务启动失败",e);
 		} finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();

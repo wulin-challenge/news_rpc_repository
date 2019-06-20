@@ -24,6 +24,15 @@ import cn.wulin.ioc.util.UrlUtils;
  */
 public class NewsUtil {
 	/**
+	 * 同步发送消息,使用默认主题和默认tag标签进行消息的发送
+	 * @param interfaceClass 接口class
+	 * @throws IOException 
+	 */
+	public static <T> T syncSend(Class<T> interfaceClass) throws IOException{
+		return syncSend(new TopicTag(NewsConstants.DEFAULT_TOPIC, NewsConstants.DEFAULT_TAG), interfaceClass);
+	}
+	
+	/**
 	 * 同步发送消息
 	 * @param topicTags 客户端标识和 客户端应用标识 (主题和标记/标签)
 	 * @param interfaceClass 接口class
