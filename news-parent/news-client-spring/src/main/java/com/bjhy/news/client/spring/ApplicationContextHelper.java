@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import com.bjhy.cache.toolkit.extension.ExtensionLoader;
 import com.bjhy.news.client.spring.connect.SpringLoadNewsConnect;
 import com.bjhy.news.client.spring.init.InitializingNewsRpcSpring;
 import com.bjhy.news.common.connect.AdaptiveNewsConnect;
@@ -20,6 +19,7 @@ import com.bjhy.news.common.zookeeper.AdaptivePublishService;
 import com.bjhy.news.rpc.api.netty.AdaptiveRpcInvokeService;
 
 import cn.wulin.ioc.URL;
+import cn.wulin.ioc.extension.ExtensionLoader;
 
 @Component
 public class ApplicationContextHelper implements ApplicationContextAware ,InitializingBean{

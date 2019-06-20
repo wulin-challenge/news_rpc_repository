@@ -1,0 +1,77 @@
+2019-06-20 01:24:48,235 INFO [main] c.b.n.c.boot.test.NewsBootStarter [StartupInfoLogger.java : 48] Starting NewsBootStarter on wulinThinkPad with PID 51068 (D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter\target\test-classes started by ThinkPad in D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter)
+2019-06-20 01:24:48,252 INFO [main] c.b.n.c.boot.test.NewsBootStarter [SpringApplication.java : 593] No active profile set, falling back to default profiles: default
+2019-06-20 01:24:48,286 INFO [main] o.s.c.a.AnnotationConfigApplicationContext [AbstractApplicationContext.java : 583] Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5542c4ed: startup date [Thu Jun 20 01:24:48 CST 2019]; root of context hierarchy
+2019-06-20 01:24:48,683 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java : 165] Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-20 01:24:48,853 WARN [main] o.s.c.a.ConfigurationClassEnhancer [ConfigurationClassEnhancer.java : 350] @Bean method NewsBootAutoConfiguration.newsBootConfigurer is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2019-06-20 01:24:48,895 ERROR [main] o.s.boot.SpringApplication [SpringApplication.java : 771] Application startup failed
+java.lang.IllegalStateException: class com.bjhy.news.client.boot.test.provider.TestBootServiceImpl is not an interface
+	at org.springframework.cglib.proxy.Enhancer.validate(Enhancer.java:394)
+	at org.springframework.cglib.proxy.Enhancer.generate(Enhancer.java:486)
+	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData$3.apply(AbstractClassGenerator.java:93)
+	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData$3.apply(AbstractClassGenerator.java:91)
+	at org.springframework.cglib.core.internal.LoadingCache$2.call(LoadingCache.java:54)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.springframework.cglib.core.internal.LoadingCache.createEntry(LoadingCache.java:61)
+	at org.springframework.cglib.core.internal.LoadingCache.get(LoadingCache.java:34)
+	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData.get(AbstractClassGenerator.java:116)
+	at org.springframework.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:291)
+	at org.springframework.cglib.proxy.Enhancer.createHelper(Enhancer.java:480)
+	at org.springframework.cglib.proxy.Enhancer.createClass(Enhancer.java:337)
+	at org.springframework.cglib.proxy.Proxy.getProxyClass(Proxy.java:84)
+	at org.springframework.cglib.proxy.Proxy.newProxyInstance(Proxy.java:93)
+	at com.bjhy.news.client.boot.NewsBootConfigurer.postProcessBeanFactory(NewsBootConfigurer.java:67)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:281)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:169)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:687)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:525)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.bjhy.news.client.boot.test.NewsBootStarter.main(NewsBootStarter.java:11)
+2019-06-20 01:24:48,896 INFO [main] o.s.c.a.AnnotationConfigApplicationContext [AbstractApplicationContext.java : 984] Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5542c4ed: startup date [Thu Jun 20 01:24:48 CST 2019]; root of context hierarchy
+2019-06-20 01:24:48,897 WARN [main] o.s.c.a.AnnotationConfigApplicationContext [AbstractApplicationContext.java : 1002] Exception thrown from LifecycleProcessor on context close
+java.lang.IllegalStateException: LifecycleProcessor not initialized - call 'refresh' before invoking lifecycle methods via the context: org.springframework.context.annotation.AnnotationConfigApplicationContext@5542c4ed: startup date [Thu Jun 20 01:24:48 CST 2019]; root of context hierarchy
+	at org.springframework.context.support.AbstractApplicationContext.getLifecycleProcessor(AbstractApplicationContext.java:427)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:999)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.bjhy.news.client.boot.test.NewsBootStarter.main(NewsBootStarter.java:11)
+2019-06-20 01:24:48,898 ERROR [main] o.s.b.f.s.DefaultListableBeanFactory [DefaultSingletonBeanRegistry.java : 581] Destroy method on bean with name 'org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory' threw an exception
+java.lang.IllegalStateException: ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: org.springframework.context.annotation.AnnotationConfigApplicationContext@5542c4ed: startup date [Thu Jun 20 01:24:48 CST 2019]; root of context hierarchy
+	at org.springframework.context.support.AbstractApplicationContext.getApplicationEventMulticaster(AbstractApplicationContext.java:414)
+	at org.springframework.context.support.ApplicationListenerDetector.postProcessBeforeDestruction(ApplicationListenerDetector.java:97)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:253)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.bjhy.news.client.boot.test.NewsBootStarter.main(NewsBootStarter.java:11)
+2019-06-20 01:26:15,374 INFO [main] c.b.n.c.boot.test.NewsBootStarter [StartupInfoLogger.java : 48] Starting NewsBootStarter on wulinThinkPad with PID 89272 (D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter\target\test-classes started by ThinkPad in D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter)
+2019-06-20 01:26:15,377 INFO [main] c.b.n.c.boot.test.NewsBootStarter [SpringApplication.java : 593] No active profile set, falling back to default profiles: default
+2019-06-20 01:26:15,419 INFO [main] o.s.c.a.AnnotationConfigApplicationContext [AbstractApplicationContext.java : 583] Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4241e0f4: startup date [Thu Jun 20 01:26:15 CST 2019]; root of context hierarchy
+2019-06-20 01:26:15,874 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java : 165] Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-20 01:26:16,070 WARN [main] o.s.c.a.ConfigurationClassEnhancer [ConfigurationClassEnhancer.java : 350] @Bean method NewsBootAutoConfiguration.newsBootConfigurer is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2019-06-20 01:32:10,953 INFO [main] c.b.n.c.boot.test.NewsBootStarter [StartupInfoLogger.java : 48] Starting NewsBootStarter on wulinThinkPad with PID 15304 (D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter\target\test-classes started by ThinkPad in D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter)
+2019-06-20 01:32:10,957 INFO [main] c.b.n.c.boot.test.NewsBootStarter [SpringApplication.java : 593] No active profile set, falling back to default profiles: default
+2019-06-20 01:32:10,996 INFO [main] o.s.c.a.AnnotationConfigApplicationContext [AbstractApplicationContext.java : 583] Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4ebff610: startup date [Thu Jun 20 01:32:10 CST 2019]; root of context hierarchy
+2019-06-20 01:32:11,450 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java : 165] Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-20 01:32:11,640 WARN [main] o.s.c.a.ConfigurationClassEnhancer [ConfigurationClassEnhancer.java : 350] @Bean method NewsBootAutoConfiguration.newsBootConfigurer is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2019-06-20 01:32:42,538 INFO [main] c.b.n.c.boot.test.NewsBootStarter [StartupInfoLogger.java : 48] Starting NewsBootStarter on wulinThinkPad with PID 92740 (D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter\target\test-classes started by ThinkPad in D:\software\helpProgramming\git_client\git\workspace_directory\self_directory\news_rpc_workspace\news-parent\news-client-spring-boot-starter)
+2019-06-20 01:32:42,541 INFO [main] c.b.n.c.boot.test.NewsBootStarter [SpringApplication.java : 593] No active profile set, falling back to default profiles: default
+2019-06-20 01:32:42,582 INFO [main] o.s.c.a.AnnotationConfigApplicationContext [AbstractApplicationContext.java : 583] Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4241e0f4: startup date [Thu Jun 20 01:32:42 CST 2019]; root of context hierarchy
+2019-06-20 01:32:43,041 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java : 165] Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-20 01:32:43,233 WARN [main] o.s.c.a.ConfigurationClassEnhancer [ConfigurationClassEnhancer.java : 350] @Bean method NewsBootAutoConfiguration.newsBootConfigurer is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.

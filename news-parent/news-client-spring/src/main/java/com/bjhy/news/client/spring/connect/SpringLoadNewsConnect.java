@@ -3,8 +3,6 @@ package com.bjhy.news.client.spring.connect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.bjhy.cache.toolkit.util.YamlUtil;
-import com.bjhy.news.common.domain.RocketmqNewsType;
 import com.bjhy.news.common.util.NewsConstants;
 
 /**

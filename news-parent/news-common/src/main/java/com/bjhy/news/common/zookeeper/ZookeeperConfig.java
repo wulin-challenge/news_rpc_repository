@@ -13,13 +13,13 @@ import org.apache.zookeeper.CreateMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bjhy.cache.toolkit.util.LoggerUtils;
 import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorEvent;
 import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorEventAdapter;
 import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorListener;
 
+import cn.wulin.brace.utils.LoggerUtils;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 
 /**

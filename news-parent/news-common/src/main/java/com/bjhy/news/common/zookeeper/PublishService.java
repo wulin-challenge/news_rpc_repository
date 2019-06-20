@@ -7,8 +7,8 @@ import com.bjhy.news.common.domain.PublishServiceInfo;
 import cn.wulin.ioc.extension.SPI;
 
 /**
- * 发布服务
- * @author wubo
+ * 发布服务,主要用于获取具体调用的bean对象
+ * @author wulin
  *
  */
 @SPI(value="default.publish.service")

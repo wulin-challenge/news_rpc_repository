@@ -2,10 +2,10 @@ package com.bjhy.news.common.notify;
 
 import java.util.Set;
 
-import com.bjhy.cache.toolkit.util.LoggerUtils;
 import com.bjhy.news.common.exception.NewsRpcException;
 import com.bjhy.news.common.util.NewsConstants;
 
+import cn.wulin.brace.utils.LoggerUtils;
 import cn.wulin.ioc.URL;
 
 public abstract class AbstractNotifyListener implements NotifyListener{

@@ -1,11 +1,12 @@
 package com.bjhy.news.client.connect;
 import org.apache.commons.lang3.StringUtils;
 
-import com.bjhy.cache.toolkit.util.NativeHostUtil;
-import com.bjhy.cache.toolkit.util.YamlUtil;
 import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.domain.RocketmqNewsType;
 import com.bjhy.news.common.util.NewsConstants;
+
+import cn.wulin.brace.utils.NativeHostUtil;
+import cn.wulin.brace.utils.YamlUtil;
 
 /**
  * 默认的客户端连接

@@ -2,10 +2,11 @@ package com.bjhy.news.client.spring.connect;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.bjhy.cache.toolkit.extension.ExtensionLoader;
-import com.bjhy.cache.toolkit.util.NativeHostUtil;
 import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.domain.RocketmqNewsType;
+
+import cn.wulin.brace.utils.NativeHostUtil;
+import cn.wulin.ioc.extension.ExtensionLoader;
 
 /**
  * 消息rpc的连接接口 的spring实现

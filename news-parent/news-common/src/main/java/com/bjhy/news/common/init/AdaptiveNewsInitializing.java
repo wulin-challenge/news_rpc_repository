@@ -32,12 +32,20 @@ public class AdaptiveNewsInitializing implements NewsInitializing{
 
 	@Override
 	public void initBefore(NewsConnect newsConnect) {
-		getNewsInitializing().initBefore(newsConnect);
+		NewsInitializing newsInitializing = getNewsInitializing();
+		if(newsInitializing == null) {
+			return;
+		}
+		newsInitializing.initBefore(newsConnect);
 	}
 
 	@Override
 	public void initAfter(NewsConnect newsConnect) {
-		getNewsInitializing().initAfter(newsConnect);
+		NewsInitializing newsInitializing = getNewsInitializing();
+		if(newsInitializing == null) {
+			return;
+		}
+		newsInitializing.initAfter(newsConnect);
 	}
 
 }
