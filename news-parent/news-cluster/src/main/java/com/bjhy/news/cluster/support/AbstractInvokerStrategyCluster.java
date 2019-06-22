@@ -15,11 +15,11 @@ import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
 import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 import com.bjhy.news.rpc.api.netty.proxy.NettyRpcClient;
-import com.bjhy.news.rpc.api.netty.proxy.NettyRpcClientHandler;
 import com.bjhy.news.rpc.api.netty.proxy.RPCFuture;
 
 import cn.wulin.ioc.URL;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
+import io.netty.channel.Channel;
 
 public abstract class AbstractInvokerStrategyCluster implements InvokerStrategyCluster{
 
@@ -89,8 +89,9 @@ public abstract class AbstractInvokerStrategyCluster implements InvokerStrategyC
 		request.setHost(host);
 		request.setPort(port);
 		// 创建 RPC 客户端对象并发送 RPC 请求
-		NettyRpcClientHandler connectServer = NettyRpcClient.getInstance().connectServer(request);
-		RPCFuture sendRequest = connectServer.sendRequest(request);
+		Channel channel = NettyRpcClient.getInstance().getChannel(request);
+		RPCFuture sendRequest = NettyRpcClient.getInstance().getClientHandler().sendRequest(channel,request);
+		
 		Integer timeout = url.getParameter(NewsConstants.SYNC_TIMEOUT_KEY,0);
 		timeout = timeout <= 0?((request.getTimeout() ==null || request.getTimeout()<=0)?NewsConstants.DEFUALT_SYNC_TIMEOUT:request.getTimeout()):timeout;
 		Object object;

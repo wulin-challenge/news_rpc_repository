@@ -24,6 +24,9 @@ public class SpringLoadNewsConnect {
 	@Value("${news.client-port:5588}")
 	private Integer clientPort;
 	
+	@Value("${news.client-telnet-port:-1}")
+	private Integer clientTelnetPort;
+	
 	@Value("${news.client-topic}")
 	private String clientTopic;
 	
@@ -71,6 +74,12 @@ public class SpringLoadNewsConnect {
 	}
 	public void setClientPort(Integer clientPort) {
 		this.clientPort = clientPort;
+	}
+	public Integer getClientTelnetPort() {
+		return clientTelnetPort == -1?(getClientPort()+1):clientTelnetPort;
+	}
+	public void setClientTelnetPort(Integer clientTelnetPort) {
+		this.clientTelnetPort = clientTelnetPort;
 	}
 	public String getClientTopic() {
 		return clientTopic;

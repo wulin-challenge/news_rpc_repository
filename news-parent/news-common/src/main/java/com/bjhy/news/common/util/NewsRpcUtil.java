@@ -3,6 +3,8 @@ package com.bjhy.news.common.util;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -146,4 +148,10 @@ public class NewsRpcUtil {
         }
         return PID;
     }
+	
+	 public static SocketAddress string2SocketAddress(final String addr) {
+	        String[] s = addr.split(":");
+	        InetSocketAddress isa = new InetSocketAddress(s[0], Integer.parseInt(s[1]));
+	        return isa;
+	    }
 }

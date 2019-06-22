@@ -42,6 +42,12 @@ public interface NewsConnect {
 	Integer clientPort();
 	
 	/**
+	 * 客户端telnet端口,默认为 clientPort+1
+	 * @return
+	 */
+	Integer clientTelnetPort();
+	
+	/**
 	 * 客户端主题
 	 * @return
 	 */

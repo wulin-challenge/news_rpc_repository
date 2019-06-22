@@ -95,6 +95,25 @@ public class TestSync {
 			e.printStackTrace();
 		}
 	}
+	
+	private void buildParams3(int i) {
+		try {
+			String username = i+"__李四";
+			Integer age = i;
+			Date csrq = new Date();
+			
+			User user = new User();
+			user.setUsername(username+"__"+i);
+			user.setAge(i+1);
+			user.setCsrq(csrq);
+			
+			User user2 = NewsUtil.syncSend(FirstService.class).getUser(username, age, csrq, user);
+			
+			System.out.println(i+"---"+user2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 测试默认主题和tag
@@ -116,5 +135,28 @@ public class TestSync {
 		System.out.println((end-start));
 		System.out.println((end-start)/1000);
 		
+	}
+	
+	@Test
+	public void test_defualt_topicTag_mutil_Thread() throws InterruptedException{
+		List<Callable<Void>> tasks = new ArrayList<Callable<Void>>();
+		long start = System.currentTimeMillis();
+		for (int i = 0; i < 100000; i++) {
+			final int j = i;
+			
+			Callable<Void> callable =new Callable<Void>(){
+
+				@Override
+				public Void call() throws Exception {
+					buildParams3(j);
+					return null;
+				}
+			};
+			tasks.add(callable);
+		}
+		newFixedThreadPool.invokeAll(tasks);
+		long end = System.currentTimeMillis();
+		System.out.println((end-start));
+		System.out.println((end-start)/1000);
 	}
 }

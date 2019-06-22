@@ -57,6 +57,11 @@ public class SpringNewsConnect implements NewsConnect{
 	public Integer clientPort() {
 		return environment.getProperty("news.client-port", Integer.class,5588);
 	}
+	
+	@Override
+	public Integer clientTelnetPort() {
+		return environment.getProperty("news.client-telnet-port", Integer.class,clientPort()+1);
+	}
 
 	@Override
 	public String clientTopic() {

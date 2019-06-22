@@ -48,6 +48,11 @@ public class DefaultClientConnect implements NewsConnect{
 	public Integer clientPort() {
 		return YamlUtil.getValue("news.client-port", 5588,Integer.class);
 	}
+	
+	@Override
+	public Integer clientTelnetPort() {
+		return YamlUtil.getValue("news.client-telnet-port", clientPort()+1,Integer.class);
+	}
 
 	@Override
 	public String clientTopic() {

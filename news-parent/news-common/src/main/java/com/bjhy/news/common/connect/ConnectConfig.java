@@ -48,9 +48,10 @@ public class ConnectConfig {
 		});
 		thread.start();
 		
+		//初始化通信客户端
+		cci.init(url, newsConnect);
 		//连接rocketmq
 		RocketmqConfig.getInstance().connectRocketmq();
-		cci.init(url, newsConnect);
 		newsInitializing.initAfter(newsConnect);
 	}
 	

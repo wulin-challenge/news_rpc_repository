@@ -53,6 +53,11 @@ public class SpringNewsConnect implements NewsConnect{
 	public Integer clientPort() {
 		return getSpringLoadNewsConnect().getClientPort();
 	}
+	
+	@Override
+	public Integer clientTelnetPort() {
+		return getSpringLoadNewsConnect().getClientTelnetPort();
+	}
 
 	@Override
 	public String clientTopic() {

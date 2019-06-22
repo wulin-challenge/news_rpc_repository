@@ -133,6 +133,11 @@
 				<artifactId>brace-utils</artifactId>
 				<version>${version.brace}</version>
 			</dependency>
+			<dependency>
+				<groupId>cn.wulin</groupId>
+				<artifactId>brace-telnet</artifactId>
+				<version>${version.brace}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>

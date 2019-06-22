@@ -54,6 +54,11 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	public Integer clientPort() {
 		return getNewsConnect().clientPort();
 	}
+	
+	@Override
+	public Integer clientTelnetPort() {
+		return getNewsConnect().clientTelnetPort();
+	}
 
 	@Override
 	public String clientTopic() {
