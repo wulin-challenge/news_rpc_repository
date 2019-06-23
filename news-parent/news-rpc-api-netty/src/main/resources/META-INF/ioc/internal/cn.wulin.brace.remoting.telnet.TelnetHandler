@@ -1,0 +1,1 @@
+service=com.bjhy.news.rpc.api.netty.telnet.ServiceTelnetHandler

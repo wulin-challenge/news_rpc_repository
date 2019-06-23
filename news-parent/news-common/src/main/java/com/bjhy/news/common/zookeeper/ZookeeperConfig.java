@@ -24,7 +24,7 @@ import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 
 /**
  * zookeeper的核心配置类
- * @author wubo
+ * @author wulin
  *
  */
 public class ZookeeperConfig {
@@ -131,6 +131,32 @@ public class ZookeeperConfig {
 			logger.error(path+" 获取孩子节点失败!", e);
 		}
 		return null;
+	}
+	
+	/**
+	 * 得到指定根路径小的指定层级的完整路径
+	 * @param rootPath 更路径
+	 * @param levelNum 向下递归查找的层级数,0表示当前层级
+	 * @return
+	 */
+	public List<String> getSpecifyLevelPath(String rootPath,int levelNum){
+		List<String> paths = new ArrayList<String>();
+		if(levelNum<=0) {
+			paths.add(rootPath);
+		}
+		getSpecifyLevelPath(paths, rootPath, levelNum-1);
+		return paths;
+	}
+	
+	private void getSpecifyLevelPath(List<String> paths,String rootPath,int levelNum){
+		List<String> childrenFullPathList = getChildrenFullPathList(rootPath);
+		
+		if(levelNum == 0 && childrenFullPathList != null && childrenFullPathList.size() >0) {
+			paths.addAll(childrenFullPathList);
+		}
+		for (String path : childrenFullPathList) {
+			getSpecifyLevelPath(paths, path, levelNum-1);
+		}
 	}
 	
 	/**

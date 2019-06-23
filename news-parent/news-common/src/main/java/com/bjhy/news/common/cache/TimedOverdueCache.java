@@ -2,6 +2,7 @@ package com.bjhy.news.common.cache;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -72,6 +73,25 @@ public class TimedOverdueCache {
 			}
 			return singleExpireCacheEntity.getCacheObject();
 		}
+	}
+	
+	/**
+	 * 获取指定类型的值
+	 * @param clazz
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T>  List<T> get(Class<T> clazz){
+		List<T> list = new ArrayList<T>();
+		
+		Enumeration<String> keys = expireCache.keys();
+		while(keys.hasMoreElements()) {
+			Object object = get(keys.nextElement());
+			if(object != null && object.getClass() == clazz) {
+				list.add((T)object);
+			}
+		}
+		return list;
 	}
 	
 	/**

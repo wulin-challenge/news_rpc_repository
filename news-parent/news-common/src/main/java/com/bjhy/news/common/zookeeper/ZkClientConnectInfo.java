@@ -2,7 +2,7 @@ package com.bjhy.news.common.zookeeper;
 
 /**
  * 用zookeeper管理所有连接的客户端
- * @author wubo
+ * @author wulin
  */
 public class ZkClientConnectInfo {
 	

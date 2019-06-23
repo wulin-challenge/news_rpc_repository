@@ -14,6 +14,11 @@ public class RpcResponse  implements Serializable{
 	private String requestId;
     private Exception exception;
     private Object result;
+    
+    /**
+     * rpc调用类型
+     */
+    private NettyRpcType rpcType = NettyRpcType.USER_SERVICE;
 
     public boolean hasException() {
         return exception != null;
@@ -42,4 +47,12 @@ public class RpcResponse  implements Serializable{
     public void setResult(Object result) {
         this.result = result;
     }
+
+	public NettyRpcType getRpcType() {
+		return rpcType;
+	}
+
+	public void setRpcType(NettyRpcType rpcType) {
+		this.rpcType = rpcType;
+	}
 }

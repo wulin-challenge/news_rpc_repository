@@ -11,7 +11,13 @@ import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
 import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 import com.bjhy.news.rpc.api.netty.handler.RpcServerHandler;
 
+import cn.wulin.brace.remoting.RemotingException;
+import cn.wulin.brace.remoting.exchange.ExchangeHandler;
+import cn.wulin.brace.telnet.TelnetConstants;
+import cn.wulin.brace.telnet.TelnetExchangeHandler;
+import cn.wulin.brace.telnet.TelnetServers;
 import cn.wulin.brace.utils.LoggerUtils;
+import cn.wulin.ioc.URL;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -58,6 +64,9 @@ public class NettyRpcInvokeService implements RpcInvokeService{
             // 启动 RPC 服务器
             ChannelFuture future = bootstrap.bind(newsConnect.clientIp(), newsConnect.clientPort()).sync();
             LoggerUtils.info("news远程服务启动成功! 端口: "+newsConnect.clientPort());
+            
+            //启动telnet服务
+            startTelnetServer();
             // 关闭 RPC 服务器
             future.channel().closeFuture().sync();
             
@@ -68,4 +77,21 @@ public class NettyRpcInvokeService implements RpcInvokeService{
             bossGroup.shutdownGracefully();
         }
     }
+	
+	/**
+	 * 启动telnet服务
+	 */
+	public void startTelnetServer() {
+		LoggerUtils.info("正在启动telnet服务: 端口: "+newsConnect.clientTelnetPort());
+		
+		URL url = new URL(TelnetConstants.TELNET_PROTOCOL_KEY, newsConnect.clientIp(), newsConnect.clientTelnetPort());
+		
+		ExchangeHandler handler= new TelnetExchangeHandler();
+		
+		try {
+			TelnetServers.bind(url, handler);
+		} catch (RemotingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

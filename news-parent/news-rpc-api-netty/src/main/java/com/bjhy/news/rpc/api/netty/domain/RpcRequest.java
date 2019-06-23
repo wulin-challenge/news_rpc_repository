@@ -8,6 +8,10 @@ import java.io.Serializable;
  * @author huangyong
  * @since 1.0.0
  */
+/**
+ * @author ThinkPad
+ *
+ */
 public class RpcRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -20,6 +24,11 @@ public class RpcRequest implements Serializable{
     private Integer timeout = 60000; //默认一分钟
     private String host;
     private Integer port;
+    
+    /**
+     * rpc调用类型
+     */
+    private NettyRpcType rpcType = NettyRpcType.USER_SERVICE;
 
     public String getRequestId() {
         return requestId;
@@ -91,5 +100,19 @@ public class RpcRequest implements Serializable{
 
 	public void setPort(Integer port) {
 		this.port = port;
+	}
+
+	public NettyRpcType getRpcType() {
+		return rpcType;
+	}
+
+	public void setRpcType(NettyRpcType rpcType) {
+		this.rpcType = rpcType;
+	}
+	
+	@Override
+	public String toString() {
+		String msg = "{interfaceName:"+interfaceName+",methodName:"+methodName+",host:"+host+",port:"+port+"}";
+		return msg;
 	}
 }

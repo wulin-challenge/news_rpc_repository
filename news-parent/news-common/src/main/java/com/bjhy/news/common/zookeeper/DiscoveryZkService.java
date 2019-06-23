@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,13 +21,15 @@ import com.bjhy.news.common.notify.NotifyListener;
 import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.common.util.NewsRpcUtil;
 
+import cn.wulin.brace.utils.LoggerUtils;
+import cn.wulin.brace.utils.ThreadFactoryImpl;
 import cn.wulin.ioc.URL;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 import cn.wulin.ioc.util.UrlUtils;
 
 /**
  * 通过zk找到注册的服务
- * @author wubo
+ * @author wulin
  *
  */
 public class DiscoveryZkService extends AbstractNotifyListener{
@@ -33,6 +38,12 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 	 */
 	private static Integer maxFailNumber = 5;
 	
+	private ScheduledExecutorService discoveryZkThreadExecutor = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("DiscoveryZkService"));
+	
+	public DiscoveryZkService() {
+		startScheduled();
+	}
+
 	/**
 	 * 通过topic,tag优先从缓存中获取服务列表
 	 * @param clientTopic 客户端主题
@@ -43,6 +54,7 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 	 * @return
 	 */
 	public DiscoveryServiceInfo subscribeService(String clientTopic,String clientTag,Class<?> interfaceService,String syncVersion,DiscoveryServiceInfo willBeDeleted){
+		
 		String subscribeCacheKey = NewsRpcUtil.getSubscribeCacheKey(clientTopic, clientTag, interfaceService, syncVersion);
 		//找将要被删除的缓存,并将其剔除,同时返回 拷贝的 缓存服务列表(但不包括 willBeDeleted(将要被剔除的缓存))
 		DiscoveryServiceInfo copyCacheServiceInfo = willBeDeletedCache(subscribeCacheKey, willBeDeleted);
@@ -52,6 +64,46 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 			copyCacheServiceInfo = TimedOverdueCache.get(subscribeCacheKey, DiscoveryServiceInfo.class);
 		}
 		return copyCacheServiceInfo;
+	}
+	
+	/**
+	 * 得到所有发现服务列表
+	 * @param isIgnoreCache 是否忽略缓存
+	 * @return
+	 */
+	public List<DiscoveryServiceInfo> getAllDiscoveryServiceInfoList(boolean isIgnoreCache){
+		List<DiscoveryServiceInfo> list = new ArrayList<DiscoveryServiceInfo>();
+		if(!isIgnoreCache) {
+			List<DiscoveryServiceInfo> list2 = TimedOverdueCache.get(DiscoveryServiceInfo.class);
+			
+			if(list2 != null && list2.size()>0) {
+				return list2;
+			}
+		}
+		
+		ZookeeperConfig zookeeperConfig = ZookeeperConfig.getInstance();
+		List<String> specifyLevelPath = zookeeperConfig.getSpecifyLevelPath(NewsConstants.ZK_ROOT_NODE, 4);
+		if(specifyLevelPath == null || specifyLevelPath.size() == 0) {
+			return list;
+		}
+		
+		for (String path : specifyLevelPath) {
+			DiscoveryServiceInfo discoveryServiceInfo = new DiscoveryServiceInfo();
+			
+			String[] pathArrays = path.split("/");
+			discoveryServiceInfo.setClientTopic(pathArrays[2]);
+			discoveryServiceInfo.setClientTag(pathArrays[3]);
+			
+			try {
+				Class<?> forName = Class.forName(pathArrays[4]);
+				discoveryServiceInfo.setServiceClass(forName);
+			} catch (ClassNotFoundException e) {
+				LoggerUtils.error("获取发现服务信息时,报了"+e);
+			}
+			discoveryServiceInfo = subscribeService(discoveryServiceInfo.getClientTopic(), discoveryServiceInfo.getClientTag(), discoveryServiceInfo.getServiceClass(), null, null);
+			list.add(discoveryServiceInfo);
+		}
+		return list;
 	}
 	
 	/**
@@ -356,5 +408,25 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 			copyCacheServiceInfo.getDiscoveryServiceDetailInfoList().addAll(cacheDetailInfoList);
 		}
 		return copyCacheServiceInfo;
+	}
+
+	/**
+	 * 开始定时器
+	 */
+	private void startScheduled() {
+		discoveryZkThreadExecutor.scheduleAtFixedRate(new Runnable() {
+			@Override
+			public void run() {
+				//更新发现服务缓存
+				updateDiscoveryZkServiceCache();
+			}
+		}, 5, 60, TimeUnit.SECONDS);
+	}
+	
+	/**
+	 * 更新发现服务缓存
+	 */
+	private void updateDiscoveryZkServiceCache() {
+		getAllDiscoveryServiceInfoList(true);
 	}
 }

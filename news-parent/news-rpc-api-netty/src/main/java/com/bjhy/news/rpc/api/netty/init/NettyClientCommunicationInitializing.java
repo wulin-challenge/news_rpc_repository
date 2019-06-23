@@ -2,6 +2,7 @@ package com.bjhy.news.rpc.api.netty.init;
 
 import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.init.ClientCommunicationInitializing;
+import com.bjhy.news.rpc.api.netty.proxy.HeartbeatHandler;
 import com.bjhy.news.rpc.api.netty.proxy.NettyRpcClient;
 
 import cn.wulin.ioc.URL;
@@ -16,5 +17,6 @@ public class NettyClientCommunicationInitializing implements ClientCommunication
 	@Override
 	public void init(URL url, NewsConnect newsConnect) {
 		NettyRpcClient.getInstance().createNettyClient();
+		HeartbeatHandler.getInstance();
 	}
 }

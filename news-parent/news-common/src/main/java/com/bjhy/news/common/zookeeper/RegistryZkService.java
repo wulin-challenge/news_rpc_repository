@@ -10,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.zookeeper.CreateMode;
 import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.domain.PublishServiceInfo;
+import com.bjhy.news.common.mock.MockService;
+import com.bjhy.news.common.mock.MockServiceImpl;
 import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.common.util.NewsRpcUtil;
 
@@ -42,8 +44,25 @@ public class RegistryZkService {
 		List<PublishServiceInfo> publishServiceInfoList = publishService.getPublishServiceInfo();
 		cachePublishServiceInfo.addAll(publishServiceInfoList);
 		
+		publishMockService();//发布mock服务
 		//注册zk服务
 		registerZkService(publishServiceInfoList);
+	}
+	
+	/**
+	 * 发布mock服务
+	 */
+	private void publishMockService() {
+		if(cachePublishServiceInfo.size() == 0) {
+			return;
+		}
+		
+		PublishServiceInfo publishServiceInfo = new PublishServiceInfo();
+		publishServiceInfo.setServiceClass(MockService.class);
+		publishServiceInfo.setServiceImplObject(new MockServiceImpl());
+		publishServiceInfo.setSyncTimeout(5000);
+		publishServiceInfo.setSyncVersion("");
+		cachePublishServiceInfo.add(publishServiceInfo);
 	}
 	
 	/**
