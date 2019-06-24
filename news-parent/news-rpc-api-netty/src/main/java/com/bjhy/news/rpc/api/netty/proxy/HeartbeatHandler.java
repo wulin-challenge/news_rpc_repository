@@ -10,6 +10,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.domain.DiscoveryServiceDetailInfo;
 import com.bjhy.news.common.domain.DiscoveryServiceInfo;
 import com.bjhy.news.common.mock.MockService;
@@ -21,6 +22,7 @@ import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 
 import cn.wulin.brace.utils.LoggerUtils;
 import cn.wulin.brace.utils.ThreadFactoryImpl;
+import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 import io.netty.channel.Channel;
 
 /**
@@ -30,6 +32,11 @@ import io.netty.channel.Channel;
  */
 public class HeartbeatHandler {
 	private static HeartbeatHandler heartbeatHandler;
+	
+	/**
+	 * 得到连接配置信息
+	 */
+	private NewsConnect newsConnect = InterfaceExtensionLoader.getExtensionLoader(NewsConnect.class).getAdaptiveExtension();
 	
 	/**
 	 * 所用的news rpc 提供者
@@ -53,6 +60,9 @@ public class HeartbeatHandler {
 			request.setTimeout(detailInfo.getTimeout());
 			request.setRpcType(NettyRpcType.MOCK_SERVICE);
 			request.setServiceVersion("");
+			request.setClientId(newsConnect.clientId());
+			request.setClientName(newsConnect.clientName());
+			request.setClientPid(NewsRpcUtil.getPid());
 			Channel channel = NettyRpcClient.getInstance().getChannel(request);
 			RPCFuture sendRequest = NettyRpcClient.getInstance().getClientHandler().sendRequest(channel, request);
 			RpcResponse response = (RpcResponse) sendRequest.get(detailInfo.getTimeout(), TimeUnit.SECONDS);

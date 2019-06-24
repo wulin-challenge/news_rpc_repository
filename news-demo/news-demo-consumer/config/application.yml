@@ -19,3 +19,6 @@ server:
   port: 8089
   
 
+appId: xxappId
+
+appName: 某某业务管理系统

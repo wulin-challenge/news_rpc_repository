@@ -16,7 +16,7 @@ import cn.wulin.brace.utils.YamlUtil;
 public class DefaultClientConnect implements NewsConnect{
 	
 	@Override
-	public String zookeeperId() {
+	public String zookeeperIp() {
 		String[] split = YamlUtil.getValue("news.zookeeper-address", "127.0.0.1", String.class).split(":");
 		return split[0];
 	}
@@ -33,6 +33,16 @@ public class DefaultClientConnect implements NewsConnect{
 	@Override
 	public String rocketmqAddress() {
 		return YamlUtil.getValue("news.rocketmq-address", "localhost:9876", String.class);
+	}
+	
+	@Override
+	public String clientId() {
+		return YamlUtil.getValue("news.client-id", String.class);
+	}
+
+	@Override
+	public String clientName() {
+		return YamlUtil.getValue("news.client-name", String.class);
 	}
 
 	@Override

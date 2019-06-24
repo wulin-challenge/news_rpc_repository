@@ -24,7 +24,7 @@ public class SpringNewsConnect implements NewsConnect{
 	}
 
 	@Override
-	public String zookeeperId() {
+	public String zookeeperIp() {
 		String[] split = getSpringLoadNewsConnect().getZookeeperAddress().split(":");
 		return split[0];
 	}
@@ -38,6 +38,18 @@ public class SpringNewsConnect implements NewsConnect{
 	@Override
 	public String rocketmqAddress() {
 		return getSpringLoadNewsConnect().getRocketmqAddress();
+	}
+	
+	
+
+	@Override
+	public String clientId() {
+		return  getSpringLoadNewsConnect().getClientId();
+	}
+
+	@Override
+	public String clientName() {
+		return  getSpringLoadNewsConnect().getClientName();
 	}
 
 	@Override

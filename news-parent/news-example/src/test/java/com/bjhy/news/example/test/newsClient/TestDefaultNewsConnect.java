@@ -19,7 +19,7 @@ public class TestDefaultNewsConnect {
 	@Test
 	public void testInterfaceExtensionLoader_NewsConnect(){
 		NewsConnect newsConnect = InterfaceExtensionLoader.getExtensionLoader(NewsConnect.class).getAdaptiveExtension();
-		String zookeeperId = newsConnect.zookeeperId();
+		String zookeeperId = newsConnect.zookeeperIp();
 		Integer zookeeperPort = newsConnect.zookeeperPort();
 		System.out.println(zookeeperId);
 		System.out.println(zookeeperPort);

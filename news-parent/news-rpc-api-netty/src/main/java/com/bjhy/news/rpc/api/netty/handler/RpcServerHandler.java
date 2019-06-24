@@ -1,7 +1,11 @@
 package com.bjhy.news.rpc.api.netty.handler;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -12,9 +16,13 @@ import org.springframework.cglib.reflect.FastClass;
 import org.springframework.cglib.reflect.FastMethod;
 
 import com.bjhy.news.common.domain.PublishServiceInfo;
+import com.bjhy.news.rpc.api.netty.domain.NettyRpcType;
 import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
 import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 
+import cn.wulin.brace.utils.LoggerUtils;
+import cn.wulin.brace.utils.ThreadFactoryImpl;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -28,10 +36,18 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest>{
 	 */
 	private List<PublishServiceInfo> publishServiceInfoList;
 	
-	 private static ThreadPoolExecutor threadPoolExecutor;
+	private static ThreadPoolExecutor threadPoolExecutor;
+	
+	private static ScheduledExecutorService scheduledExecutor = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("RpcServerHandler"));
+	
+	/**
+	 * 客户端通道和地址
+	 */
+	private static ConcurrentHashMap<Channel,RpcRequest> clientChannel = new ConcurrentHashMap<Channel,RpcRequest>();
 	
 	public RpcServerHandler(List<PublishServiceInfo> publishServiceInfoList){
 		this.publishServiceInfoList = publishServiceInfoList;
+		startScheduled();
 	}
 
 	@Override
@@ -39,10 +55,13 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest>{
 		RpcServerHandler.submit(new Runnable() {
             @Override
             public void run() {
+            	//添加客户端通道
+            	addClientChannel(request, ctx.channel());
             	 // 创建并初始化 RPC 响应对象
                 logger.debug("Receive request " + request.getRequestId());
                 RpcResponse response = new RpcResponse();
                 response.setRequestId(request.getRequestId());
+                response.setRpcType(request.getRpcType());
                 try {
                     Object result = handle(request);
                     response.setResult(result);
@@ -121,5 +140,50 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest>{
     	logger.error("server caught exception", cause);
         ctx.close();
     }
+    
+    public static ConcurrentHashMap<Channel,RpcRequest> getClientChannel() {
+		return clientChannel;
+	}
 
+	/**
+     * 添加客户端通道
+     * @param request
+     * @param channel
+     */
+    private void addClientChannel(RpcRequest request,Channel channel) {
+    	if(NettyRpcType.MOCK_SERVICE == request.getRpcType() && channel != null && channel.isActive()) {
+    		clientChannel.put(channel, request);
+    	}
+    }
+    
+    /**
+     * 开始定时器
+     */
+    private void startScheduled() {
+    	scheduledExecutor.scheduleAtFixedRate(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					checkChannel();
+				} catch (Exception e) {
+					LoggerUtils.error("清除过期的 Channel时报了: ",e);
+				}
+			}
+		}, 5, 15, TimeUnit.SECONDS);
+    }
+    
+    /**
+     * 检测channel是否可用
+     */
+    private void checkChannel() {
+    	Enumeration<Channel> keys = clientChannel.keys();
+    	while(keys.hasMoreElements()) {
+    		Channel channel = keys.nextElement();
+    		if(channel != null && channel.isActive()) {
+    			continue;
+    		}
+    		clientChannel.remove(channel);
+    	}
+    }
+    
 }

@@ -1,1 +1,2 @@
 service=com.bjhy.news.rpc.api.netty.telnet.ServiceTelnetHandler
+client=com.bjhy.news.rpc.api.netty.telnet.ClientTelnetHandler

@@ -18,7 +18,7 @@ public class TestSpringNewsConnect {
 	public void testSpringLoadNewsConnect(){
 		NewsConnect newsConnect = InterfaceExtensionLoader.getExtensionLoader(NewsConnect.class).getAdaptiveExtension();
 		
-		String zookeeperId = newsConnect.zookeeperId();
+		String zookeeperId = newsConnect.zookeeperIp();
 		Integer zookeeperPort = newsConnect.zookeeperPort();
 		System.out.println(zookeeperId);
 		System.out.println(zookeeperPort);

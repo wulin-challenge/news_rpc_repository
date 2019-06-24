@@ -8,10 +8,12 @@ import java.util.concurrent.TimeoutException;
 
 import com.bjhy.news.common.api.InvokerStrategyCluster;
 import com.bjhy.news.common.api.LoadBalance;
+import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.domain.DiscoveryServiceDetailInfo;
 import com.bjhy.news.common.domain.DiscoveryServiceInfo;
 import com.bjhy.news.common.exception.NewsRpcException;
 import com.bjhy.news.common.util.NewsConstants;
+import com.bjhy.news.common.util.NewsRpcUtil;
 import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
 import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 import com.bjhy.news.rpc.api.netty.proxy.NettyRpcClient;
@@ -22,6 +24,12 @@ import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 import io.netty.channel.Channel;
 
 public abstract class AbstractInvokerStrategyCluster implements InvokerStrategyCluster{
+	
+	/**
+	 * 得到连接配置信息
+	 */
+	private NewsConnect newsConnect = InterfaceExtensionLoader.getExtensionLoader(NewsConnect.class).getAdaptiveExtension();
+	
 
 	@Override
 	public Object invoke(URL url,Class<?> interfaceClass,Object proxy, Method method, Object[] args)throws NewsRpcException {
@@ -88,6 +96,10 @@ public abstract class AbstractInvokerStrategyCluster implements InvokerStrategyC
 		int port = detailInfo.getServicePort();
 		request.setHost(host);
 		request.setPort(port);
+		request.setClientId(newsConnect.clientId());
+		request.setClientName(newsConnect.clientName());
+		request.setClientPid(NewsRpcUtil.getPid());
+		
 		// 创建 RPC 客户端对象并发送 RPC 请求
 		Channel channel = NettyRpcClient.getInstance().getChannel(request);
 		RPCFuture sendRequest = NettyRpcClient.getInstance().getClientHandler().sendRequest(channel,request);

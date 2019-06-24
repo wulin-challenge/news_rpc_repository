@@ -29,6 +29,21 @@ public class RpcRequest implements Serializable{
      * rpc调用类型
      */
     private NettyRpcType rpcType = NettyRpcType.USER_SERVICE;
+    
+    /**
+     * 客户端进程Id
+     */
+    private Integer clientPid;
+    
+    /**
+     * 客户端Id
+     */
+    private String clientId;
+    
+    /**
+     * 客户端Name
+     */
+    private String ClientName;
 
     public String getRequestId() {
         return requestId;
@@ -110,6 +125,30 @@ public class RpcRequest implements Serializable{
 		this.rpcType = rpcType;
 	}
 	
+	public Integer getClientPid() {
+		return clientPid;
+	}
+
+	public void setClientPid(Integer clientPid) {
+		this.clientPid = clientPid;
+	}
+
+	public String getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+
+	public String getClientName() {
+		return ClientName;
+	}
+
+	public void setClientName(String clientName) {
+		ClientName = clientName;
+	}
+
 	@Override
 	public String toString() {
 		String msg = "{interfaceName:"+interfaceName+",methodName:"+methodName+",host:"+host+",port:"+port+"}";

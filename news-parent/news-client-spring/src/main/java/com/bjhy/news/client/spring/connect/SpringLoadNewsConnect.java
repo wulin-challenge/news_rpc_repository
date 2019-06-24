@@ -18,6 +18,12 @@ public class SpringLoadNewsConnect {
 	@Value("${news.rocketmq-address:127.0.0.1:9876}")
 	private String rocketmqAddress;
 	
+	@Value("${news.client-id:}")
+	private String clientId;
+	
+	@Value("${news.client-name:}")
+	private String clientName;
+	
 	@Value("${news.client-ip:}")
 	private String clientIp;
 	
@@ -146,5 +152,17 @@ public class SpringLoadNewsConnect {
 	}
 	public void setClientIp(String clientIp) {
 		this.clientIp = clientIp;
+	}
+	public String getClientId() {
+		return clientId;
+	}
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+	public String getClientName() {
+		return clientName;
+	}
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
 	}
 }

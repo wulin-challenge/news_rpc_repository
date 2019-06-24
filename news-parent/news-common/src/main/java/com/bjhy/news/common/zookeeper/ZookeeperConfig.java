@@ -217,7 +217,7 @@ public class ZookeeperConfig {
 	 * @throws IOException
 	 */
 	private void connectZookeeperCurator() throws IOException{
-		String zkAddress = newsConnect.zookeeperId()+":"+newsConnect.zookeeperPort();
+		String zkAddress = newsConnect.zookeeperIp()+":"+newsConnect.zookeeperPort();
 		curatorFramework = CuratorFrameworkFactory.newClient(zkAddress, new ExponentialBackoffRetry(30000, 3));
 		curatorFramework.start();
 	}

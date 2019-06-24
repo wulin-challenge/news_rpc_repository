@@ -15,7 +15,7 @@ public interface NewsConnect {
 	 * zookeeperIp
 	 * @return 
 	 */
-	String zookeeperId();
+	String zookeeperIp();
 	
 	/**
 	 * zookeeper端口	
@@ -28,6 +28,18 @@ public interface NewsConnect {
 	 * @return
 	 */
 	String rocketmqAddress();
+	
+	/**
+	 * 客户端Id
+	 * @return
+	 */
+	String clientId();
+	
+	/**
+	 * 客户端名称
+	 * @return
+	 */
+	String clientName();
 	
 	/**
 	 * 客户端Ip

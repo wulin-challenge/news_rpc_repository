@@ -26,7 +26,7 @@ public class SpringNewsConnect implements NewsConnect{
 	}
 
 	@Override
-	public String zookeeperId() {
+	public String zookeeperIp() {
 		String zookeeperAddress =  environment.getProperty("news.zookeeper-address", String.class,"127.0.0.1:2181");
 		String[] split =zookeeperAddress.split(":");
 		return split[0];
@@ -42,6 +42,16 @@ public class SpringNewsConnect implements NewsConnect{
 	@Override
 	public String rocketmqAddress() {
 		return environment.getProperty("news.rocketmq-address", String.class,"127.0.0.1:9876");
+	}
+	
+	@Override
+	public String clientId() {
+		return environment.getProperty("news.client-id", String.class,environment.getProperty("appId", String.class));
+	}
+	
+	@Override
+	public String clientName() {
+		return environment.getProperty("news.client-name", String.class,environment.getProperty("appName", String.class));
 	}
 
 	@Override

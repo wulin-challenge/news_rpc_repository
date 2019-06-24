@@ -31,8 +31,8 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	}
 
 	@Override
-	public String zookeeperId() {
-		return getNewsConnect().zookeeperId();
+	public String zookeeperIp() {
+		return getNewsConnect().zookeeperIp();
 	}
 
 	@Override
@@ -43,6 +43,16 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	@Override
 	public String rocketmqAddress() {
 		return getNewsConnect().rocketmqAddress();
+	}
+	
+	@Override
+	public String clientId() {
+		return getNewsConnect().clientId();
+	}
+
+	@Override
+	public String clientName() {
+		return getNewsConnect().clientName();
 	}
 
 	@Override

@@ -46,7 +46,7 @@ public class RegistryZkService {
 		
 		publishMockService();//发布mock服务
 		//注册zk服务
-		registerZkService(publishServiceInfoList);
+		registerZkService(cachePublishServiceInfo);
 	}
 	
 	/**
