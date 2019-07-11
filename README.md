@@ -44,13 +44,13 @@ rocketmq-publish-environment: product|dev|test(rocketmq的发布环境,默认为
 rocketmq-publish-version: 1.1(rocketmq的发布版本,生产环境下建议不用添加版本,默认为空)  
 ```
 
-### spring方式的集成
+### spring boot方式的集成
 #### 引入maven依赖
 
 ```
 <dependency>
   <groupId>com.bjhy</groupId>
-  <artifactId>news-client-spring</artifactId>
+  <artifactId>news-client-spring-boot-starter</artifactId>
   <version>1.0.1-SNAPSHOT</version>
 </dependency>
 ```
@@ -199,10 +199,7 @@ news:
 若消费方 调用的接口既要修该提供服务方的数据,又要及时返还值,那请自己处理分布式事务问题
 ```
 
-### 使用spring InitializingBean 注意事项
-```
-在应用项目中若使用了spring的InitializingBean ,且在afterPropertiesSet方法中条用了 news rpc的接口,那么请将InitializingBean接口换为InitializingNewsRpcSpring 接口
-```
+
 
 
 
