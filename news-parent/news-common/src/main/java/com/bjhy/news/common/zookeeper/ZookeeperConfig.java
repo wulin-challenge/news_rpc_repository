@@ -134,7 +134,7 @@ public class ZookeeperConfig {
 	}
 	
 	/**
-	 * 得到指定根路径小的指定层级的完整路径
+	 * 得到指定根路径下的指定层级的完整路径
 	 * @param rootPath 更路径
 	 * @param levelNum 向下递归查找的层级数,0表示当前层级
 	 * @return
