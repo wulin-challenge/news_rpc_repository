@@ -59,6 +59,11 @@ import cn.wulin.ioc.util.StringUtils;
  * @see com.alibaba.dubbo.common.extension.Activate
  */
 public class InterfaceExtensionLoader<T> {
+	
+	/**
+	 * 打印自适应扩展类的配置属性key
+	 */
+	private static final String PRINT_ADAPTIVE_EXTENSION_CLASS = "brace.ioc.adaptive-extension-class";
 
     private static final Logger logger = LoggerFactory.getLogger(InterfaceExtensionLoader.class);
 
@@ -723,7 +728,10 @@ public class InterfaceExtensionLoader<T> {
     private Class<?> getAdaptiveExtensionClass() {
         getExtensionClasses();
         if (cachedAdaptiveClass != null) {
-        	System.out.println("$$$$$$$$$$$$$$$$$$$$$$$ "+type.getName()+" 不需要创建代理类,已有自动适应扩展点类 : "+cachedDefaultName+"="+cachedAdaptiveClass.getName()+" $$$$$$$$$$$$$$$$$$$$$$$");
+        	String adaptiveExtensionClass = ConfigUtils.getProperty(PRINT_ADAPTIVE_EXTENSION_CLASS, "false");
+        	if("true".equals(adaptiveExtensionClass)) {
+        		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$ "+type.getName()+" 不需要创建代理类,已有自动适应扩展点类 : "+cachedDefaultName+"="+cachedAdaptiveClass.getName()+" $$$$$$$$$$$$$$$$$$$$$$$");
+        	}
             return cachedAdaptiveClass;
         }
         return cachedAdaptiveClass = createAdaptiveExtensionClass();
@@ -731,9 +739,13 @@ public class InterfaceExtensionLoader<T> {
 
     private Class<?> createAdaptiveExtensionClass() {
         String code = createAdaptiveExtensionClassCode();
-        System.out.println("######################################"+cachedDefaultName+"="+type.getName()+" 的代理类 ! start"+"######################################");
-        System.out.println(code);
-        System.out.println("######################################"+cachedDefaultName+"="+type.getName()+" 的代理类 ! end"+"######################################");
+        
+        String adaptiveExtensionClass = ConfigUtils.getProperty(PRINT_ADAPTIVE_EXTENSION_CLASS, "false");
+    	if("true".equals(adaptiveExtensionClass)) {
+    		System.out.println("######################################"+cachedDefaultName+"="+type.getName()+" 的代理类 ! start"+"######################################");
+    		System.out.println(code);
+    		System.out.println("######################################"+cachedDefaultName+"="+type.getName()+" 的代理类 ! end"+"######################################");
+    	}
         ClassLoader classLoader = findClassLoader();
         cn.wulin.ioc.extension.compiler.Compiler compiler = InterfaceExtensionLoader.getExtensionLoader(cn.wulin.ioc.extension.compiler.Compiler.class).getAdaptiveExtension();
         return compiler.compile(code, classLoader);
