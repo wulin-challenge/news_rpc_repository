@@ -137,7 +137,7 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest>{
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-    	logger.error("server caught exception", cause);
+    	logger.debug("server caught exception", cause);
         ctx.close();
     }
     
