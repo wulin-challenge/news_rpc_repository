@@ -98,7 +98,7 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 				Class<?> forName = Class.forName(pathArrays[4]);
 				discoveryServiceInfo.setServiceClass(forName);
 			} catch (ClassNotFoundException e) {
-				LoggerUtils.error("获取发现服务信息时,报了"+e);
+				continue;
 			}
 			discoveryServiceInfo = subscribeService(discoveryServiceInfo.getClientTopic(), discoveryServiceInfo.getClientTag(), discoveryServiceInfo.getServiceClass(), null, null);
 			list.add(discoveryServiceInfo);
