@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import com.bjhy.news.common.connect.NewsConnect;
 import com.bjhy.news.common.exception.NewsRpcException;
 import com.bjhy.news.common.notify.AbstractNotifyListener;
 import com.bjhy.news.common.notify.NotifyListener;
@@ -39,6 +40,11 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 public class NettyRpcClient extends AbstractNotifyListener{
 	
     private static final long LOCK_TIMEOUT_MILLIS = 3000;
+    
+    /**
+	 * 得到连接配置信息
+	 */
+	private NewsConnect newsConnect = InterfaceExtensionLoader.getExtensionLoader(NewsConnect.class).getAdaptiveExtension();
     
     /**
      * 连接超时时间
@@ -82,7 +88,7 @@ public class NettyRpcClient extends AbstractNotifyListener{
 					protected void initChannel(SocketChannel socketChannel) throws Exception {
 						ChannelPipeline cp = socketChannel.pipeline();
 				        cp.addLast(new RpcEncoder(RpcRequest.class));
-				        cp.addLast(new LengthFieldBasedFrameDecoder(65536, 0, 4, 0, 0));
+				        cp.addLast(new LengthFieldBasedFrameDecoder(newsConnect.payload(), 0, 4, 0, 0));
 				        cp.addLast(new RpcDecoder(RpcResponse.class));
 				        cp.addLast(clientHandler);
 					}

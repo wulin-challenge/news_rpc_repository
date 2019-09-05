@@ -63,6 +63,9 @@ public class SpringLoadNewsConnect {
 	@Value("${news.rocketmq-order-queue:0}")
 	private Integer rocketmqOrderQueue;
 	
+	@Value("${news.payload:65536}")
+	private Integer payload;
+	
 	public String getZookeeperAddress() {
 		return zookeeperAddress;
 	}
@@ -164,5 +167,11 @@ public class SpringLoadNewsConnect {
 	}
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
+	}
+	public Integer getPayload() {
+		return payload;
+	}
+	public void setPayload(Integer payload) {
+		this.payload = payload;
 	}
 }

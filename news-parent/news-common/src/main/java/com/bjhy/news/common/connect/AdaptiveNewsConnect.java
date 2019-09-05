@@ -119,5 +119,10 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	public Integer rocketmqOrderQueue() {
 		return getNewsConnect().rocketmqOrderQueue();
 	}
+
+	@Override
+	public Integer payload() {
+		return getNewsConnect().payload();
+	}
 	
 }

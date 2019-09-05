@@ -13,4 +13,11 @@ public interface FirstService {
     String hello2(String str1,String str2,String str3) throws Exception;
 	
 	User getUser(String username,Integer age ,Date csrq,User user);
+	
+	/**
+	 * 得到字符串的byte数据
+	 * @param dataPrefix
+	 * @return
+	 */
+	byte[] getStringByte(String dataPrefix);
 }

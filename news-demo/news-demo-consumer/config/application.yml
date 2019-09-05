@@ -1,7 +1,9 @@
 #rocketmq-publish-environment: product|dev|test(rocketmq的发布环境,默认为生产环境)
 #rocketmq-publish-version: 1.1(rocketmq的发布版本,生产环境下建议不用添加版本,默认为空)
 
-#news: 
+news: 
+  payload: 10485760
+  #zookeeper-address: 192.168.0.2:2181
   #zookeeper-address: zxq:2181
 #  zookeeper-address: wulinThinkPad:2181
   #rocketmq-address: 192.168.0.107:9876;192.168.0.108:9876

@@ -58,4 +58,9 @@ public class FirstServiceDubboProvider implements FirstService{
 		System.out.println(user);
 		return user1;
 	}
+
+	@Override
+	public byte[] getStringByte(String dataPrefix) {
+		return null;
+	}
 }

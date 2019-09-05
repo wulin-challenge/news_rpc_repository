@@ -121,4 +121,10 @@ public interface NewsConnect {
 	 * @return
 	 */
 	Integer rocketmqOrderQueue();
+	
+	/**
+	 * 传输数据的优先负载,65536->64kb大小的数据
+	 * @return
+	 */
+	Integer payload();
 }

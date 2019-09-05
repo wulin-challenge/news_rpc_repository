@@ -45,4 +45,14 @@ public class FirstServiceProvider implements FirstService{
 		System.out.println(user);
 		return user1;
 	}
+
+	@Override
+	public byte[] getStringByte(String dataPrefix) {
+		System.out.println(dataPrefix);
+		StringBuilder str = new StringBuilder(dataPrefix);
+		for (int i = 0; i < 2000; i++) {
+			str.append("类是否节点是否缴费基数了附件都是开发的设计费肯定是减肥肯定是删繁就简可视对讲了的设计费肯定是减肥肯定是发开发时间看电视剧弗兰克斯\r\n");
+		}
+		return str.toString().getBytes();
+	}
 }

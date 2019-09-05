@@ -114,4 +114,9 @@ public class DefaultClientConnect implements NewsConnect{
 	public Integer rocketmqOrderQueue() {
 		return YamlUtil.getValue("news.rocketmq-order-queue",0,Integer.class);
 	}
+
+	@Override
+	public Integer payload() {
+		return YamlUtil.getValue("news.payload",65536,Integer.class);
+	}
 }

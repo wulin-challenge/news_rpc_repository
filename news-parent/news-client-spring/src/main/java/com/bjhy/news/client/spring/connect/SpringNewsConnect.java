@@ -121,4 +121,9 @@ public class SpringNewsConnect implements NewsConnect{
 	public Integer rocketmqOrderQueue() {
 		return getSpringLoadNewsConnect().getRocketmqOrderQueue();
 	}
+
+	@Override
+	public Integer payload() {
+		return getSpringLoadNewsConnect().getPayload();
+	}
 }

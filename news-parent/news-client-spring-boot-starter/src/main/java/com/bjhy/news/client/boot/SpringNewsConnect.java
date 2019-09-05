@@ -123,4 +123,9 @@ public class SpringNewsConnect implements NewsConnect{
 	public Integer rocketmqOrderQueue() {
 		return environment.getProperty("news.rocketmq-order-queue", Integer.class, 0);
 	}
+
+	@Override
+	public Integer payload() {
+		return environment.getProperty("news.payload", Integer.class, 65536);
+	}
 }
