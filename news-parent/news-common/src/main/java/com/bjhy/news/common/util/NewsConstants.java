@@ -23,11 +23,6 @@ public class NewsConstants {
 	public static final String ROCKETMQ_PUBLISH_ENVIRONMENT_TEST = "test";
 	
 	/**
-	 * zk的根节点
-	 */
-	public static final String ZK_ROOT_NODE = "/news";
-	
-	/**
 	 * 注册zk的临时序列节点前缀
 	 */
 	public static final String ZK_EPHEMERAL_NODE_PREFIX = "service_address_";
@@ -134,4 +129,9 @@ public class NewsConstants {
 	 * 默认tag标签
 	 */
 	public static final String DEFAULT_TAG = "news_tag";
+	
+	/**
+	 * 默认接口group组
+	 */
+	public static final String DEFAULT_INTERFACE_GROUP = "news_interface_group";
 }

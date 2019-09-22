@@ -14,6 +14,7 @@ import cn.wulin.brace.utils.YamlUtil;
  * @author wubo
  */
 public class DefaultClientConnect implements NewsConnect{
+	private String providerConsumer;
 	
 	@Override
 	public String zookeeperIp() {
@@ -118,5 +119,23 @@ public class DefaultClientConnect implements NewsConnect{
 	@Override
 	public Integer payload() {
 		return YamlUtil.getValue("news.payload",65536,Integer.class);
+	}
+
+	@Override
+	public String interfaceGroup() {
+		return YamlUtil.getValue("news.interface-group",NewsConstants.DEFAULT_INTERFACE_GROUP,String.class);
+	}
+
+	@Override
+	public String providerConsumer() {
+		if(StringUtils.isBlank(this.providerConsumer)) {
+			this.providerConsumer = YamlUtil.getValue("news.provider-consumer",null,String.class);
+		}
+		return providerConsumer;
+	}
+
+	@Override
+	public void setProviderConsumer(String providerConsumer) {
+		this.providerConsumer = providerConsumer;
 	}
 }

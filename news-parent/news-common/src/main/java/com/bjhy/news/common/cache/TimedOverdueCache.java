@@ -23,13 +23,13 @@ public class TimedOverdueCache {
 	private static Logger logger = LoggerFactory.getLogger(TimedOverdueCache.class);
 	
 	/**
-	 * 过期时间默认5 分钟
+	 * 过期时间默认5 分钟(TODO 目前服务过期逻辑有问题,暂时用此方案替代)
 	 */
-//	private static Long expireTime = 1000*5*60L;
+	private static Long expireTime = 1000*5*60L;
 	/**
 	 * 表示永久不过期
 	 */
-	private static Long expireTime =Long.MAX_VALUE;
+//	private static Long expireTime =Long.MAX_VALUE;
 	
 	private static ConcurrentHashMap<String, SingleExpireCacheEntity> expireCache = new ConcurrentHashMap<String, SingleExpireCacheEntity>();
 	

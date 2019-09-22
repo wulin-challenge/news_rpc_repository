@@ -21,7 +21,6 @@ import com.bjhy.news.common.notify.NotifyListener;
 import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.common.util.NewsRpcUtil;
 
-import cn.wulin.brace.utils.LoggerUtils;
 import cn.wulin.brace.utils.ThreadFactoryImpl;
 import cn.wulin.ioc.URL;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
@@ -54,10 +53,27 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 	 * @return
 	 */
 	public DiscoveryServiceInfo subscribeService(String clientTopic,String clientTag,Class<?> interfaceService,String syncVersion,DiscoveryServiceInfo willBeDeleted){
-		
+		return subscribeService(clientTopic, clientTag, interfaceService, syncVersion, willBeDeleted, false);
+	}
+	
+	/**
+	 * 通过topic,tag优先从缓存中获取服务列表
+	 * @param clientTopic 客户端主题
+	 * @param clientTag 客户端标签
+	 * @param interfaceService 服务接口
+	 * @param syncVersion 同步调用的版本号
+	 * @param willBeDeleted 将要被剔除的服务
+	 * @param isIgnoreCache 是否忽略缓存
+	 * @return
+	 */
+	public DiscoveryServiceInfo subscribeService(String clientTopic,String clientTag,Class<?> interfaceService,String syncVersion,DiscoveryServiceInfo willBeDeleted,boolean isIgnoreCache){
+		DiscoveryServiceInfo copyCacheServiceInfo = null;
 		String subscribeCacheKey = NewsRpcUtil.getSubscribeCacheKey(clientTopic, clientTag, interfaceService, syncVersion);
-		//找将要被删除的缓存,并将其剔除,同时返回 拷贝的 缓存服务列表(但不包括 willBeDeleted(将要被剔除的缓存))
-		DiscoveryServiceInfo copyCacheServiceInfo = willBeDeletedCache(subscribeCacheKey, willBeDeleted);
+		if(!isIgnoreCache) {
+			//找将要被删除的缓存,并将其剔除,同时返回 拷贝的 缓存服务列表(但不包括 willBeDeleted(将要被剔除的缓存))
+			copyCacheServiceInfo = willBeDeletedCache(subscribeCacheKey, willBeDeleted);
+		}
+		
 		if(copyCacheServiceInfo == null || copyCacheServiceInfo.getDiscoveryServiceDetailInfoList().size()==0){
 			copyCacheServiceInfo = getDiscoveryServiceInfo(clientTopic, clientTag, interfaceService, syncVersion);
 			TimedOverdueCache.put(subscribeCacheKey, copyCacheServiceInfo);
@@ -82,7 +98,7 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 		}
 		
 		ZookeeperConfig zookeeperConfig = ZookeeperConfig.getInstance();
-		List<String> specifyLevelPath = zookeeperConfig.getSpecifyLevelPath(NewsConstants.ZK_ROOT_NODE, 4);
+		List<String> specifyLevelPath = zookeeperConfig.getSpecifyLevelPath(NewsRpcUtil.getZkRootNode(), 4);
 		if(specifyLevelPath == null || specifyLevelPath.size() == 0) {
 			return list;
 		}
@@ -91,16 +107,16 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 			DiscoveryServiceInfo discoveryServiceInfo = new DiscoveryServiceInfo();
 			
 			String[] pathArrays = path.split("/");
-			discoveryServiceInfo.setClientTopic(pathArrays[2]);
-			discoveryServiceInfo.setClientTag(pathArrays[3]);
+			discoveryServiceInfo.setClientTopic(pathArrays[3]);
+			discoveryServiceInfo.setClientTag(pathArrays[4]);
 			
 			try {
-				Class<?> forName = Class.forName(pathArrays[4]);
+				Class<?> forName = Class.forName(pathArrays[5]);
 				discoveryServiceInfo.setServiceClass(forName);
 			} catch (ClassNotFoundException e) {
 				continue;
 			}
-			discoveryServiceInfo = subscribeService(discoveryServiceInfo.getClientTopic(), discoveryServiceInfo.getClientTag(), discoveryServiceInfo.getServiceClass(), null, null);
+			discoveryServiceInfo = subscribeService(discoveryServiceInfo.getClientTopic(), discoveryServiceInfo.getClientTag(), discoveryServiceInfo.getServiceClass(), null, null,isIgnoreCache);
 			list.add(discoveryServiceInfo);
 		}
 		return list;
@@ -134,18 +150,20 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 		discoveryServiceInfo.setClientTag(clientTag);
 		discoveryServiceInfo.setServiceClass(interfaceService);
 		
-		for (String childrenFullPath : childrenFullPathList) {
-			String urlAddress = new String(zookeeperConfig.getNodeData(childrenFullPath),Charset.defaultCharset());
-			URL url = UrlUtils.parseURL(urlAddress, null);
-			//这是服务提供者注册到注册中心的版本号
-			String providerSyncVersion = url.getParameter(NewsConstants.SYNC_VERSION_KEY, "").trim();
-			//当版本号为空时表示加载所有版本的服务
-			if(StringUtils.isBlank(syncVersion)){
-				buildDetailInfo(discoveryServiceInfo, url, providerSyncVersion);
-				
-			//只加载指定版本的服务
-			}else if(syncVersion.equalsIgnoreCase(providerSyncVersion)){
-				buildDetailInfo(discoveryServiceInfo, url, providerSyncVersion);
+		if(childrenFullPathList != null && childrenFullPathList.size()>0) {
+			for (String childrenFullPath : childrenFullPathList) {
+				String urlAddress = new String(zookeeperConfig.getNodeData(childrenFullPath),Charset.defaultCharset());
+				URL url = UrlUtils.parseURL(urlAddress, null);
+				//这是服务提供者注册到注册中心的版本号
+				String providerSyncVersion = url.getParameter(NewsConstants.SYNC_VERSION_KEY, "").trim();
+				//当版本号为空时表示加载所有版本的服务
+				if(StringUtils.isBlank(syncVersion)){
+					buildDetailInfo(discoveryServiceInfo, url, providerSyncVersion);
+					
+				//只加载指定版本的服务
+				}else if(syncVersion.equalsIgnoreCase(providerSyncVersion)){
+					buildDetailInfo(discoveryServiceInfo, url, providerSyncVersion);
+				}
 			}
 		}
 		return discoveryServiceInfo;
@@ -214,7 +232,13 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 				//通过通知监听的url生产 服务提供者列表
 				DiscoveryServiceInfo notifyServiceInfo = getDiscoveryServiceInfoByNotifyUrl(url, serviceInterface);
 				String subscribeCacheKey = NewsRpcUtil.getSubscribeCacheKey(notifyServiceInfo);
-				TimedOverdueCache.remove(subscribeCacheKey);
+				
+				//事件类型
+				String category = url.getParameter(NewsConstants.CATEGORY_KEY);
+				if(NewsConstants.ZOOKEEPER_NODE_REMOVED_EVENT.equals(category)){
+					TimedOverdueCache.remove(subscribeCacheKey);
+				}
+				
 //				//处理通知事件
 //				dealWithNotifyEvent(url, notifyServiceInfo, subscribeCacheKey);
 			} catch (ClassNotFoundException e) {
@@ -251,7 +275,6 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 		Set<String> category = new HashSet<String>();
 		category.add(NewsConstants.ZOOKEEPER_NODE_REMOVED_EVENT);
 		category.add(NewsConstants.ZOOKEEPER_NODE_UPDATED_EVENT);
-		category.add(NewsConstants.ZOOKEEPER_NODE_ADDED_EVENT);
 		category.add(NewsConstants.ZOOKEEPER_RECONNECTED_EVENT);
 		return category;
 	} 
@@ -299,7 +322,7 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 	 * @return
 	 */
 	private String getPublishTagRootPath(String clientTopic,String clientTag,String serviceName){
-		StringBuffer registerPath = new StringBuffer(NewsConstants.ZK_ROOT_NODE);
+		StringBuffer registerPath = new StringBuffer(NewsRpcUtil.getZkRootNode());
 		registerPath.append("/"+clientTopic);
 		registerPath.append("/"+clientTag);
 		registerPath.append("/"+serviceName);
@@ -427,6 +450,29 @@ public class DiscoveryZkService extends AbstractNotifyListener{
 	 * 更新发现服务缓存
 	 */
 	private void updateDiscoveryZkServiceCache() {
-		getAllDiscoveryServiceInfoList(true);
+		List<DiscoveryServiceInfo> newLists = getAllDiscoveryServiceInfoList(true);
+		
+		Set<String> newKeys = new HashSet<String>();
+		for (DiscoveryServiceInfo newList : newLists) {
+			List<DiscoveryServiceDetailInfo> newDetails = newList.getDiscoveryServiceDetailInfoList();
+			for (DiscoveryServiceDetailInfo newDetail : newDetails) {
+				String newKey = NewsRpcUtil.getSubscribeCacheKey(newList,newDetail);
+				newKeys.add(newKey);
+			}
+		}
+		
+		//找到过期的缓存,并将其清除
+		List<DiscoveryServiceInfo> oldList = TimedOverdueCache.get(DiscoveryServiceInfo.class);
+		for (DiscoveryServiceInfo old : oldList) {
+			List<DiscoveryServiceDetailInfo> oldDetails = old.getDiscoveryServiceDetailInfoList();
+			for (DiscoveryServiceDetailInfo oldDetail : oldDetails) {
+				String oldKey = NewsRpcUtil.getSubscribeCacheKey(old,oldDetail);
+				
+				
+				if(!newKeys.contains(oldKey)) {
+					TimedOverdueCache.remove(oldKey);
+				}
+			}
+		}
 	}
 }

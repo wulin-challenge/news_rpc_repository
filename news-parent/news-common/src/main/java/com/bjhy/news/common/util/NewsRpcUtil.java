@@ -25,6 +25,7 @@ import cn.wulin.ioc.extension.InterfaceExtensionLoader;
  *
  */
 public class NewsRpcUtil {
+	private static final String ZK_ROOT_NODE = "/news";
 	
 	private static int PID = -1;
 	/**
@@ -61,6 +62,21 @@ public class NewsRpcUtil {
 		}
 		DiscoveryServiceDetailInfo detailInfo = discoveryServiceInfo.getDiscoveryServiceDetailInfoList().get(0);
 		return getSubscribeCacheKey(discoveryServiceInfo.getClientTopic(), discoveryServiceInfo.getClientTag(), discoveryServiceInfo.getServiceClass(), detailInfo.getVersion());
+	}
+	
+	/**
+	 * 得到订阅缓存key
+	 * @param discoveryServiceInfo
+	 * @param detailInfo
+	 * @return
+	 */
+	public static String getSubscribeCacheKey(DiscoveryServiceInfo discoveryServiceInfo,DiscoveryServiceDetailInfo detailInfo){
+		DiscoveryServiceInfo dsi = new DiscoveryServiceInfo();
+		dsi.setClientTag(discoveryServiceInfo.getClientTag());
+		dsi.setClientTopic(discoveryServiceInfo.getClientTopic());
+		dsi.setServiceClass(discoveryServiceInfo.getServiceClass());
+		dsi.getDiscoveryServiceDetailInfoList().add(detailInfo);
+		return getSubscribeCacheKey(dsi);
 	}
 	
 	/**
@@ -149,9 +165,17 @@ public class NewsRpcUtil {
         return PID;
     }
 	
-	 public static SocketAddress string2SocketAddress(final String addr) {
-	        String[] s = addr.split(":");
-	        InetSocketAddress isa = new InetSocketAddress(s[0], Integer.parseInt(s[1]));
-	        return isa;
-	    }
+	public static SocketAddress string2SocketAddress(final String addr) {
+        String[] s = addr.split(":");
+        InetSocketAddress isa = new InetSocketAddress(s[0], Integer.parseInt(s[1]));
+        return isa;
+	}
+
+	/**
+	 * 得到zk的根节点,该根节点有{@Link #ZK_ROOT_NODE}/interfaceGroup 构成
+	 * @return
+	 */
+	public static String getZkRootNode() {
+		return ZK_ROOT_NODE+"/"+newsConnect.interfaceGroup();
+	}
 }

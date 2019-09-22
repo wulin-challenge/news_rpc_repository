@@ -45,10 +45,10 @@ public class ConnectConfig {
 				RpcInvokeService rpcInvokeService = InterfaceExtensionLoader.getExtensionLoader(RpcInvokeService.class).getAdaptiveExtension();
 				rpcInvokeService.executeRpc(RegistryZkService.getInstance().getCachePublishServiceInfo());
 			}
-		});
+		},"RpcInvokeService");
 		thread.start();
 		
-		//初始化通信客户端
+		//初始化通信客户端(一定要在发布服务之后执行,因为这个时候才知道是否需要开启心跳)
 		cci.init(url, newsConnect);
 		//连接rocketmq
 		RocketmqConfig.getInstance().connectRocketmq();

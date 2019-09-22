@@ -1,2 +1,3 @@
 service=com.bjhy.news.rpc.api.netty.telnet.ServiceTelnetHandler
 client=com.bjhy.news.rpc.api.netty.telnet.ClientTelnetHandler
+native_heartbeat=com.bjhy.news.rpc.api.netty.telnet.NativeHeartbeatHandler

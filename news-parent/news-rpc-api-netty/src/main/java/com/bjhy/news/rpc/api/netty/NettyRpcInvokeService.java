@@ -2,7 +2,10 @@ package com.bjhy.news.rpc.api.netty;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.bjhy.news.common.connect.NewsConnect;
+import com.bjhy.news.common.domain.ProviderConsumerType;
 import com.bjhy.news.common.domain.PublishServiceInfo;
 import com.bjhy.news.common.service.RpcInvokeService;
 import com.bjhy.news.rpc.api.netty.codec.RpcDecoder;
@@ -29,8 +32,16 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
+/**
+ * 启动netty server端
+ * @author wulin
+ *
+ */
 public class NettyRpcInvokeService implements RpcInvokeService{
-	
+	/**
+	 * telnet开启标识
+	 */
+	private boolean telnetStart = false;
 	/**
 	 * 得到连接配置信息
 	 */
@@ -38,8 +49,13 @@ public class NettyRpcInvokeService implements RpcInvokeService{
 
 	@Override
 	public void executeRpc(List<PublishServiceInfo> publishServiceInfoList) {
-		
 		if(publishServiceInfoList.isEmpty()) {
+			
+			ProviderConsumerType providerConsumerType = ProviderConsumerType.getProviderConsumerTypeByCode(newsConnect.providerConsumer().trim());
+			if(ProviderConsumerType.PROVIDER == providerConsumerType || ProviderConsumerType.BOTH == providerConsumerType) {
+				//启动telnet服务
+	            startTelnetServer();
+			}
 			LoggerUtils.warn("当前应用没有发布相关news远程服务,将只作为消费端使用!");
 			return;
 		}
@@ -70,7 +86,7 @@ public class NettyRpcInvokeService implements RpcInvokeService{
             // 关闭 RPC 服务器
             future.channel().closeFuture().sync();
             
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
 			LoggerUtils.error("news远程服务启动失败",e);
 		} finally {
             workerGroup.shutdownGracefully();
@@ -82,6 +98,10 @@ public class NettyRpcInvokeService implements RpcInvokeService{
 	 * 启动telnet服务
 	 */
 	public void startTelnetServer() {
+		if(telnetStart) {
+			return;
+		}
+		
 		LoggerUtils.info("正在启动telnet服务: 端口: "+newsConnect.clientTelnetPort());
 		
 		URL url = new URL(TelnetConstants.TELNET_PROTOCOL_KEY, newsConnect.clientIp(), newsConnect.clientTelnetPort());
@@ -90,6 +110,7 @@ public class NettyRpcInvokeService implements RpcInvokeService{
 		
 		try {
 			TelnetServers.bind(url, handler);
+			telnetStart = true;
 		} catch (RemotingException e) {
 			throw new RuntimeException(e);
 		}

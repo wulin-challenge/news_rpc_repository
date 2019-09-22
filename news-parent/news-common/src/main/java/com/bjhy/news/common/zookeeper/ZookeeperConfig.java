@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bjhy.news.common.connect.NewsConnect;
-import com.bjhy.news.common.util.NewsConstants;
+import com.bjhy.news.common.util.NewsRpcUtil;
 import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorEvent;
 import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorEventAdapter;
 import com.bjhy.news.common.zookeeper.event.ZookeeperCuratorListener;
@@ -45,8 +45,8 @@ public class ZookeeperConfig {
 	public void connectZk(){
 		try {
 			connectZookeeperCurator();
-			createNode(NewsConstants.ZK_ROOT_NODE, CreateMode.PERSISTENT);//创建根节点
-			setNodeListener(NewsConstants.ZK_ROOT_NODE);
+			createNode(NewsRpcUtil.getZkRootNode(), CreateMode.PERSISTENT);//创建根节点
+			setNodeListener(NewsRpcUtil.getZkRootNode());
 		} catch (IOException e){
 			logger.error("zookeeper连接失败!请检测zookeeper地址",e);
 		}

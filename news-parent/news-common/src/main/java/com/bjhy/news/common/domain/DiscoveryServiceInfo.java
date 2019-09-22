@@ -61,4 +61,20 @@ public class DiscoveryServiceInfo {
 	public void setDiscoveryServiceDetailInfoList(List<DiscoveryServiceDetailInfo> discoveryServiceDetailInfoList) {
 		this.discoveryServiceDetailInfoList = discoveryServiceDetailInfoList;
 	}
+
+	@Override
+	public String toString() {
+		String clazz = serviceClass != null? serviceClass.getName():"";
+		StringBuilder s = new StringBuilder("clientTopic:"+clientTopic+">clientTag:"+clientTag+">className:"+clazz);
+		for (DiscoveryServiceDetailInfo detailInfo : discoveryServiceDetailInfoList) {
+			s.append("(serviceIp:"+detailInfo.getServiceIp());
+			s.append(">servicePort:"+detailInfo.getServicePort());
+			s.append(">version:"+detailInfo.getVersion());
+			s.append(">pid:"+detailInfo.getPid());
+			s.append(">timeout:"+detailInfo.getTimeout()+")");
+		}
+		return s.toString();
+	}
+	
+	
 }

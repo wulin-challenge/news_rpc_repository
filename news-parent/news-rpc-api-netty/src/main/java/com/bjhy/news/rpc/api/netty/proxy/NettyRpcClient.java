@@ -1,5 +1,6 @@
 package com.bjhy.news.rpc.api.netty.proxy;
 
+import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -39,7 +40,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
  */
 public class NettyRpcClient extends AbstractNotifyListener{
 	
-    private static final long LOCK_TIMEOUT_MILLIS = 3000;
+    private static final long LOCK_TIMEOUT_MILLIS = 30000;
     
     /**
 	 * 得到连接配置信息
@@ -59,17 +60,12 @@ public class NettyRpcClient extends AbstractNotifyListener{
     
     private NettyRpcClientHandler clientHandler= new NettyRpcClientHandler();
     
-    public Channel getChannel(RpcRequest request) {
-    	try {
-			Channel channel = getAndCreateChannel(request.getHost()+":"+request.getPort());
-			if(channel == null) {
-				throw new IllegalAccessError("连接主机被拒绝! 主机: "+request.getHost()+":"+request.getPort());
-			}
-			return channel;
-		} catch (Exception e) {
-			LoggerUtils.error(e.getMessage());
-			return null;
+    public Channel getChannel(RpcRequest request) throws InterruptedException {
+		Channel channel = getAndCreateChannel(request.getHost()+":"+request.getPort());
+		if(channel == null) {
+			throw new IllegalAccessError("连接主机被拒绝! 主机: "+request.getHost()+":"+request.getPort());
 		}
+		return channel;
     }
     
     public NettyRpcClientHandler getClientHandler() {
@@ -97,15 +93,38 @@ public class NettyRpcClient extends AbstractNotifyListener{
 	}
 	
 	/**
+	 * 重新获取通道,当channel不可用时
+	 * @param channel
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Channel getChannel(Channel channel) throws InterruptedException {
+		if(channel.remoteAddress() instanceof InetSocketAddress) {
+			InetSocketAddress remoteAddress = (InetSocketAddress)channel.remoteAddress();
+			channel = getChannel(remoteAddress.getHostName()+":"+remoteAddress.getPort());
+		}
+		return channel;
+	}
+	
+	/**
+	 * 通过地址得到Channel
+	 * @param addr
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Channel getChannel(String addr) throws InterruptedException {
+		return getAndCreateChannel(addr);
+	}
+	
+	/**
 	 * 创建并得到channel
 	 * @param addr
 	 * @return
 	 * @throws InterruptedException
 	 */
 	private Channel getAndCreateChannel(final String addr) throws InterruptedException {
-
         ChannelWrapper cw = this.channelTables.get(addr);
-        if (cw != null && cw.isOK()) {
+        if (cw != null && cw.isOK() && cw.isWritable() && cw.getChannel().isOpen()) {
             return cw.getChannel();
         }
 

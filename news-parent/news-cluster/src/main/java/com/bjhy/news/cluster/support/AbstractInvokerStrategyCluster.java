@@ -99,15 +99,15 @@ public abstract class AbstractInvokerStrategyCluster implements InvokerStrategyC
 		request.setClientId(newsConnect.clientId());
 		request.setClientName(newsConnect.clientName());
 		request.setClientPid(NewsRpcUtil.getPid());
-		
-		// 创建 RPC 客户端对象并发送 RPC 请求
-		Channel channel = NettyRpcClient.getInstance().getChannel(request);
-		RPCFuture sendRequest = NettyRpcClient.getInstance().getClientHandler().sendRequest(channel,request);
-		
-		Integer timeout = url.getParameter(NewsConstants.SYNC_TIMEOUT_KEY,0);
-		timeout = timeout <= 0?((request.getTimeout() ==null || request.getTimeout()<=0)?NewsConstants.DEFUALT_SYNC_TIMEOUT:request.getTimeout()):timeout;
 		Object object;
 		try {
+			// 创建 RPC 客户端对象并发送 RPC 请求
+			Channel channel = NettyRpcClient.getInstance().getChannel(request);
+			RPCFuture sendRequest = NettyRpcClient.getInstance().getClientHandler().sendRequest(channel,request);
+			
+			Integer timeout = url.getParameter(NewsConstants.SYNC_TIMEOUT_KEY,0);
+			timeout = timeout <= 0?((request.getTimeout() ==null || request.getTimeout()<=0)?NewsConstants.DEFUALT_SYNC_TIMEOUT:request.getTimeout()):timeout;
+		
 			object = sendRequest.get(timeout, TimeUnit.MILLISECONDS);
 		} catch (NewsRpcException|InterruptedException | ExecutionException | TimeoutException e) {
 			throw new NewsRpcException(e);

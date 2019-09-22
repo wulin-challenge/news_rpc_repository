@@ -16,17 +16,17 @@ public class CodeBlockDemo
     }
     
     //运行后输出结果?
-    public static void main(String[] args) {   
-    	System.out.println();
-        {
-            int a = 10;
-            //10
-            System.out.println("局部代码块");
-        }
-
-        new CodeBlockDemo();
-        new CodeBlockDemo();
-        new CodeBlockDemo();
-    }
+//    public static void main(String[] args) {   
+//    	System.out.println();
+//        {
+//            int a = 10;
+//            //10
+//            System.out.println("局部代码块");
+//        }
+//
+//        new CodeBlockDemo();
+//        new CodeBlockDemo();
+//        new CodeBlockDemo();
+//    }
 }
 

@@ -60,6 +60,8 @@ public class TestSync2 {
 		System.out.println((end-start));
 		System.out.println((end-start)/1000);
 	}
+	
+	
 
 	/**
 	 * 测试字符串Byte
@@ -88,6 +90,38 @@ public class TestSync2 {
 		}
 		
 		
+	}
+	
+	
+	/**
+	 * 测试字符串Byte
+	 * @throws IOException 
+	 */
+	@Test
+	public void testStringByteMultiThread() throws IOException {
+		
+		for (int i = 0; i < 100000; i++) {
+			newFixedThreadPool.execute(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						TopicTag tt = new TopicTag(NewsConstants.DEFAULT_TOPIC, NewsConstants.DEFAULT_TAG,10000);
+						tt.setCluster("failfast");
+						byte[] data = NewsUtil.syncSend(tt, FirstService.class).getStringByte("String : ");
+						
+						String str = new String(data);
+						System.out.println(str);
+
+						System.out.println(data.length);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+		
+		System.in.read();
 	}
 
 }

@@ -9,12 +9,15 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.zookeeper.CreateMode;
 import com.bjhy.news.common.connect.NewsConnect;
+import com.bjhy.news.common.domain.ProviderConsumerType;
 import com.bjhy.news.common.domain.PublishServiceInfo;
+import com.bjhy.news.common.heartbeat.telnet.TelnetHeartbeat;
 import com.bjhy.news.common.mock.MockService;
 import com.bjhy.news.common.mock.MockServiceImpl;
 import com.bjhy.news.common.util.NewsConstants;
 import com.bjhy.news.common.util.NewsRpcUtil;
 
+import cn.wulin.brace.utils.LoggerUtils;
 import cn.wulin.ioc.URL;
 import cn.wulin.ioc.extension.InterfaceExtensionLoader;
 import cn.wulin.ioc.util.UrlUtils;
@@ -44,9 +47,32 @@ public class RegistryZkService {
 		List<PublishServiceInfo> publishServiceInfoList = publishService.getPublishServiceInfo();
 		cachePublishServiceInfo.addAll(publishServiceInfoList);
 		
+		//设置是提供者还是消费者属性
+		setProviderConsumer();
+		
 		publishMockService();//发布mock服务
+		
+		publishTelnetHeartbeatService();//发布telnet心跳服务
+
 		//注册zk服务
 		registerZkService(cachePublishServiceInfo);
+	}
+	
+	/**
+	 * 设置是提供者还是消费者属性
+	 */
+	private void setProviderConsumer() {
+		String providerConsumer = newsConnect.providerConsumer();
+		if(cachePublishServiceInfo.size() == 0) {
+			if(StringUtils.isBlank(providerConsumer)) {
+				newsConnect.setProviderConsumer(ProviderConsumerType.CONSUMER.getCode());
+			}
+			return;
+		}
+		
+		if(StringUtils.isBlank(providerConsumer)) {
+			newsConnect.setProviderConsumer(ProviderConsumerType.PROVIDER.getCode());
+		}
 	}
 	
 	/**
@@ -60,6 +86,23 @@ public class RegistryZkService {
 		PublishServiceInfo publishServiceInfo = new PublishServiceInfo();
 		publishServiceInfo.setServiceClass(MockService.class);
 		publishServiceInfo.setServiceImplObject(new MockServiceImpl());
+		publishServiceInfo.setSyncTimeout(3000);
+		publishServiceInfo.setSyncVersion("");
+		cachePublishServiceInfo.add(publishServiceInfo);
+	}
+	
+	/**
+	 * 发布telnet心跳服务
+	 */
+	private void publishTelnetHeartbeatService() {
+		if(cachePublishServiceInfo.size() == 0) {
+			return;
+		}
+		TelnetHeartbeat telnetHeartbeat = InterfaceExtensionLoader.getExtensionLoader(TelnetHeartbeat.class).getAdaptiveExtension();
+		
+		PublishServiceInfo publishServiceInfo = new PublishServiceInfo();
+		publishServiceInfo.setServiceClass(TelnetHeartbeat.class);
+		publishServiceInfo.setServiceImplObject(telnetHeartbeat);
 		publishServiceInfo.setSyncTimeout(5000);
 		publishServiceInfo.setSyncVersion("");
 		cachePublishServiceInfo.add(publishServiceInfo);
@@ -130,7 +173,7 @@ public class RegistryZkService {
 	 * @return
 	 */
 	private String getRegisterPath(PublishServiceInfo psInfo){
-		StringBuffer registerPath = new StringBuffer(NewsConstants.ZK_ROOT_NODE);
+		StringBuffer registerPath = new StringBuffer(NewsRpcUtil.getZkRootNode());
 		registerPath.append("/"+newsConnect.clientTopic());
 		registerPath.append("/"+newsConnect.clientTag());
 		registerPath.append("/"+psInfo.getServiceClass().getName());
@@ -157,11 +200,12 @@ public class RegistryZkService {
 		String[] pathArray = registerPath.substring(1).split("/");
 		URL url = new URL(NewsConstants.REGISTER_PROTOCOL_KEY, newsConnect.clientIp(), newsConnect.clientPort(),params);
 		url = url.addParameter(NewsConstants.PID, NewsRpcUtil.getPid());
-		url = url.addParameter(NewsConstants.ZK_ROOT_NODE, pathArray[0]);
-		url = url.addParameter(NewsConstants.CLIENT_TOPIC_KEY, pathArray[1]);
-		url = url.addParameter(NewsConstants.CLIENT_TAG_KEY, pathArray[2]);
-		url = url.addParameter(NewsConstants.SERVICE_INTERFACE_KEY, pathArray[3]);
-		url = url.addParameter(NewsConstants.ZK_EPHEMERAL_NODE_KEY, pathArray[4]);
+		url = url.addParameter(NewsRpcUtil.getZkRootNode(), pathArray[0]+"/"+pathArray[1]);
+		url = url.addParameter(NewsConstants.DEFAULT_INTERFACE_GROUP, pathArray[1]);
+		url = url.addParameter(NewsConstants.CLIENT_TOPIC_KEY, pathArray[2]);
+		url = url.addParameter(NewsConstants.CLIENT_TAG_KEY, pathArray[3]);
+		url = url.addParameter(NewsConstants.SERVICE_INTERFACE_KEY, pathArray[4]);
+		url = url.addParameter(NewsConstants.ZK_EPHEMERAL_NODE_KEY, pathArray[5]);
 		String fullString = url.toFullString();
 		
 		zookeeperConfig.setNodeData(registerPath, fullString.getBytes(Charset.defaultCharset()));

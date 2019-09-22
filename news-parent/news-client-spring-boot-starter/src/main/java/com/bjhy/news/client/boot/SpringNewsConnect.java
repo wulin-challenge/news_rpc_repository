@@ -18,6 +18,7 @@ import cn.wulin.ioc.extension.ExtensionLoader;
 public class SpringNewsConnect implements NewsConnect{
 	private NewsBootConfigurer newsBootConfigurer;
 	private Environment environment;
+	private String providerConsumer;
 	
 	public SpringNewsConnect() {
 		super();
@@ -127,5 +128,23 @@ public class SpringNewsConnect implements NewsConnect{
 	@Override
 	public Integer payload() {
 		return environment.getProperty("news.payload", Integer.class, 65536);
+	}
+
+	@Override
+	public String interfaceGroup() {
+		return environment.getProperty("news.interface-group", String.class, NewsConstants.DEFAULT_INTERFACE_GROUP);
+	}
+
+	@Override
+	public String providerConsumer() {
+		if(StringUtils.isBlank(this.providerConsumer)) {
+			this.providerConsumer = environment.getProperty("news.provider-consumer", String.class);
+		}
+		return providerConsumer;
+	}
+
+	@Override
+	public void setProviderConsumer(String providerConsumer) {
+		this.providerConsumer = providerConsumer;
 	}
 }

@@ -124,5 +124,20 @@ public class AdaptiveNewsConnect implements NewsConnect {
 	public Integer payload() {
 		return getNewsConnect().payload();
 	}
+
+	@Override
+	public String interfaceGroup() {
+		return getNewsConnect().interfaceGroup();
+	}
+
+	@Override
+	public String providerConsumer() {
+		return getNewsConnect().providerConsumer();
+	}
+
+	@Override
+	public void setProviderConsumer(String providerConsumer) {
+		getNewsConnect().setProviderConsumer(providerConsumer);
+	}
 	
 }

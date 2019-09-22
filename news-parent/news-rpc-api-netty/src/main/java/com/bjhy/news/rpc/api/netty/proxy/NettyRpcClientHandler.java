@@ -1,5 +1,6 @@
 package com.bjhy.news.rpc.api.netty.proxy;
 
+import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -7,7 +8,9 @@ import java.util.concurrent.CountDownLatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bjhy.news.common.heartbeat.telnet.TelnetHeartbeatInfo;
 import com.bjhy.news.common.util.NewsRpcUtil;
+import com.bjhy.news.rpc.api.netty.domain.NettyRpcType;
 import com.bjhy.news.rpc.api.netty.domain.RpcRequest;
 import com.bjhy.news.rpc.api.netty.domain.RpcResponse;
 
@@ -52,6 +55,13 @@ public class NettyRpcClientHandler extends SimpleChannelInboundHandler<RpcRespon
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, RpcResponse response) throws Exception {
+		if(NettyRpcType.TELNET_SERVICE == response.getRpcType()) {
+			TelnetHeartbeatInfo info =  (TelnetHeartbeatInfo)response.getResult();
+			if(info.getRequestCode() == 0) {
+				dealWithTelnetResponse(ctx, response);
+				return;
+			}
+		}
 		String requestId = response.getRequestId();
 		RPCFuture rpcFuture = pendingRPC.get(requestId);
 		if (rpcFuture != null) {
@@ -59,10 +69,20 @@ public class NettyRpcClientHandler extends SimpleChannelInboundHandler<RpcRespon
 			rpcFuture.done(response);
 		}
 	}
+	
+	/**
+	 * 处理来自服务端telnet的响应
+	 * @param ctx
+	 * @param response
+	 */
+	private void dealWithTelnetResponse(ChannelHandlerContext ctx, RpcResponse response) {
+		HeartbeatHandler.getInstance().addRemoteHeartbeat(ctx, response);
+	}
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		ctx.close();
+		LoggerUtils.error(cause.getMessage());
 	}
 
 	 public RPCFuture sendRequest(Channel channel,RpcRequest request) {

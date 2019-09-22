@@ -66,6 +66,12 @@ public class SpringLoadNewsConnect {
 	@Value("${news.payload:65536}")
 	private Integer payload;
 	
+	@Value("${news.interface-group:"+NewsConstants.DEFAULT_INTERFACE_GROUP+"}")
+	private String interfaceGroup;
+	
+	@Value("${news.interface-group:}")
+	private String providerConsumer;
+	
 	public String getZookeeperAddress() {
 		return zookeeperAddress;
 	}
@@ -173,5 +179,17 @@ public class SpringLoadNewsConnect {
 	}
 	public void setPayload(Integer payload) {
 		this.payload = payload;
+	}
+	public String getInterfaceGroup() {
+		return interfaceGroup;
+	}
+	public void setInterfaceGroup(String interfaceGroup) {
+		this.interfaceGroup = interfaceGroup;
+	}
+	public String getProviderConsumer() {
+		return providerConsumer;
+	}
+	public void setProviderConsumer(String providerConsumer) {
+		this.providerConsumer = providerConsumer;
 	}
 }

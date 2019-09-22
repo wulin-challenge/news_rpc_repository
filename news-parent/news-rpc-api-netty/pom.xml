@@ -15,9 +15,5 @@
 			<artifactId>news-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>cn.wulin</groupId>
-			<artifactId>brace-telnet</artifactId>
-		</dependency>
 	</dependencies>
 </project>

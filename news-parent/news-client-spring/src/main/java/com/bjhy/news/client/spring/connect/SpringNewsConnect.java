@@ -126,4 +126,19 @@ public class SpringNewsConnect implements NewsConnect{
 	public Integer payload() {
 		return getSpringLoadNewsConnect().getPayload();
 	}
+
+	@Override
+	public String interfaceGroup() {
+		return getSpringLoadNewsConnect().getInterfaceGroup();
+	}
+
+	@Override
+	public String providerConsumer() {
+		return getSpringLoadNewsConnect().getProviderConsumer();
+	}
+
+	@Override
+	public void setProviderConsumer(String providerConsumer) {
+		getSpringLoadNewsConnect().setProviderConsumer(providerConsumer);
+	}
 }

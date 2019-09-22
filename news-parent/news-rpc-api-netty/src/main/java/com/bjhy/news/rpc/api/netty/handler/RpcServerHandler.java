@@ -1,7 +1,12 @@
 package com.bjhy.news.rpc.api.netty.handler;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
@@ -43,7 +48,7 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest>{
 	/**
 	 * 客户端通道和地址
 	 */
-	private static ConcurrentHashMap<Channel,RpcRequest> clientChannel = new ConcurrentHashMap<Channel,RpcRequest>();
+	private static Map<Channel,RpcRequest> clientChannel = Collections.synchronizedMap(new LinkedHashMap<Channel,RpcRequest>());
 	
 	public RpcServerHandler(List<PublishServiceInfo> publishServiceInfoList){
 		this.publishServiceInfoList = publishServiceInfoList;
@@ -137,11 +142,11 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest>{
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-    	logger.debug("server caught exception", cause);
+    	logger.error("server caught exception", cause);
         ctx.close();
     }
     
-    public static ConcurrentHashMap<Channel,RpcRequest> getClientChannel() {
+    public static Map<Channel,RpcRequest> getClientChannel() {
 		return clientChannel;
 	}
 
@@ -176,14 +181,12 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest>{
      * 检测channel是否可用
      */
     private void checkChannel() {
-    	Enumeration<Channel> keys = clientChannel.keys();
-    	while(keys.hasMoreElements()) {
-    		Channel channel = keys.nextElement();
-    		if(channel != null && channel.isActive()) {
+    	for (Channel channel : new ArrayList<Channel>(clientChannel.keySet())) {
+    		if(channel != null && channel.isActive() && channel.isWritable()) {
     			continue;
     		}
     		clientChannel.remove(channel);
-    	}
+		}
     }
     
 }

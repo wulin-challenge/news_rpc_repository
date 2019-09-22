@@ -4,7 +4,9 @@
 news: 
   payload: 10485760
   #zookeeper-address: 192.168.0.2:2181
-  #zookeeper-address: zxq:2181
+  zookeeper-address: zxq:2181
+  client-telnet-port: 5558
+  provider-consumer: both
 #  zookeeper-address: wulinThinkPad:2181
   #rocketmq-address: 192.168.0.107:9876;192.168.0.108:9876
 #  rocketmq-address: 192.168.0.82:9876;192.168.0.158:9876

@@ -19,17 +19,18 @@
 
 news: 
    payload: 10485760
-#  zookeeper-address: wulin:2181
+   zookeeper-address: zxq:2181
+   client-port: 5588
+   client-topic: 5101
+   client-tag: xxappId
+   
 #  zookeeper-address: wulinThinkPad:2181
 #  rocketmq-address: 192.168.0.107:9876;192.168.0.108:9876
 #  rocketmq-address: 192.168.0.82:9876;192.168.0.158:9876
 #  rocketmq-publish-environment: test
 #  rocketmq-publish-version: 1.1
 #  client-ip: 192.168.0.125
-  #client-port: 5588
-#  client-port: 1113
-#  client-topic: 5109
-#  client-tag: xxappId
+
   
 server:
   context-path: /demo-provider

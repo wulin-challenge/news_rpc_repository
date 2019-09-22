@@ -127,4 +127,32 @@ public interface NewsConnect {
 	 * @return
 	 */
 	Integer payload();
+	
+	/**
+	 * 用于划定 提供者和消费者 接口调用分组
+	 * <p> 例如: provider1(group=1),provider2(group=2),provider3(group=2).
+	 * <p> consumer1(group=1),consumer2(group=2)
+	 * <p> 那么consumer1将只调用group=1的provider提供的接口
+	 * <p> 那么consumer2将只调用group=2的provider提供的接口
+	 * <p> 配置文件中不指定的情况provider和consumer都属于news_interface_group组
+	 * 
+	 * @return
+	 */
+	String interfaceGroup();
+	
+	/**
+	 * 指示当前服务是提供者还是消费者,还是既是提供者又是消费
+	 * <p> 提供者: provider
+	 * <p> 消费者: consumer
+	 * <p> 既是提供者又是消费者: both
+	 * <p> 配置文件中不指定的情况下,该值通过计算所得
+	 * @return
+	 */
+	String providerConsumer();
+	
+	/**
+	 * 设置{@link #providerConsumer()}的值
+	 */
+	void setProviderConsumer(String providerConsumer);
+	
 }
