@@ -9,7 +9,7 @@
 	<properties>
 		<encoding>UTF-8</encoding>
 		<java.version>1.8</java.version>
-		<nexusAddress>192.168.0.2:81</nexusAddress>
+		<nexusAddress>192.168.2.3:8081</nexusAddress>
 <!-- 		<nexusAddress>wulin:81</nexusAddress> -->
 		<!-- Log libs -->
 		<slf4j.version>1.7.25</slf4j.version>

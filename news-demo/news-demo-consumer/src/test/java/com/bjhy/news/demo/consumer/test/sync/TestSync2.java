@@ -27,7 +27,7 @@ public class TestSync2 {
 		for (int i = 0; i < 100000; i++) {
 			String hello1 = null;
 			try {
-				hello1 = NewsUtil.syncSend(new TopicTag("5109", "xxappId"), FirstService.class).hello2("aa", null, "cc");
+				hello1 = NewsUtil.syncSend(new TopicTag("5101", "xxappId"), FirstService.class).hello2("aa", null, "cc");
 				Thread.sleep(1000);
 			} catch (Exception e) {
 				e.printStackTrace();

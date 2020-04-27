@@ -122,7 +122,7 @@ public class TestSync {
 	@Test
 	public void test_defualt_topicTag() throws InterruptedException{
 		long start = System.currentTimeMillis();
-		for (int i = 0; i < 100000; i++) {
+		for (int i = 0; i < 100000; i++) { 
 			String hello1 = null;
 			try {
 				hello1 = NewsUtil.syncSend(FirstService.class).hello1(" hello! 默认的topic和tag .");
