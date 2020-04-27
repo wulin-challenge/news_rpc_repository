@@ -19,6 +19,20 @@
 	</properties>
 
 	<!-- deploy -->
+<!-- 	<distributionManagement> -->
+<!-- 		<repository> -->
+<!-- 			<id>nexus-releases</id> -->
+<!-- 			<name>nexus releases Repository</name> -->
+<!-- 			<url>http://${nexusAddress}/nexus/content/repositories/releases/</url> -->
+<!-- 		</repository> -->
+<!-- 		<snapshotRepository> -->
+<!-- 			<id>nexus-snapshots</id> -->
+<!-- 			<name>nexus snapshot Repository</name> -->
+<!-- 			<url>http://${nexusAddress}/nexus/content/repositories/snapshots/</url> -->
+<!-- 		</snapshotRepository> -->
+<!-- 	</distributionManagement> -->
+	
+	<!-- deploy -->
 	<distributionManagement>
 		<repository>
 			<id>nexus-releases</id>
@@ -28,7 +42,7 @@
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<name>nexus snapshot Repository</name>
-			<url>http://${nexusAddress}/nexus/content/repositories/snapshots/</url>
+			<url>http://${nexusAddress}/nexus/content/repositories/${branch}/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<dependencyManagement>
