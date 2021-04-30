@@ -9,7 +9,7 @@
 	<artifactId>ioc-spring</artifactId>
 
 	<properties>
-		<spring.version>4.3.10.RELEASE</spring.version>
+		<spring.version>4.3.29.RELEASE</spring.version>
 		<ioc.version>1.0.1-SNAPSHOT</ioc.version>
 	</properties>
 
