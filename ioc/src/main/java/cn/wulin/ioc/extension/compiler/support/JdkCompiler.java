@@ -69,8 +69,8 @@ public class JdkCompiler extends AbstractCompiler {
 
     public JdkCompiler() {
         options = new ArrayList<String>();
-        options.add("-target");
-        options.add("1.6");
+        options.add("-target"); 
+        options.add("1.8");
         StandardJavaFileManager manager = compiler.getStandardFileManager(diagnosticCollector, null, null);
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();
         if (loader instanceof URLClassLoader
