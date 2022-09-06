@@ -190,7 +190,7 @@ public class JdkCompiler extends AbstractCompiler {
 
         @Override
         public ClassLoader getClassLoader(JavaFileManager.Location location) {
-            return classLoader;
+            return classLoader.getParent();
         }
 
         @Override
@@ -246,7 +246,7 @@ public class JdkCompiler extends AbstractCompiler {
             super(parentClassLoader);
         }
 
-        Collection<JavaFileObject> files() {
+		Collection<JavaFileObject> files() {
             return Collections.unmodifiableCollection(classes.values());
         }
 
